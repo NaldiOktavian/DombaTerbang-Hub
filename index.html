@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DombaTerbang Hub</title>
+  <meta name="description" content="Portal kenangan & rundown event DombaTerbang." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- 🔄 PRELOADER -->
+  <div id="preloader">
+    <img src="img/logo.png" alt="Loading DombaTerbang..." />
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="#" data-target="home">
+        <img src="img/logo.png" class="brand-logo" alt="DombaTerbang Logo" />
+        <span>DombaTerbang Hub</span>
+      </a>
+
+      <div class="menu" id="menu">
+        <a href="#" data-target="home" class="active">Home</a>
+        <a href="#" data-target="news">News</a>
+        <a href="#" data-target="event">Event</a>
+        <a href="#" data-target="gallery">Galeri Seram</a>
+
+        <!-- Tombol DTSL tetap ke halaman liga terpisah -->
+        <a href="liga/liga.html" class="nav-dtsl" target="_blank" rel="noopener">
+          DTSL
+        </a>
+
+        <a href="#" data-target="about">Tentang</a>
+      </div>
+
+      <!-- tombol dark mode -->
+      <button id="themeToggle" class="theme-toggle" aria-label="Ganti tema">🌙</button>
+
+      <!-- hamburger -->
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+
+  <!-- HOME: HERO + HIGHLIGHTS -->
+  <header class="hero page" id="home">
+    <div class="cloud-layer" id="cloudLayer"></div>
+
+    <div class="hero-inner">
+      <div class="hero-img-wrap">
+        <img src="img/logo.png" alt="DombaTerbang Mascot" class="hero-logo" />
+      </div>
+
+      <div class="hero-caption">
+        DombaTerbang & Trisha Love Connection<br/>
+        Masuk ke tab <b>Event</b> atau <b>Galeri Seram</b> dari menu di atas.
+      </div>
+
+    <!-- HIGHLIGHT CARDS -->
+    <section class="home-highlights">
+            <div class="home-highlights-shell">
+
+        <!-- Card 1: Next Event (otomatis dari EVENTS di script.js) -->
+        <article id="homeNextEvent" class="home-card home-card-next"></article>
+
+        <!-- Card 2: Latest News (otomatis dari NEWS_ITEMS di script.js) -->
+        <article id="homeLatestNews" class="home-card home-card-news"></article>
+
+        <!-- Card 3: Liga DTSL (shortcut tetap) -->
+        <article id="homeLigaHighlight" class="home-card home-card-liga"></article>
+
+      </div>
+    </section>
+  </header>
+
+    <!-- NEWS: LIST VERSI JKT48 STYLE -->
+    <section class="page hide" id="news">
+      <div class="news-shell">
+        <div class="news-header-row">
+          <div>
+            <h2 class="news-title">News &amp; Updates</h2>
+            <p class="news-sub">
+              Info terbaru seputar event, liga, project, dan update website DombaTerbang.
+            </p>
+          </div>
+        </div>
+
+        <!-- filter kategori -->
+        <div class="news-filter-row">
+          <button class="news-filter-chip active" data-news-filter="all">All</button>
+          <button class="news-filter-chip" data-news-filter="event">Event</button>
+          <button class="news-filter-chip" data-news-filter="league">DTSL League</button>
+          <button class="news-filter-chip" data-news-filter="gallery">Gallery</button>
+          <button class="news-filter-chip" data-news-filter="info">Info</button>
+        </div>
+
+        <!-- list news akan di-render via JS -->
+        <div id="newsList" class="news-list"></div>
+
+        <!-- pagination -->
+        <div id="newsPagination" class="news-pagination"></div>
+      </div>
+    </section>
+
+  <!-- EVENT: HANYA EVENT ARCHIVE -->
+  <section class="page hide" id="event">
+    <div class="container">
+      <h2 class="section-title">Event Archive (Rundown)</h2>
+      <p class="muted">Pilih event untuk membuka halaman rundown (tab baru).</p>
+      <div class="toolbar">
+        <input type="search" id="searchEvent" placeholder="Cari event…" />
+        <select id="filterYear">
+          <option value="">Semua Tahun</option>
+        </select>
+      </div>
+      <div id="eventGrid" class="grid"></div>
+    </div>
+  </section>
+
+  <!-- GALERI SERAM: LIST EVENT GALERI -->
+  <section class="page hide" id="gallery">
+    <div class="container">
+      <h2 class="section-title">Galeri Seram</h2>
+      <p class="muted">Pilih event untuk melihat foto-foto kenangan.</p>
+      <div id="galleryGrid" class="grid"></div>
+    </div>
+  </section>
+
+  <!-- TENTANG -->
+  <section class="page hide" id="about">
+    <div class="container">
+      <h2 class="section-title">Tentang DombaTerbang</h2>
+      <p>
+        DombaTerbang Hub adalah website yang dikembangkan untuk mengumpulkan kenangan dari berbagai event 
+        yang diikuti oleh panguyubang DombaTerbang.
+        Website ini menjadi pusat informasi rundown dan galeri seram untuk kita
+        nostalgia kapan saja.
+      </p>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2025 DombaTerbang Hub</span>
+      <span class="muted">Created with ❤ by DombaTerbang</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,4314 @@
+:root{
+  --bg:#fff8fb; --paper:#ffffff; --ink:#1f2937; --muted:#6b7280;
+  --brand:#ff7aa2; --brand-2:#ffd1e0; --accent:#6ec1ff;
+  --shadow:0 10px 30px rgba(0,0,0,.08); --radius:18px;
+}
+/* ========== DARK THEME (Aesthetic Sky) ========== */
+body.dark {
+  /* warna dasar seperti langit malam */
+  --bg: #0b1220;
+  --paper: #151d2c;
+  --ink: #f1f5f9;
+  --muted: #94a3b8;
+
+  /* warna brand pink tetap smooth */
+  --brand: #ff85a2;
+  --brand-2: #3f1a32;
+
+  /* aksen biru lembut (seperti cahaya bulan) */
+  --accent: #60a5fa;
+
+  /* shadow lebih lembut */
+  --shadow: 0 14px 40px rgba(0,0,0,.45);
+}
+
+/* NAVBAR DARK MODE IMPROVEMENT */
+body.dark .nav {
+  background: rgba(20, 28, 43, 0.78);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+
+body.dark .menu a.active {
+  background: var(--brand);
+  color: white;
+}
+
+body.dark .menu a:hover {
+  background: rgba(255,255,255,.06);
+}
+
+/* CARD DI DARK MODE */
+body.dark .card {
+  background: var(--paper);
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,.05);
+}
+
+/* GALLERY TITLE DARK MODE */
+body.dark h1, 
+body.dark h2, 
+body.dark h3 {
+  color: var(--ink);
+}
+
+/* PARALLAX CLOUDS TETAP TERANG */
+body.dark .cloud img {
+  filter: brightness(1.2);
+}
+
+/* FOOTER */
+body.dark footer {
+  color: var(--muted);
+}
+
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,-apple-system,sans-serif;
+  color:var(--ink);
+  background:var(--bg);
+}
+a{color:inherit;text-decoration:none}
+.page.hide{display:none!important}
+.container{max-width:1100px;margin:0 auto;padding:24px}
+
+/* NAVBAR BASIC */
+.nav{
+  position:sticky;
+  top:0;
+  z-index:40;
+  background:rgba(255,255,255,.7);
+  backdrop-filter:blur(10px) saturate(180%);
+  border-bottom:1px solid #f1e7ee;
+}
+
+.nav-inner{
+  max-width:1100px;
+  margin:0 auto;
+  padding:10px 20px;
+  display:flex;
+  align-items:center;
+}
+
+/* brand di kiri */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-weight:800;
+  margin-right:auto;
+}
+
+.brand {
+  padding-left: 24px; /* geser logo sedikit ke kanan */
+}
+
+.brand-logo {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.15)); /* glowing lembut */
+  border-radius: 12px;
+}
+
+
+/* menu di tengah */
+.menu{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  margin:0 auto;
+}
+
+/* link menu biasa (tanpa ikon) */
+.menu a{
+  padding:8px 14px;
+  border-radius:12px;
+  font-weight:600;
+  color:#374151;
+  font-size:14px;
+}
+
+/* aktif & hover */
+.menu a.active,
+.menu a:hover{
+  background:var(--brand-2);
+  color:#7a1a3d;
+}
+
+/* tombol di kanan */
+.theme-toggle,
+.hamburger{
+  margin-left:auto;
+}
+
+/* navbar ketika halaman sudah di-scroll */
+.nav.scrolled{
+  background:rgba(255,255,255,.96);
+  border-bottom-color:rgba(248,113,166,0.18);
+  box-shadow:0 10px 30px rgba(15,23,42,0.12);
+}
+
+/* versi dark mode pas di-scroll */
+body.dark .nav.scrolled{
+  background:rgba(15,23,42,0.96);
+  border-bottom-color:rgba(148,163,184,0.45);
+  box-shadow:0 14px 40px rgba(0,0,0,0.75);
+}
+
+.brand{
+  display:flex;align-items:center;gap:8px;font-weight:800;
+}
+.brand-logo{
+  width:34px;height:34px;object-fit:contain;border-radius:10px;
+  filter:drop-shadow(0 2px 3px rgba(0,0,0,.15));
+}
+
+.menu a.active,.menu a:hover{
+  background:var(--brand-2);color:#7a1a3d;
+}
+
+/* hamburger */
+.hamburger{
+  display:none;flex-direction:column;justify-content:center;
+  gap:5px;width:34px;height:34px;border:none;background:none;cursor:pointer;
+}
+.hamburger span{
+  display:block;width:100%;height:3px;background:#374151;border-radius:4px;
+  transition:all .25s ease;
+}
+.hamburger.open span:nth-child(1){
+  transform:translateY(8px) rotate(45deg);background:var(--brand);
+}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){
+  transform:translateY(-8px) rotate(-45deg);background:var(--accent);
+}
+
+.theme-toggle{
+  margin-left:12px;
+  width:32px;height:32px;
+  border-radius:999px;
+  border:1px solid #e5e7eb;
+  background:rgba(255,255,255,.9);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;
+  font-size:18px;
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
+}
+body.dark .theme-toggle{
+  background:rgba(15,23,42,.9);
+  border-color:#4b5563;
+}
+.theme-toggle:hover{
+  transform:translateY(-1px);
+}
+@media(max-width:900px){
+  .theme-toggle{margin-left:8px;}
+}
+
+
+/* HERO HOME */
+.hero{
+  position:relative;min-height:85vh;
+  display:flex;align-items:center;justify-content:center;
+  background:url('img/bg_awan.jpg') center/cover no-repeat fixed;
+  overflow:hidden;
+}
+.cloud-layer{
+  position:absolute;inset:0;pointer-events:none;overflow:hidden;
+}
+.hero-cloud{
+  position:absolute;width:140px;max-width:26vw;opacity:.9;will-change:transform;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;  /* membuat semua ke tengah */
+  gap: 20px;
+}
+
+.hero-img-wrap {
+  width: min(360px, 70vw); /* ukuran lama kamu */
+  aspect-ratio: 1/1;
+  border-radius: 26px;
+  background: rgba(255,255,255,.12);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; /* tetap tambah ini untuk nge-center */
+  backdrop-filter: blur(6px);
+}
+
+
+.hero-logo{
+  width:70%;height:auto;object-fit:contain;
+  filter:drop-shadow(0 4px 10px rgba(0,0,0,.15));
+  animation:heroFloat 4s ease-in-out infinite;
+}
+@keyframes heroFloat{
+  0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}
+}
+.hero-caption{
+  font-size:14px;color:#f9fafb;
+  text-shadow:0 2px 4px rgba(0,0,0,.4);
+}
+
+
+/* =====================
+   HOME HIGHLIGHTS
+===================== */
+
+.home-highlights {
+  width: 100%;
+  padding: 20px 0 40px;
+  display: flex;
+  justify-content: center;
+}
+
+.home-highlights.center-mode {
+  margin-top: 10px;
+  justify-content: center;
+  width: 100%;
+}
+
+.home-highlights-shell {
+  max-width: 1100px;
+  width: 100%;
+  padding: 0 24px 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+}
+
+.home-card {
+  border-radius: 24px;
+  padding: 16px 18px 18px;
+  box-shadow: 0 18px 40px rgba(248, 113, 166, 0.22);
+  background: linear-gradient(to bottom right, #fff8fb, #ffe4f4);
+  font-size: 14px;
+}
+
+.home-card-next {
+  background: linear-gradient(to bottom right, #fefce8, #fee2e2);
+}
+
+.home-card-liga {
+  background: linear-gradient(to bottom right, #fef9c3, #ffedd5);
+}
+
+.home-card-pill {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(248, 250, 252, 0.9);
+  color: #4b5563;
+  margin-bottom: 6px;
+}
+
+.home-card-title {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.home-card-text {
+  margin: 0 0 8px;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.home-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  color: #1d4ed8;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(148, 163, 184, 0.5);
+}
+
+.home-card-link:hover {
+  background: #1d4ed8;
+  color: #f9fafb;
+}
+
+@media (max-width: 640px) {
+  .home-highlights-shell {
+    padding: 0 12px 16px;
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* SECTIONS */
+.section-title{
+  font-size:clamp(22px,2.6vw,30px);
+  margin:0 0 8px;
+}
+.muted{color:var(--muted)}
+.footer-inner{
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  padding:12px 24px;
+}
+
+/* Badge NEW di thumb galeri */
+.thumb {
+  position: relative;
+}
+
+.gallery-badge-new {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  background: linear-gradient(90deg, #f97316, #ec4899);
+  color: #f9fafb;
+  box-shadow: 0 6px 14px rgba(248, 113, 166, 0.65);
+  text-transform: uppercase;
+}
+
+
+/* EVENT & GALERI GRID */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:18px;
+}
+.card,.gallery-card{
+  background:var(--paper);border-radius:var(--radius);
+  border:1px solid #f2eaf0;box-shadow:var(--shadow);
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .2s;
+}
+.card:hover,.gallery-card:hover{transform:translateY(-5px)}
+.thumb,.g-thumb{
+  height:150px;background:#f6f6f9 center/cover no-repeat;
+}
+.body{padding:14px}
+.eyebrow{
+  font-size:12px;text-transform:uppercase;letter-spacing:.08em;
+  color:#7c7c8a;margin-bottom:2px;
+}
+.title,.g-title{font-weight:800;font-size:15px}
+.desc{color:#4b5563;font-size:14px;margin-top:4px}
+
+/* =========================
+   EVENT ARCHIVE — CARD UPGRADE
+========================= */
+
+#eventGrid {
+  margin-top: 8px;
+}
+
+/* kartu event versi shiny + micro-animation */
+.event-card {
+  position: relative;
+  border-radius: 20px;
+  background: radial-gradient(circle at top, #fff7fb 0, #ffe4f4 40%, #ffffff 100%);
+  box-shadow: 0 18px 40px rgba(248, 113, 166, 0.20);
+  overflow: hidden;
+  transform: translateY(0) scale(1);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    filter 0.22s ease;
+  animation: eventCardFadeUp 0.45s ease both;
+}
+
+/* STATUS BADGE DI POSTER EVENT */
+.event-card .thumb {
+  position: relative;
+  height: 160px;
+  background-size: 104%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f6f6f9;
+  border-bottom: 1px solid rgba(248, 250, 252, 0.9);
+
+  /* efek zoom poster lembut */
+  transition:
+    background-size 0.45s ease,
+    transform 0.45s ease;
+}
+
+.event-status-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: rgba(15, 23, 42, 0.85);
+  color: #f9fafb;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.5);
+}
+
+/* warna beda untuk Upcoming vs Finished */
+.event-status-upcoming {
+  background: linear-gradient(120deg, #22c55e, #16a34a);
+}
+
+.event-status-past {
+  background: linear-gradient(120deg, #6b7280, #4b5563);
+}
+
+/* dark mode tweak */
+body.dark .event-status-badge {
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.9);
+}
+
+/* hover: kartu sedikit naik + poster zoom halus */
+.event-card:hover {
+  transform: translateY(-5px) scale(1.01);
+  box-shadow: 0 26px 60px rgba(248, 113, 166, 0.28);
+}
+
+.event-card:hover .thumb {
+  background-size: 112%;
+  transform: translateY(-2px);
+}
+
+/* isi teks di dalam card */
+.event-card .body {
+  padding: 12px 14px 14px;
+}
+
+.event-card .eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+}
+
+.event-card .title {
+  margin-top: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.event-card .desc {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+/* kilau halus saat hover */
+.event-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.24),
+    transparent 35%,
+    transparent 65%,
+    rgba(255, 255, 255, 0.35)
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.event-card:hover::before {
+  opacity: 1;
+}
+
+/* animasi masuk lembut */
+@keyframes eventCardFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* stagger animation: kartu 1–8 muncul berurutan */
+#eventGrid .event-card:nth-child(1) { animation-delay: .02s; }
+#eventGrid .event-card:nth-child(2) { animation-delay: .06s; }
+#eventGrid .event-card:nth-child(3) { animation-delay: .10s; }
+#eventGrid .event-card:nth-child(4) { animation-delay: .14s; }
+#eventGrid .event-card:nth-child(5) { animation-delay: .18s; }
+#eventGrid .event-card:nth-child(6) { animation-delay: .22s; }
+#eventGrid .event-card:nth-child(7) { animation-delay: .26s; }
+#eventGrid .event-card:nth-child(8) { animation-delay: .30s; }
+
+/* aksesibilitas: fokus via keyboard */
+.event-card:focus-visible {
+  outline: 2px solid #ec4899;
+  outline-offset: 3px;
+}
+
+/* versi dark mode */
+body.dark .event-card {
+  background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+}
+
+body.dark .event-card .title {
+  color: #e5e7eb;
+}
+
+body.dark .event-card .desc,
+body.dark .event-card .eyebrow {
+  color: #9ca3af;
+}
+
+/* mobile: hover effect dipelankan biar nggak terlalu “lompat” */
+@media (max-width: 640px) {
+  .event-card {
+    box-shadow: 0 12px 30px rgba(248, 113, 166, 0.22);
+  }
+
+  .event-card:hover {
+    transform: translateY(-2px) scale(1.00);
+    box-shadow: 0 16px 40px rgba(248, 113, 166, 0.26);
+  }
+
+  .event-card:hover .thumb {
+    transform: translateY(-1px);
+    background-size: 108%;
+  }
+}
+
+
+/* TOOLBAR */
+.toolbar{
+  display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+  margin:10px 0 16px;
+}
+input[type="search"],select{
+  padding:8px 10px;border-radius:10px;
+  border:1px solid #e5e7eb;background:#fff;font-size:14px;
+}
+
+/* MASONRY GALERI EVENT */
+
+/* DESKTOP */
+.masonry{
+  column-count:3;
+  column-gap:14px;
+}
+
+/* TABLET */
+@media (max-width:768px){
+  .masonry{column-count:3;}
+}
+
+/* HP KECIL – tetap 2 kolom, jangan 1 */
+@media (max-width:480px){
+  .masonry{column-count:2;}
+}
+
+.masonry img{
+  width:100%;
+  margin-bottom:14px;
+  border-radius:14px;
+  break-inside:avoid;
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:transform .2s;
+}
+
+.masonry img:hover{transform:translateY(-4px)}
+
+/* ANIMASI FADE-IN UNTUK FOTO LAZY LOAD */
+.lazy-img {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+.lazy-img.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================
+   GALERI EVENT DETAIL PAGE
+========================= */
+
+.event-gallery-shell {
+  max-width: 900px;
+  margin: 80px auto 50px;
+  padding: 0 16px 40px;
+}
+
+.event-gallery-header h1 {
+  margin: 0 0 14px;
+  font-size: clamp(20px, 2.4vw, 26px);
+}
+
+.event-gallery-meta {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* cuma kasih jarak dari judul ke foto.
+   Layout fotonya tetap di-handle oleh .masonry */
+#eventGalleryPhotos {
+  margin-top: 8px;
+}
+
+/* Lazy-load + fade-in untuk foto galeri event */
+.lazy-img {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.lazy-img.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gallery-loadmore-wrap {
+  text-align: center;
+  margin: 24px 0 40px;
+}
+
+.gallery-loadmore-btn {
+  background: var(--accent, #ff5fa2);
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.gallery-loadmore-btn:hover {
+  opacity: 0.85;
+}
+
+.gallery-loadmore-btn:active {
+  transform: scale(0.96);
+}
+/* BACK TO TOP BUTTON (GALERI EVENT) */
+.back-to-top {
+  position: fixed;
+  right: 16px;
+  bottom: 18px;
+  width: 38px;
+  height: 38px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(15, 23, 42, 0.92);
+  color: #f9fafb;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(6px);
+  transition: opacity .25s ease, transform .25s ease;
+  z-index: 80;
+}
+
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-2px);
+}
+
+/* Sedikit kecil di HP */
+@media (max-width: 640px) {
+  .back-to-top {
+    right: 12px;
+    bottom: 14px;
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+}
+
+/* LIGHTBOX */
+.lightbox{
+  position:fixed;inset:0;background:rgba(0,0,0,.85);
+  display:none;justify-content:center;align-items:center;
+  z-index:60;
+}
+.lightbox img{
+  max-width:92vw;max-height:92vh;border-radius:12px;
+  box-shadow:var(--shadow);
+}
+
+.mini-nav{
+  max-width:1100px;
+  margin:0 auto;
+  padding:16px 24px 0;
+  display:flex;
+  gap:12px;
+  font-size:14px;
+}
+.mini-nav a{
+  color:#2563eb;
+}
+.mini-nav a:hover{
+  text-decoration:underline;
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .menu{display:none;flex-direction:column;align-items:flex-start;background:#fff;padding:10px 20px}
+  .hamburger{display:flex}
+  .container{padding:20px}
+}
+@media(max-width:640px){
+  .container{padding:16px}
+  .footer-inner{padding:10px 16px}
+}
+@media(prefers-reduced-motion:reduce){
+  .hero-logo{animation:none}
+}
+@media (max-width: 640px) {
+  .hero {
+    min-height: 75vh;  /* dari 85vh -> 70–75vh */
+  }
+}
+@media (max-width: 640px) {
+  .home-card {
+    box-shadow: 0 10px 24px rgba(248, 113, 166, 0.20);
+  }
+}
+
+
+/* =========================
+   GALERI SERAM — CARD UPGRADE
+========================= */
+
+/* kartu galeri versi shiny */
+.gallery-card {
+  position: relative;
+  border-radius: 20px;
+  background: radial-gradient(circle at top, #fdf2ff 0, #ffe4f4 40%, #ffffff 100%);
+  box-shadow: 0 16px 40px rgba(248, 113, 166, 0.18);
+  overflow: hidden;
+  transform: translateY(0) scale(1);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    filter 0.22s ease;
+}
+
+/* poster galeri di atas */
+.gallery-card .thumb {
+  position: relative;
+  height: 150px;
+  background-size: 104%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #f6f6f9;
+  border-bottom: 1px solid rgba(248, 250, 252, 0.9);
+
+  transition:
+    background-size 0.45s ease,
+    transform 0.45s ease,
+    filter 0.3s ease;
+}
+
+/* hover: kartu sedikit naik + poster zoom */
+.gallery-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 24px 55px rgba(248, 113, 166, 0.26);
+}
+
+.gallery-card:hover .thumb {
+  background-size: 112%;
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+}
+
+/* isi teks bawah */
+.gallery-card .body {
+  padding: 12px 14px 14px;
+}
+
+.gallery-card .eyebrow {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+}
+
+.gallery-card .title {
+  margin-top: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.gallery-card .desc {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+/* shimmer halus saat hover, tetap aman dengan badge NEW */
+.gallery-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    rgba(255, 255, 255, 0.20),
+    transparent 30%,
+    transparent 70%,
+    rgba(255, 255, 255, 0.30)
+  );
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.22s ease;
+}
+
+.gallery-card:hover::before {
+  opacity: 1;
+}
+
+/* sedikit animasi masuk saat load (optional) */
+.gallery-card {
+  animation: galleryCardFadeUp 0.45s ease both;
+}
+
+@keyframes galleryCardFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* fokus keyboard */
+.gallery-card:focus-visible {
+  outline: 2px solid #ec4899;
+  outline-offset: 3px;
+}
+
+/* DARK MODE versi galeri */
+body.dark .gallery-card {
+  background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
+  border: 1px solid rgba(148, 163, 184, 0.45);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+}
+
+body.dark .gallery-card .title {
+  color: #e5e7eb;
+}
+
+body.dark .gallery-card .desc,
+body.dark .gallery-card .eyebrow {
+  color: #9ca3af;
+}
+
+/* mobile: efek hover dibuat lebih soft */
+@media (max-width: 640px) {
+  .gallery-card:hover {
+    transform: translateY(-2px) scale(1.00);
+    box-shadow: 0 18px 40px rgba(248, 113, 166, 0.24);
+  }
+
+  .gallery-card:hover .thumb {
+    transform: translateY(-1px);
+    background-size: 108%;
+  }
+}
+
+
+/* PRELOADER */
+#preloader{
+  position:fixed;
+  inset:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:var(--bg);
+  z-index:9999;
+  transition:opacity .4s ease, visibility .4s ease;
+}
+#preloader img{
+  width:90px;height:90px;
+  border-radius:999px;
+  box-shadow:0 10px 30px rgba(0,0,0,.2);
+  animation:spin-logo 1.2s linear infinite;
+}
+#preloader.hidden{
+  opacity:0;
+  visibility:hidden;
+}
+
+@keyframes spin-logo{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+
+.nav-dtsl {
+  padding: 6px 16px;
+  background: linear-gradient(90deg, #f97316, #ec4899);
+  color: white;
+  border-radius: 999px;
+  font-weight: 600;
+  box-shadow: 0 6px 18px rgba(248,113,166,0.55);
+  font-size: 13px;
+}
+.nav-dtsl:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(248,113,166,0.7);
+}
+
+
+/* =========================
+   HOME HIGHLIGHTS
+========================= */
+
+.home-shell {
+  padding: 24px 0 40px;
+}
+
+.home-highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.home-card {
+  border-radius: 20px;
+  padding: 14px 16px 16px;
+  background: linear-gradient(to bottom right, #fff7fb, #ffe4f4);
+  box-shadow: 0 12px 30px rgba(248, 113, 166, 0.22);
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.home-card-liga {
+  background: radial-gradient(circle at top, #fee2e2 0, #fef3c7 45%, #fff7fb 100%);
+}
+
+.home-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(248, 250, 252, 0.9);
+  color: #4b5563;
+}
+
+.home-tag-news {
+  background: rgba(59, 130, 246, 0.08);
+  color: #1d4ed8;
+}
+
+.home-tag-liga {
+  background: rgba(248, 113, 166, 0.12);
+  color: #be123c;
+}
+
+.home-card h3 {
+  margin: 4px 0 2px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.home-meta {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.home-text {
+  font-size: 13px;
+  color: #4b5563;
+  margin: 4px 0 6px;
+}
+
+.home-link {
+  align-self: flex-start;
+  margin-top: auto;
+  font-size: 12px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(148, 163, 184, 0.4);
+  color: #1d4ed8;
+  text-decoration: none;
+}
+
+.home-link:hover {
+  background: #1d4ed8;
+  color: #f9fafb;
+}
+
+
+
+
+/* =========================
+   NEWS PAGE (LIST)
+========================= */
+
+.news-shell {
+  max-width: 1100px;
+  margin: 40px auto 60px;
+  padding: 24px 24px 36px;
+  border-radius: 24px;
+  background: var(--paper);
+  box-shadow: var(--shadow);
+}
+
+.news-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.news-title {
+  margin: 0 0 4px;
+  font-size: clamp(22px, 2.4vw, 28px);
+}
+
+.news-sub {
+  margin: 0;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.news-page-ellipsis {
+  display: inline-block;
+  padding: 4px 6px;
+  font-size: 12px;
+  color: #6b7280;
+}
+body.dark .news-page-ellipsis {
+  color: #9ca3af;
+}
+.news-page-ellipsis {
+  display: inline-block;
+  padding: 4px 6px;
+  font-size: 12px;
+  color: #6b7280;
+}
+body.dark .news-page-ellipsis {
+  color: #9ca3af;
+}
+
+
+/* shortcut ke liga */
+
+.news-liga-shortcut {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f97316, #ec4899);
+  color: #f9fafb;
+  font-size: 12px;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(248, 113, 166, 0.65);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.news-liga-shortcut:hover {
+  transform: translateY(-1px);
+}
+
+/* filter chip row */
+
+.news-filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.news-filter-chip {
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  border-radius: 999px;
+  padding: 5px 11px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.news-filter-chip.active {
+  background: rgba(248, 113, 166, 0.12);
+  border-color: rgba(248, 113, 166, 0.8);
+  color: #be123c;
+}
+
+/* list + item */
+
+.news-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.news-item {
+  padding: 12px 14px 12px;
+  border-radius: 16px;
+  background: linear-gradient(to right, #fdf2ff, #fee2e2);
+  box-shadow: 0 10px 26px rgba(248, 113, 166, 0.25);
+  font-size: 14px;
+
+  /* 🔥 layout baru */
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+
+/* kotak thumbnail kecil di kiri */
+.news-thumb {
+  width: 96px;
+  border-radius: 14px;
+  background-size: cover;
+  background-position: center;
+  background-color: #e5e7eb;
+  flex-shrink: 0;
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.35);
+}
+
+/* wadah isi teks di kanan */
+.news-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* biar tombol "lihat detail" nempel di bawah */
+.news-more {
+  font-size: 12px;
+  color: #1d4ed8;
+  text-decoration: none;
+  margin-top: auto;
+}
+
+/* responsif HP */
+@media (max-width: 640px) {
+  .news-item {
+    padding: 10px 10px 11px;
+    gap: 10px;
+  }
+
+  .news-thumb {
+    width: 72px;
+    border-radius: 12px;
+  }
+
+  .news-item-title {
+    font-size: 14px;
+  }
+
+  .news-item-summary {
+    font-size: 12px;
+  }
+}
+
+
+.news-badge-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 4px;
+}
+
+.news-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.news-badge-league {
+  background: rgba(244, 63, 94, 0.12);
+  color: #be123c;
+}
+.news-badge-event {
+  background: rgba(37, 99, 235, 0.1);
+  color: #1d4ed8;
+}
+.news-badge-gallery {
+  background: rgba(56, 189, 248, 0.12);
+  color: #0369a1;
+}
+.news-badge-info {
+  background: rgba(234, 179, 8, 0.12);
+  color: #92400e;
+}
+
+.news-date {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.news-item-title {
+  margin: 2px 0 2px;
+  font-size: 15px;
+  font-weight: 700;
+}
+.news-title-link {
+  text-decoration: none;
+}
+.news-title-link:hover {
+  text-decoration: underline;
+}
+
+.news-item-summary {
+  margin: 0 0 6px;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.news-more {
+  font-size: 12px;
+  color: #1d4ed8;
+  text-decoration: none;
+}
+.news-more:hover {
+  text-decoration: underline;
+}
+
+.news-empty {
+  text-align: center;
+  font-size: 13px;
+  color: #6b7280;
+  padding: 24px 10px;
+}
+
+/* pagination */
+
+.news-pagination {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.news-page-btn {
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  font-size: 12px;
+  padding: 4px 9px;
+  cursor: pointer;
+}
+.news-page-btn.active {
+  background: #111827;
+  color: #f9fafb;
+  border-color: #111827;
+}
+.news-page-btn:hover:not(.active) {
+  background: rgba(248, 113, 166, 0.06);
+}
+
+@media (max-width: 720px) {
+  .news-shell {
+    padding: 20px 16px 26px;
+    margin: 24px auto 40px;
+  }
+  .news-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* bungkus isi card */
+.news-item-main {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+/* kotak thumbnail */
+.news-thumb {
+  width: 96px;
+  height: 96px;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #e5e7eb;
+  box-shadow: 0 10px 24px rgba(148, 163, 184, 0.45);
+}
+
+/* biar gambar nge-cover rapi */
+.news-thumb picture,
+.news-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.news-thumb img {
+  object-fit: cover;
+}
+
+/* teks sebelah kanan thumbnail */
+.news-item-content {
+  flex: 1;
+}
+
+/* mobile: sedikit kecilin thumb biar pas */
+@media (max-width: 640px) {
+  .news-thumb {
+    width: 80px;
+    height: 80px;
+  }
+
+  .news-item {
+    padding: 10px 10px 12px;
+  }
+}
+
+/* ============================
+   FINAL FIX NEWS THUMB
+============================ */
+
+/* Desktop */
+.news-thumb {
+  width: 96px;
+  height: 96px;
+  border-radius: 16px;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 10px 24px rgba(148,163,184,0.45);
+}
+
+.news-thumb picture,
+.news-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Mobile → bentuk portrait */
+@media (max-width: 640px) {
+  .news-thumb {
+    width: 70px;     /* portrait */
+    height: 96px;    /* lebih tinggi */
+    border-radius: 14px;
+  }
+}
+
+
+
+/* =========================
+   NEWS DETAIL PAGE
+========================= */
+
+.news-detail-shell {
+  max-width: 900px;
+  margin: 80px auto 60px;
+  padding: 0 20px 40px;
+}
+
+.news-detail-card {
+  background: var(--paper);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 20px 20px 24px;
+}
+
+.news-detail-header {
+  margin-bottom: 10px;
+}
+
+.news-detail-meta-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.news-detail-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(248, 113, 166, 0.12);
+  color: #be123c;
+}
+
+.news-detail-badge-league {
+  background: rgba(244, 63, 94, 0.12);
+  color: #be123c;
+}
+.news-detail-badge-event {
+  background: rgba(37, 99, 235, 0.1);
+  color: #1d4ed8;
+}
+.news-detail-badge-gallery {
+  background: rgba(56, 189, 248, 0.12);
+  color: #0369a1;
+}
+.news-detail-badge-info {
+  background: rgba(234, 179, 8, 0.12);
+  color: #92400e;
+}
+
+.news-detail-date {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+.news-detail-title {
+  margin: 0;
+  font-size: clamp(22px, 2.5vw, 28px);
+}
+
+/* cover image */
+.news-detail-cover {
+  margin: 12px 0 16px;
+  width: 100%;
+  border-radius: 20px;
+  background-size: cover;
+  background-position: center;
+  background-color: #fee2e2;
+  padding-top: 46%; /* 16:9-ish aspect ratio */
+}
+
+/* body text */
+.news-detail-body p {
+  margin: 0 0 10px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+@media (max-width: 640px) {
+  .news-detail-shell {
+    margin-top: 70px;
+    padding: 0 14px 30px;
+  }
+  .news-detail-card {
+    padding: 16px 14px 20px;
+  }
+}
+
+
+
+/* ============================
+   NEWS & UPDATES
+============================ */
+
+.news-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.news-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.news-chip {
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  font-size: 12px;
+  cursor: pointer;
+  color: #4b5563;
+  box-shadow: 0 2px 6px rgba(148, 163, 184, 0.25);
+  transition: all .18s ease;
+}
+
+.news-chip:hover {
+  background: #fef2f8;
+  border-color: #f9a8d4;
+}
+
+.news-chip.active {
+  background: linear-gradient(90deg, #f97316, #ec4899);
+  border-color: transparent;
+  color: #f9fafb;
+  box-shadow: 0 8px 18px rgba(248, 113, 166, 0.45);
+}
+
+.news-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.news-card {
+  background: linear-gradient(to bottom right, #fff8fb, #ffe4f4);
+  border-radius: 18px;
+  padding: 12px 14px 14px;
+  box-shadow: 0 10px 28px rgba(248, 113, 170, 0.25);
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.news-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.news-tag {
+  padding: 3px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(248, 250, 252, 0.9);
+  color: #4b5563;
+}
+
+.news-tag-event {
+  background: rgba(59, 130, 246, 0.1);
+  color: #1d4ed8;
+}
+
+.news-tag-league {
+  background: rgba(248, 113, 166, 0.12);
+  color: #be185d;
+}
+
+.news-tag-gallery {
+  background: rgba(16, 185, 129, 0.12);
+  color: #047857;
+}
+
+.news-tag-info {
+  background: rgba(251, 191, 36, 0.14);
+  color: #92400e;
+}
+
+.news-date {
+  color: #6b7280;
+}
+
+.news-title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.news-desc {
+  margin: 2px 0 6px;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.news-link {
+  align-self: flex-start;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1d4ed8;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 4px 10px rgba(148, 163, 184, 0.3);
+}
+
+.news-link:hover {
+  background: #1d4ed8;
+  color: #f9fafb;
+}
+
+.news-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 26px 16px;
+  border-radius: 18px;
+  background: rgba(255, 247, 237, 0.85);
+  border: 1px dashed rgba(249, 115, 22, 0.6);
+  color: #92400e;
+}
+
+.news-empty-title {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.news-empty-sub {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+@media (max-width: 640px) {
+  .news-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* =========================
+   NEWS DETAIL PAGE
+========================= */
+
+.news-detail-main {
+  padding: 80px 16px 40px;
+}
+
+.news-detail-shell {
+  max-width: 960px;
+  margin: 0 auto;
+  background: var(--paper);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  padding: 20px 22px 24px;
+}
+
+.news-detail-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  margin-bottom: 12px;
+  color: #4b5563;
+  text-decoration: none;
+}
+.news-detail-back:hover {
+  text-decoration: underline;
+}
+
+.news-detail-article {
+  font-size: 14px;
+}
+
+.news-detail-header {
+  margin-bottom: 12px;
+}
+
+.news-detail-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.news-detail-date {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.news-detail-title {
+  margin: 0;
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 700;
+  color: #111827;
+}
+
+/* cover image optional */
+.news-detail-cover {
+  margin: 10px 0 14px;
+  border-radius: 18px;
+  background-size: cover;
+  background-position: center;
+  background-color: #e5e7eb;
+  padding-top: 40%; /* aspect ratio 2.5:1 */
+}
+
+/* body text */
+.news-detail-body p {
+  margin: 0 0 10px;
+  line-height: 1.6;
+  color: #374151;
+  font-size: 14px;
+}
+
+.news-detail-body ul {
+  margin: 0 0 10px 20px;
+  padding: 0;
+  color: #374151;
+  font-size: 14px;
+}
+
+.news-detail-body a {
+  color: #1d4ed8;
+  text-decoration: none;
+}
+.news-detail-body a:hover {
+  text-decoration: underline;
+}
+
+/* empty state kalau id nggak ketemu */
+.news-detail-empty {
+  text-align: center;
+  padding: 24px 10px;
+}
+.news-detail-empty h1 {
+  margin-bottom: 6px;
+  font-size: 18px;
+}
+.news-detail-empty p {
+  margin: 0 0 4px;
+  font-size: 14px;
+}
+
+@media (max-width: 640px) {
+  .news-detail-shell {
+    padding: 18px 16px 20px;
+  }
+}
+
+
+/* =========================
+   RUNDOWN PAGE LAYOUT
+========================= */
+
+body.rundown-page {
+  background: radial-gradient(circle at top, #fff7fb 0, #ffe4f4 40%, #fff8fb 100%);
+}
+
+/* shell utama */
+.rundown-shell {
+  max-width: 960px;
+  margin: 80px auto 50px;
+  padding: 0 18px 40px;
+}
+
+/* mini breadcrumb / back */
+.rundown-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #4b5563;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+.rundown-back:hover {
+  text-decoration: underline;
+}
+
+/* header info event */
+.rundown-header {
+  background: var(--paper);
+  border-radius: 22px;
+  padding: 16px 18px 16px;
+  box-shadow: var(--shadow);
+  margin-bottom: 16px;
+}
+
+.rundown-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  background: rgba(248, 113, 166, 0.12);
+  color: #9d174d;
+  margin-bottom: 6px;
+}
+
+.rundown-title {
+  margin: 0 0 4px;
+  font-size: clamp(20px, 2.4vw, 26px);
+  font-weight: 800;
+  color: var(--ink);
+}
+
+.rundown-meta {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* info venue kecil */
+.rundown-meta-row {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.rundown-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(248, 250, 252, 0.9);
+}
+
+/* grid isi: rundown + notes */
+.rundown-grid {
+  display: grid;
+  grid-template-columns: 2.1fr 1.2fr;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.rundown-card-main,
+.rundown-card-side {
+  background: var(--paper);
+  border-radius: 20px;
+  padding: 14px 16px 14px;
+  box-shadow: var(--shadow);
+}
+
+.rundown-card-title {
+  margin: 0 0 8px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* tabel rundown */
+.rundown-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.rundown-table thead th {
+  text-align: left;
+  padding: 6px 6px;
+  font-weight: 600;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.rundown-table tbody td {
+  padding: 6px 6px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.rundown-col-time {
+  width: 82px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.rundown-col-item {
+  color: #374151;
+}
+
+/* notes / catatan samping */
+.rundown-note-text {
+  font-size: 13px;
+  color: #4b5563;
+  margin: 0 0 8px;
+}
+
+.rundown-note-list {
+  margin: 0 0 6px 18px;
+  padding: 0;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.rundown-note-list li {
+  margin-bottom: 4px;
+}
+
+/* highlight time important */
+.rundown-tag-important {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 7px;
+  border-radius: 999px;
+  font-size: 11px;
+  background: rgba(248, 113, 166, 0.12);
+  color: #9d174d;
+}
+
+/* responsif rundown */
+@media (max-width: 768px) {
+  .rundown-shell {
+    margin-top: 72px;
+    padding-bottom: 28px;
+  }
+
+  .rundown-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* ============================
+   LIGA KAMISAN — LAYOUT UTAMA
+============================ */
+
+.liga-shell {
+  max-width: 1080px;
+  margin: 72px auto 40px;
+  padding: 0 16px 40px;
+}
+
+.liga-header {
+  margin-bottom: 20px;
+}
+
+.liga-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.liga-back {
+  color: #4b5563;
+  text-decoration: none;
+}
+.liga-back:hover {
+  text-decoration: underline;
+}
+
+.liga-pill {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 12px;
+  background: rgba(244, 114, 182, 0.12);
+  color: #be185d;
+  cursor: pointer;
+  box-shadow: 0 0 0 1px rgba(244, 114, 182, 0.35);
+}
+.liga-pill:hover {
+  background: rgba(244, 114, 182, 0.2);
+}
+
+.liga-header h1 {
+  font-size: 24px;
+  margin: 0 0 4px;
+  color: #111827;
+}
+
+.liga-sub,
+.liga-header .liga-sub {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+.liga-brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.liga-brand-logo {
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  object-fit: cover;
+  background: #f9fafb;
+  box-shadow: 0 10px 30px rgba(148, 163, 184, 0.6);
+}
+
+.liga-brand-title {
+  font-weight: 600;
+  color: #111827;
+  font-size: 15px;
+}
+.liga-brand-sub {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.liga-main {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.liga-block {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 24px;
+  padding: 18px 20px 20px;
+  box-shadow: 0 18px 45px rgba(148, 163, 184, 0.25);
+}
+
+.liga-block-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #111827;
+}
+
+.liga-footer {
+  margin-top: 18px;
+  font-size: 12px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+/* ============================
+   KLASEMEN SEASON
+============================ */
+
+.liga-table-wrap {
+  overflow-x: auto;
+}
+
+.liga-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.liga-table thead th {
+  text-align: left;
+  padding: 8px 10px;
+  font-weight: 600;
+  color: #6b7280;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.liga-table tbody td {
+  padding: 9px 10px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.lg-rank {
+  width: 48px;
+}
+
+.lg-member-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lg-member-info img {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(148, 163, 184, 0.7);
+}
+
+.lg-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+}
+.lg-sub {
+  font-size: 11px;
+  color: #9ca3af;
+}
+
+.lg-points {
+  font-weight: 700;
+  color: #111827;
+}
+
+.lg-form {
+  white-space: nowrap;
+}
+.lg-form-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  font-size: 11px;
+  margin-right: 3px;
+  background: #e5e7eb;
+}
+.lg-form-5 {
+  background: rgba(52, 211, 153, 0.18);
+}
+.lg-form-3 {
+  background: rgba(96, 165, 250, 0.18);
+}
+.lg-form-1 {
+  background: rgba(252, 211, 77, 0.18);
+}
+
+.lg-top:nth-child(1) {
+  background: rgba(239, 246, 255, 0.6);
+}
+.lg-top:nth-child(2) {
+  background: rgba(254, 249, 195, 0.55);
+}
+.lg-top:nth-child(3) {
+  background: rgba(254, 243, 199, 0.55);
+}
+
+/* ============================
+   PODIUM MINGGU TERAKHIR
+============================ */
+
+.liga-chip {
+  margin-left: 8px;
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 11px;
+  background: rgba(59, 130, 246, 0.08);
+  color: #1d4ed8;
+}
+
+.liga-podium-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.lg-podium-card {
+  flex: 1 1 0;
+  min-width: 210px;
+  border-radius: 18px;
+  padding: 10px 12px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+/* Biar foto di dalam podium tidak gede & keluar card */
+.lg-podium-main img {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  object-fit: cover;
+  background-color: #e5e7eb;
+  flex-shrink: 0;
+}
+
+.lg-podium-1 {
+  background: linear-gradient(to bottom right, #fef3c7, #fee2e2);
+}
+.lg-podium-2 {
+  background: linear-gradient(to bottom right, #e0f2fe, #eef2ff);
+}
+.lg-podium-3 {
+  background: linear-gradient(to bottom right, #fef9c3, #fffbeb);
+}
+
+.lg-podium-rank {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 4px;
+}
+
+.lg-podium-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lg-week-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background-size: cover;
+  background-position: center;
+  background-color: #e5e7eb;
+  flex-shrink: 0;
+}
+
+.lg-week-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+.lg-week-meta {
+  font-size: 11px;
+  color: #6b7280;
+}
+
+/* ============================
+   HASIL PER MINGGU (CARD)
+============================ */
+
+/* id #ligaWeeks juga diperlakukan grid */
+#ligaWeeks,
+.liga-weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.lg-week-card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 10px 12px;
+  border-radius: 18px;
+  text-decoration: none;
+  background: linear-gradient(to bottom right, #fdf2ff, #fee2e2);
+  box-shadow: 0 10px 28px rgba(248, 113, 170, 0.25);
+  color: inherit;
+}
+
+.lg-week-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(248, 113, 170, 0.35);
+}
+
+.lg-week-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #6b7280;
+}
+
+.lg-week-label {
+  font-weight: 600;
+  color: #f97316;
+}
+
+.lg-week-date {
+  font-style: italic;
+}
+
+.lg-week-body {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.lg-week-winner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.lg-week-cta {
+  font-size: 11px;
+  color: #1d4ed8;
+}
+
+/* ============================
+   MODAL "TENTANG LIGA"
+============================ */
+
+.liga-info-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+.liga-info-modal.active {
+  display: flex;
+}
+
+.liga-info-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+}
+
+.liga-info-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  width: 92%;
+  max-height: 90vh;
+  background: #f9fafb;
+  border-radius: 24px;
+  padding: 22px 24px 20px;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.45);
+  overflow-y: auto;
+}
+
+.liga-info-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(15, 23, 42, 0.08);
+  cursor: pointer;
+  font-size: 18px;
+}
+.liga-info-close:hover {
+  background: rgba(15, 23, 42, 0.16);
+}
+
+.liga-info-body p {
+  margin: 0 0 8px;
+  font-size: 14px;
+  color: #374151;
+}
+.liga-info-body ul {
+  margin: 4px 0 8px 20px;
+  font-size: 14px;
+  color: #374151;
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+
+@media (max-width: 640px) {
+  .liga-shell {
+    margin-top: 64px;
+    padding-bottom: 28px;
+  }
+
+  .liga-header h1 {
+    font-size: 20px;
+  }
+
+  .liga-main {
+    gap: 14px;
+  }
+}
+
+/* =======================
+   WEEK DETAIL — LEGACY LIGHTBOX
+======================= */
+
+.liga-week-photo-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Bungkus foto pemenang – clickable untuk lightbox */
+.liga-week-photo-img-wrap {
+  border-radius: 18px;
+  overflow: hidden;
+  max-height: 520px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f9fafb;
+  cursor: zoom-in;
+  position: relative;
+}
+
+/* Foto portrait / landscape tampil utuh */
+.liga-week-photo-img-wrap img {
+  max-width: 100%;
+  max-height: 520px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* Label kecil di pojok: klik untuk perbesar */
+.liga-week-photo-img-wrap::after {
+  content: "Klik untuk perbesar";
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  padding: 4px 9px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.7);
+  color: #f9fafb;
+  font-size: 10px;
+  letter-spacing: 0.03em;
+}
+
+/* Keterangan di samping / bawah foto */
+.liga-week-photo-meta {
+  font-size: 12px;
+}
+
+.liga-week-photo-label {
+  font-weight: 600;
+}
+
+.liga-week-photo-caption {
+  color: #4b5563;
+}
+
+.liga-week-photo-stats {
+  margin-top: 2px;
+  color: #6b7280;
+}
+
+/* ======================================================
+   FIX: Batasi ukuran frame Winning Photo biar tidak melebar
+====================================================== */
+
+.winner-photo-area {
+  display: flex;
+  justify-content: center;  /* center horizontal */
+}
+
+.winner-frame {
+  max-width: 780px;        /* << batas lebar frame foto */
+  width: 100%;
+  margin: 0 auto;
+  border-radius: 22px;
+}
+
+.winner-frame img {
+  width: 100%;
+  height: auto;
+  border-radius: 18px;
+  object-fit: contain;
+}
+
+
+@media (min-width: 768px) {
+  .liga-week-photo-inner {
+    flex-direction: row;
+  }
+
+  .liga-week-photo-img-wrap {
+    flex: 2;
+  }
+
+  .liga-week-photo-meta {
+    flex: 1;
+    padding-left: 14px;
+  }
+}
+
+/* =======================
+   LIGHTBOX WINNING PHOTO
+======================= */
+
+.liga-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+}
+
+.liga-lightbox.active {
+  display: flex;
+}
+
+.liga-lightbox-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(4px);
+}
+
+.liga-lightbox-content {
+  position: relative;
+  z-index: 1;
+  max-width: 900px;
+  width: 92%;
+  max-height: 90vh;
+  background: radial-gradient(circle at top, #ffe6ff 0, #f5f3ff 35%, #f9fafb 100%);
+  border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.5);
+  padding: 20px 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: hidden;
+}
+
+/* Tombol close */
+.liga-lightbox-close {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  border: none;
+  background: rgba(15, 23, 42, 0.1);
+  color: #0f172a;
+  font-size: 20px;
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+  cursor: pointer;
+  backdrop-filter: blur(4px);
+}
+
+.liga-lightbox-close:hover {
+  background: rgba(15, 23, 42, 0.2);
+}
+
+/* Dekorasi: mahkota, bintang, confetti, domba */
+
+.liga-lightbox-decor {
+  position: absolute;
+  top: 6px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  pointer-events: none;
+}
+
+.decor-crown {
+  font-size: 26px;
+  display: inline-block;
+  transform: translateY(-4px);
+}
+
+.decor-star,
+.decor-confetti,
+.decor-sheep {
+  position: absolute;
+  font-size: 18px;
+}
+
+/* bintang */
+.decor-star-1 {
+  top: 20px;
+  left: 14%;
+  animation: floatStar 4s ease-in-out infinite;
+}
+.decor-star-2 {
+  top: 18px;
+  right: 18%;
+  animation: floatStar 5s ease-in-out infinite reverse;
+}
+.decor-star-3 {
+  top: 38px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: floatStar 6s ease-in-out infinite;
+}
+
+/* domba lucu */
+.decor-sheep {
+  top: 46px;
+  right: 10%;
+  animation: floatSheep 5s ease-in-out infinite;
+}
+
+/* confetti */
+.decor-confetti-1 {
+  top: 60px;
+  left: 10%;
+  animation: floatConfetti 7s linear infinite;
+}
+.decor-confetti-2 {
+  top: 65px;
+  right: 12%;
+  animation: floatConfetti 8s linear infinite reverse;
+}
+
+@keyframes floatStar {
+  0%, 100% { transform: translateY(0); opacity: 0.9; }
+  50%       { transform: translateY(-6px); opacity: 1; }
+}
+
+@keyframes floatSheep {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50%      { transform: translateY(-4px) translateX(2px); }
+}
+
+@keyframes floatConfetti {
+  0%   { transform: translateY(0) rotate(0deg); opacity: 0.9; }
+  100% { transform: translateY(16px) rotate(15deg); opacity: 0.2; }
+}
+
+/* gambar utama di lightbox */
+.liga-lightbox-img-wrap {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-height: 70vh;
+}
+
+.liga-lightbox-img-wrap img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+}
+
+.liga-lightbox-caption {
+  font-size: 12px;
+  color: #374151;
+  margin-top: 4px;
+  text-align: center;
+}
+.liga-lightbox-caption strong {
+  font-weight: 600;
+}
+
+@media (max-width: 640px) {
+  .liga-lightbox-content {
+    padding: 16px 12px 12px;
+    border-radius: 18px;
+  }
+  .decor-crown { font-size: 22px; }
+  .decor-star,
+  .decor-confetti,
+  .decor-sheep {
+    font-size: 14px;
+  }
+}
+
+/* =======================
+   PODIUM ANIMATED (1–2–3)
+======================= */
+
+.liga-podium-123 {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 26px;
+  margin: 20px 0;
+}
+
+.liga-podium-slot {
+  width: 150px;
+  text-align: center;
+  padding: 14px 12px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #ffffff, #ffe4f4);
+  box-shadow: 0 10px 22px rgba(0,0,0,0.08);
+  transition: transform .25s ease;
+  animation: podiumRise .7s ease-out forwards;
+  opacity: 0;
+}
+
+@keyframes podiumRise {
+  0% { transform: translateY(40px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.podium-1 { height: 190px; animation-delay: .2s; }
+.podium-2 { height: 150px; animation-delay: .05s; }
+.podium-3 { height: 135px; animation-delay: .35s; }
+
+.podium-trophy {
+  font-size: 32px;
+  margin-bottom: 6px;
+  opacity: 0;
+  animation: trophyPop .7s ease-out forwards;
+}
+
+@keyframes trophyPop {
+  0% { transform: translateY(-20px) scale(0.7); opacity: 0; }
+  60% { transform: translateY(3px) scale(1.2); opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+.liga-podium-slot:hover {
+  transform: translateY(-6px) scale(1.05);
+}
+
+.liga-podium-slot img {
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  border: 3px solid #ff9cbc;
+  object-fit: cover;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+}
+
+.podium-name {
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.podium-point {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* ============================
+   WEEK DETAIL – WINNER LAYOUT
+============================ */
+
+.winner-layout {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  margin-top: 8px;
+}
+
+.winner-photo-area {
+  flex: 2;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.winner-frame {
+  max-width: 780px;
+  width: 100%;
+  margin: 0;
+  border-radius: 22px;
+}
+
+
+/* frame juara */
+.winner-frame {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 4px solid #ffd6e8;
+  box-shadow: 0 10px 26px rgba(248, 113, 166, 0.35);
+  background: #fff;
+}
+
+.winner-frame img {
+  width: 100%;
+  max-height: 520px;
+  object-fit: contain;
+  display: block;
+  background: #f9fafb;
+}
+
+.winner-frame-title {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ffb7d9, #ffe4f4);
+  color: #4b0b27;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+  text-align: center;
+}
+
+/* card info kanan */
+.winner-info-card {
+  flex: 1.4;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 14px 14px 12px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.winner-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 3px solid #fecaca;
+  box-shadow: 0 8px 20px rgba(248, 113, 166, 0.55);
+}
+
+.winner-name {
+  margin-top: 4px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.winner-gen {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.winner-vote-line {
+  margin-top: 4px;
+  font-size: 13px;
+  color: #374151;
+}
+
+.winner-caption-title {
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b21a8;
+}
+
+.winner-caption {
+  font-size: 13px;
+  color: #111827;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: #fdf2ff;
+  border: 1px solid rgba(244, 114, 182, 0.4);
+  word-break: break-word;
+}
+
+/* tombol lihat post (X / IG) */
+.liga-caption-link {
+  margin-top: 6px;
+  align-self: flex-start;
+  font-size: 12px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #111827;
+  color: #f9fafb;
+  text-decoration: none;
+  box-shadow: 0 8px 18px rgba(15, 23, 42, 0.45);
+}
+.liga-caption-link:hover {
+  background: #1f2937;
+}
+
+/* dark mode */
+body.dark .winner-info-card {
+  background: #020617;
+  box-shadow: 0 18px 44px rgba(0,0,0,0.9);
+}
+body.dark .winner-name {
+  color: #e5e7eb;
+}
+body.dark .winner-gen,
+body.dark .winner-vote-line {
+  color: #9ca3af;
+}
+body.dark .winner-caption {
+  background: rgba(30, 64, 175, 0.2);
+  border-color: rgba(129, 140, 248, 0.5);
+  color: #e5e7eb;
+}
+body.dark .liga-caption-link {
+  background: #f9a8d4;
+  color: #111827;
+}
+
+/* responsive: stack atas–bawah di layar kecil */
+@media (max-width: 768px) {
+  .winner-layout {
+    flex-direction: column;
+  }
+  .winner-info-card {
+    order: -1; /* info card di atas foto */
+  }
+}
+
+
+.podium-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 20px;
+  padding: 10px 0;
+}
+
+.podium {
+  width: 120px;
+  height: auto;
+  text-align: center;
+  border-radius: 14px;
+  padding: 12px;
+  background: linear-gradient(135deg, #fff, #ffe4f0);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.podium img {
+  width: 80px;
+  height: 80px;
+  border-radius: 999px;
+  object-fit: cover;
+  margin-bottom: 8px;
+  border: 3px solid #ff9ecf;
+}
+
+.podium:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.25);
+}
+
+.podium-1 {
+  transform: translateY(-16px);
+  background: linear-gradient(135deg,#fff7c5,#ffe08a);
+}
+.podium-2 {
+  background: linear-gradient(135deg,#eef2ff,#dbe4ff);
+}
+.podium-3 {
+  background: linear-gradient(135deg,#f3e8ff,#e5d4ff);
+}
+
+.podium-rank {
+  font-weight: 700;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.podium-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+
+/* Header panel pemenang: avatar + nama */
+.winner-info-card {
+  flex: 1.4;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 14px 16px 12px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.16);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.winner-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.winner-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.winner-name {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.winner-gen {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* garis pemisah */
+.winner-divider {
+  height: 1px;
+  background: rgba(148, 163, 184, 0.4);
+  margin: 4px 0 6px;
+}
+
+/* vote line + caption */
+.winner-vote-line {
+  font-size: 13px;
+  color: #374151;
+  margin-bottom: 4px;
+}
+
+.winner-vote-line strong {
+  font-weight: 700;
+  color: #111827;
+}
+
+.winner-caption-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6b21a8;
+  margin-top: 4px;
+}
+
+.winner-caption {
+  font-size: 13px;
+  color: #111827;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: #fdf2ff;
+  border: 1px solid rgba(244, 114, 182, 0.4);
+  word-break: break-word;
+}
+
+
+/* ============================
+   HEAD TO HEAD SECTION
+============================ */
+
+.liga-h2h-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 10px;
+}
+
+.liga-h2h-card {
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: linear-gradient(to bottom right, #eff6ff, #fee2e2);
+  box-shadow: 0 10px 24px rgba(148, 163, 184, 0.25);
+  font-size: 13px;
+}
+
+.liga-h2h-names {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+}
+
+.liga-h2h-score {
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #f9fafb;
+  font-size: 12px;
+}
+
+.liga-h2h-sub {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.liga-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  text-decoration: none;
+  background: rgba(15, 23, 42, 0.03);
+  color: #111827;
+  box-shadow: 0 1px 0 rgba(148, 163, 184, 0.6);
+  transition: all .18s ease;
+}
+
+.liga-back-btn:hover {
+  background: rgba(248, 113, 166, 0.09);
+  box-shadow: 0 6px 18px rgba(248, 113, 166, 0.35);
+  transform: translateY(-1px);
+}
+
+.liga-back-icon {
+  font-size: 14px;
+}
+
+.liga-season-progress {
+  margin: 10px 0 4px;
+}
+
+.liga-progress-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.liga-progress-bar {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: #e5e7eb;
+  overflow: hidden;
+}
+
+.liga-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f97316, #ec4899);
+  transition: width .3s ease;
+}
+
+.liga-next-match {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: 4px;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.06);
+  color: #1d4ed8;
+}
+
+.liga-next-label {
+  font-weight: 600;
+}
+
+.liga-next-date {
+  color: #111827;
+}
+
+.liga-next-count {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.9);
+  color: #f9fafb;
+  font-size: 11px;
+}
+
+.liga-next-live {
+  font-weight: 600;
+  color: #dc2626;
+}
+
+
+.liga-weeks-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.liga-weeks-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.liga-weeks-sort {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.liga-weeks-sort select {
+  font-size: 12px;
+  border-radius: 999px;
+  padding: 4px 10px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+}
+
+.liga-chip.active {
+  box-shadow: 0 0 0 1px rgba(248, 113, 166, 0.7);
+  background: rgba(248, 113, 166, 0.18);
+}
+
+
+.liga-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 10px;
+}
+
+.liga-highlight-card {
+  padding: 10px 12px;
+  border-radius: 16px;
+  background: linear-gradient(to bottom right, #f3e8ff, #fee2e2);
+  box-shadow: 0 10px 24px rgba(148, 163, 184, 0.25);
+  font-size: 13px;
+}
+
+.liga-highlight-title {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #6b21a8;
+  margin-bottom: 4px;
+}
+
+.liga-highlight-main {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.liga-highlight-sub {
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.liga-empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  border-radius: 20px;
+  background: rgba(255, 240, 250, 0.6);
+  border: 1px dashed rgba(244, 114, 182, 0.4);
+  color: #9d174d;
+  margin-top: 12px;
+}
+
+.liga-empty-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.liga-empty-sub {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+
+.liga-season-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+/* === Season toggle baru === */
+
+.liga-season-switch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: rgba(248, 250, 252, 0.98);
+  box-shadow: 0 10px 24px rgba(148, 163, 184, 0.4);
+  border: 1px solid #e5e7eb;
+}
+
+.liga-season-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: #6b7280;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+}
+
+/* pill per season */
+
+.liga-season-pill {
+  font-size: 11px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  text-decoration: none;
+  color: #4b5563;
+  white-space: nowrap;
+  transition: all 0.18s ease;
+  position: relative;
+}
+
+.liga-season-pill:hover {
+  background: rgba(248, 113, 166, 0.08);
+  color: #111827;
+}
+
+.liga-season-pill.active {
+  background: linear-gradient(90deg, #f97316, #ec4899);
+  color: #f9fafb;
+  box-shadow: 0 8px 20px rgba(248, 113, 166, 0.6);
+}
+
+/* badge kecil "Current" di season aktif */
+.liga-season-pill.active::after {
+  content: "Current";
+  position: absolute;
+  right: 6px;
+  bottom: -12px;
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: #111827;
+  color: #f9fafb;
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.5);
+}
+
+/* biar nggak kepotong */
+.liga-season-switch {
+  position: relative;
+  padding-bottom: 10px; /* ruang buat badge "Current" */
+}
+
+/* notice kalau season belum dimulai */
+.liga-empty-season {
+  margin-top: 8px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: rgba(254, 249, 195, 0.6);
+  border: 1px dashed rgba(234, 179, 8, 0.7);
+  font-size: 13px;
+  color: #854d0e;
+}
+
+@media (max-width: 640px) {
+  .liga-season-header-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .liga-season-switch {
+    margin-top: 6px;
+  }
+}
+
+/* ============================
+   DARK MODE – LIGA (DTSL)
+============================ */
+
+body.dark .liga-shell {
+  background:
+    radial-gradient(circle at top, rgba(248, 113, 113, 0.15) 0, transparent 50%),
+    radial-gradient(circle at bottom, rgba(56, 189, 248, 0.18) 0, transparent 55%),
+    #020617;
+  color: #e5e7eb;
+}
+
+/* header & topbar */
+body.dark .liga-header {
+  background: linear-gradient(135deg, rgba(15, 23, 42, 0.95), rgba(15, 23, 42, 0.9));
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+body.dark .liga-topbar {
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+body.dark .liga-back-btn,
+body.dark .liga-pill {
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+}
+
+body.dark .liga-back-btn:hover,
+body.dark .liga-pill:hover {
+  background: rgba(30, 64, 175, 0.9);
+}
+
+/* brand card */
+body.dark .liga-brand {
+  background:
+    radial-gradient(circle at top left, rgba(244, 114, 182, 0.22) 0, transparent 55%),
+    rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+body.dark .liga-brand-title {
+  color: #f9fafb;
+}
+
+body.dark .liga-brand-sub {
+  color: #9ca3af;
+}
+
+/* blok-blok utama */
+body.dark .liga-block {
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(51, 65, 85, 0.9);
+  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.9);
+}
+
+body.dark .liga-block-title {
+  color: #e5e7eb;
+}
+
+body.dark .liga-sub {
+  color: #9ca3af;
+}
+
+/* tabel klasemen */
+body.dark .liga-table {
+  border-color: rgba(31, 41, 55, 1);
+}
+
+body.dark .liga-table thead {
+  background: rgba(15, 23, 42, 1);
+}
+
+body.dark .liga-table th {
+  color: #cbd5f5;
+  border-color: rgba(51, 65, 85, 1);
+}
+
+body.dark .liga-table td {
+  color: #e5e7eb;
+  border-color: rgba(31, 41, 55, 1);
+}
+
+body.dark .liga-table tbody tr:nth-child(even) {
+  background: rgba(15, 23, 42, 0.9);
+}
+
+/* kartu Head to Head */
+body.dark .liga-h2h-card {
+  background: rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  color: #e5e7eb;
+}
+
+/* kartu hasil per minggu */
+body.dark .lg-week-card {
+  background:
+    radial-gradient(circle at top left, rgba(248, 113, 113, 0.27) 0, transparent 55%),
+    rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(248, 113, 113, 0.45);
+  color: #e5e7eb;
+}
+
+body.dark .lg-week-cta {
+  color: #fda4af;
+}
+
+/* progress & next match */
+body.dark .liga-progress-bar {
+  background: rgba(15, 23, 42, 1);
+}
+
+body.dark .liga-progress-fill {
+  background: linear-gradient(90deg, #fb7185, #f97316);
+}
+
+body.dark .liga-next-match {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+  color: #e5e7eb;
+}
+
+/* modal info liga */
+body.dark .liga-info-backdrop {
+  background: rgba(15, 23, 42, 0.8);
+}
+
+body.dark .liga-info-content {
+  background: rgba(15, 23, 42, 1);
+  color: #e5e7eb;
+}
+
+/* footer */
+body.dark .liga-footer {
+  color: #9ca3af;
+}
+
+/* ===========================================
+   DARK MODE FINAL OVERRIDES – Dombaterbang
+   (tambahkan di PALING BAWAH styles.css)
+=========================================== */
+
+/* Warna teks global di dark mode tetap pakai variable */
+body.dark {
+  color: var(--ink);
+  background: radial-gradient(circle at top, #020617 0, #020617 45%, #020617 100%);
+}
+
+/* Navbar + menu mobile di dark mode */
+body.dark .menu {
+  background: rgba(15, 23, 42, 0.98);
+}
+
+@media (max-width: 900px) {
+  body.dark .menu {
+    background: rgba(15, 23, 42, 0.98);
+    border-top: 1px solid rgba(148, 163, 184, 0.35);
+  }
+
+  body.dark .menu a {
+    color: #e5e7eb;
+  }
+}
+
+/* Hamburger bar biar kelihatan di dark mode */
+body.dark .hamburger span {
+  background: #e5e7eb;
+}
+
+/* Hero di dark mode – sedikit gelapin overlay, biar bg_awan nggak terlalu glowing */
+body.dark .hero {
+  background:
+    linear-gradient(to bottom, rgba(15, 23, 42, 0.7), rgba(15, 23, 42, 0.9)),
+    url('img/bg_awan.jpg') center/cover fixed no-repeat;
+}
+
+/* ====== HOME HIGHLIGHTS / HOME CARD ====== */
+
+body.dark .home-card,
+body.dark .home-card-next,
+body.dark .home-card-liga {
+  background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.9);
+}
+
+body.dark .home-card-title,
+body.dark .home-card h3 {
+  color: #e5e7eb;
+}
+
+body.dark .home-card-text,
+body.dark .home-meta {
+  color: #9ca3af;
+}
+
+body.dark .home-card-pill,
+body.dark .home-tag,
+body.dark .home-tag-news,
+body.dark .home-tag-liga {
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+}
+
+/* link / tombol kecil di card home */
+body.dark .home-card-link,
+body.dark .home-link {
+  background: rgba(15, 23, 42, 0.95);
+  color: #f9fafb;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.9);
+}
+
+body.dark .home-card-link:hover,
+body.dark .home-link:hover {
+  background: var(--accent);
+  color: #0b1120;
+}
+
+/* ====== FORM INPUT, SEARCH, SELECT ====== */
+
+body.dark input[type="search"],
+body.dark select {
+  background: #020617;
+  color: var(--ink);
+  border-color: #1f2937;
+}
+
+/* placeholder biar nggak terlalu terang */
+body.dark input[type="search"]::placeholder {
+  color: #6b7280;
+}
+
+/* ====== EVENT & GALERI GRID CARD (sudah ada base dark, tambahin minor tweak) ====== */
+
+body.dark .card {
+  border-color: rgba(148, 163, 184, 0.45);
+}
+
+/* Thumb background saat poster belum load */
+body.dark .thumb,
+body.dark .g-thumb {
+  background: #020617;
+}
+
+/* ====== NEWS LIST PAGE (news-shell, news-item) ====== */
+
+body.dark .news-shell {
+  background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+}
+
+body.dark .news-sub {
+  color: var(--muted);
+}
+
+body.dark .news-filter-chip {
+  background: rgba(15, 23, 42, 0.9);
+  border-color: rgba(148, 163, 184, 0.6);
+  color: #e5e7eb;
+}
+
+body.dark .news-filter-chip.active {
+  background: linear-gradient(90deg, #f97316, #ec4899);
+  border-color: transparent;
+  color: #f9fafb;
+}
+
+/* item list utama */
+body.dark .news-item {
+  background: radial-gradient(circle at top, #020617 0, #020617 50%, #020617 100%);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.9);
+}
+
+body.dark .news-item-title {
+  color: #e5e7eb;
+}
+
+body.dark .news-item-summary {
+  color: #9ca3af;
+}
+
+body.dark .news-date {
+  color: #94a3b8;
+}
+
+body.dark .news-badge {
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+}
+
+/* thumb news: background gelap saat tidak ada gambar */
+body.dark .news-thumb {
+  background: #020617;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.9);
+}
+
+/* pagination tombol */
+body.dark .news-page-btn {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(148, 163, 184, 0.6);
+  color: #e5e7eb;
+}
+
+body.dark .news-page-btn.active {
+  background: #e5e7eb;
+  color: #020617;
+  border-color: #e5e7eb;
+}
+
+body.dark .news-page-btn:hover:not(.active) {
+  background: rgba(248, 113, 166, 0.18);
+}
+
+/* ====== NEWS GRID (news-card) ====== */
+
+body.dark .news-card {
+  background: radial-gradient(circle at top, #020617 0, #020617 40%, #020617 100%);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.9);
+}
+
+body.dark .news-title,
+body.dark .news-card .news-title {
+  color: #e5e7eb;
+}
+
+body.dark .news-desc {
+  color: #9ca3af;
+}
+
+body.dark .news-tag,
+body.dark .news-tag-event,
+body.dark .news-tag-league,
+body.dark .news-tag-gallery,
+body.dark .news-tag-info {
+  background: rgba(15, 23, 42, 0.95);
+  color: #e5e7eb;
+}
+
+body.dark .news-link {
+  background: rgba(15, 23, 42, 0.95);
+  color: #f9fafb;
+}
+
+/* ====== NEWS DETAIL ====== */
+
+body.dark .news-detail-shell,
+body.dark .news-detail-card {
+  background: radial-gradient(circle at top, #020617 0, #020617 45%, #020617 100%);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.9);
+  border-radius: 24px;
+}
+
+body.dark .news-detail-title {
+  color: #e5e7eb;
+}
+
+body.dark .news-detail-body p,
+body.dark .news-detail-body ul {
+  color: #e5e7eb;
+}
+
+body.dark .news-detail-date {
+  color: #9ca3af;
+}
+
+/* ====== RUNDOWN PAGE ====== */
+
+body.dark.rundown-page {
+  background: radial-gradient(circle at top, #020617 0, #020617 45%, #020617 100%);
+}
+
+body.dark .rundown-header,
+body.dark .rundown-card-main,
+body.dark .rundown-card-side {
+  background: #020617;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.5);
+}
+
+body.dark .rundown-title,
+body.dark .rundown-card-title {
+  color: #e5e7eb;
+}
+
+body.dark .rundown-meta,
+body.dark .rundown-note-text,
+body.dark .rundown-note-list,
+body.dark .rundown-table tbody td {
+  color: #cbd5f5;
+}
+
+body.dark .rundown-table thead th {
+  border-bottom-color: rgba(55, 65, 81, 0.9);
+}
+
+/* ====== LIGA KAMISAN ====== */
+
+body.dark .liga-block {
+  background: radial-gradient(circle at top, #020617 0, #020617 50%, #020617 100%);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.95);
+}
+
+body.dark .liga-shell {
+  color: #e5e7eb;
+}
+
+body.dark .liga-header h1,
+body.dark .liga-brand-title,
+body.dark .liga-block-title {
+  color: #e5e7eb;
+}
+
+body.dark .liga-sub,
+body.dark .liga-brand-sub,
+body.dark .liga-footer {
+  color: #9ca3af;
+}
+
+body.dark .liga-table thead th {
+  background: #020617;
+  color: #9ca3af;
+  border-bottom-color: rgba(55, 65, 81, 0.9);
+}
+
+body.dark .liga-table tbody td {
+  border-bottom-color: rgba(30, 41, 59, 0.9);
+}
+
+body.dark .lg-name {
+  color: #e5e7eb;
+}
+
+body.dark .lg-sub {
+  color: #9ca3af;
+}
+
+/* podium cards */
+body.dark .lg-podium-card {
+  background: radial-gradient(circle at top, #020617 0, #020617 50%, #020617 100%);
+  border-color: rgba(148, 163, 184, 0.6);
+}
+
+/* minggu cards */
+body.dark .lg-week-card {
+  background: radial-gradient(circle at top, #020617 0, #020617 50%, #020617 100%);
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.95);
+}
+
+body.dark .lg-week-label {
+  color: #f97316;
+}
+
+body.dark .lg-week-date {
+  color: #e5e7eb;
+}
+
+/* modal info liga */
+body.dark .liga-info-content {
+  background: radial-gradient(circle at top, #020617 0, #020617 45%, #020617 100%);
+  color: #e5e7eb;
+}
+
+/* ====== WINNER LAYOUT ====== */
+
+body.dark .winner-frame {
+  border-color: #4b5563;
+  background: #020617;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.95);
+}
+
+body.dark .winner-frame-title {
+  background: linear-gradient(90deg, #f97316, #ec4899);
+  color: #f9fafb;
+}
+
+body.dark .winner-info-card {
+  background: #020617;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.95);
+}
+
+body.dark .winner-name {
+  color: #e5e7eb;
+}
+
+body.dark .winner-gen,
+body.dark .winner-vote-line {
+  color: #9ca3af;
+}
+
+/* ====== GENERIC LIGHTBOX ====== */
+
+body.dark .liga-lightbox-content {
+  background: radial-gradient(circle at top, #020617 0, #020617 45%, #020617 100%);
+  color: #e5e7eb;
+}
+
+/* ====== FOOTER ====== */
+
+body.dark footer,
+body.dark .footer-inner {
+  color: #9ca3af;
+}
+
+/* ================================
+   FINAL THUMB EVENT & GALERI SERAM
+   BIAR NGE-PAS DI CARD (LIGHT & DARK)
+================================ */
+
+.event-card .thumb,
+.gallery-card .thumb {
+  height: 180px;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;   /* selalu penuh frame card */
+  border-bottom: 1px solid rgba(15,23,42,0.10);
+}
+
+/* Hover: sedikit lebih terang, tanpa zoom aneh */
+.event-card:hover .thumb,
+.gallery-card:hover .thumb {
+  background-size: cover !important;
+  filter: brightness(1.05);
+  transform: translateY(0);
+}
+
+/* =====================================
+   FIX DARK MODE UNTUK HALAMAN LIGA DTSL
+   ===================================== */
+
+/* Base warna khusus liga saat body.dark aktif */
+body.dark .liga-shell {
+  background: #02061a;        /* latar belakang utama */
+  color: #f5f7ff;             /* teks default */
+}
+
+/* Header, block utama, footer – samakan gaya, hilangkan "kotak-kotak" aneh */
+body.dark .liga-header,
+body.dark .liga-block,
+body.dark .liga-footer {
+  background: rgba(7, 13, 32, 0.98);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.6);
+}
+
+/* Sub-text di liga (deskripsi kecil) biar lebih soft tapi masih kebaca */
+body.dark .liga-sub,
+body.dark .liga-brand-sub,
+body.dark .liga-h2h-sub {
+  color: rgba(210, 220, 255, 0.82);
+}
+
+/* ===========================
+   PODIUM CARD – teks gelap
+   =========================== */
+
+/* Semua podium card default pakai teks gelap (karena background pastel) */
+.liga-podium-123 .podium,
+.liga-podium-inline .lg-podium-card {
+  color: #1b1020;
+}
+
+/* Warna background podium (boleh disesuaikan, ini versi lembut) */
+.podium-1,
+.lg-podium-1 {
+  background: #ffe7a3;
+}
+
+.podium-2,
+.lg-podium-2 {
+  background: #f0e6ff;
+}
+
+.podium-3,
+.lg-podium-3 {
+  background: #ffe6f1;
+}
+
+/* Judul & sub-text dalam podium supaya benar-benar kontras */
+.podium-1 .podium-name,
+.podium-1 .podium-sub,
+.podium-2 .podium-name,
+.podium-2 .podium-sub,
+.podium-3 .podium-name,
+.podium-3 .podium-sub,
+.lg-podium-card .lg-name,
+.lg-podium-card .lg-sub {
+  color: #201322;
+}
+
+/* ===========================
+   Kartu Head to Head & Mingguan
+   =========================== */
+
+body.dark .liga-h2h-card,
+body.dark .lg-week-card {
+  background: rgba(11, 18, 40, 0.98);
+  border: 1px solid rgba(255, 145, 100, 0.5);
+  color: #f6f7ff;
+}
+
+body.dark .lg-week-meta {
+  color: rgba(210, 220, 255, 0.8);
+}
+
+/* Dropdown sort di hasil minggu */
+body.dark .liga-weeks-sort select {
+  background: rgba(11, 18, 40, 0.98);
+  color: #f6f7ff;
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Tabel klasemen */
+body.dark .liga-table th,
+body.dark .liga-table td {
+  color: #f6f7ff;
+  border-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Bar progress & "Next Matchday" supaya nyatu dengan tema */
+body.dark .liga-season-progress {
+  background: transparent;
+}
+
+body.dark .liga-progress-bar {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+body.dark .liga-progress-fill {
+  background: linear-gradient(90deg, #ff8a5c, #ffce6b);
+}
+
+body.dark .liga-next-match {
+  background: rgba(11, 18, 40, 0.98);
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* =========================
+   LIGA HEADER – brand strip (FINAL)
+   ========================= */
+
+.liga-brand {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.liga-brand::before,
+.liga-brand::after {
+  display: none;
+}
+
+.liga-brand-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
+
+/* teks brand – versi light */
+.liga-brand-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.liga-brand-sub {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* teks brand – versi dark */
+body.dark .liga-brand-title {
+  color: #f9fafb;
+}
+
+body.dark .liga-brand-sub {
+  color: #cbd5f5;
+}
+
+
+/* =========================
+   LIGA – weekly cards text (FINAL)
+   ========================= */
+
+/* LIGHT MODE: pakai warna default yang enak di background pastel */
+body:not(.dark) .lg-week-card {
+  color: #111827;
+}
+
+body:not(.dark) .lg-week-header span {
+  color: #6b7280;
+}
+
+body:not(.dark) .lg-week-name {
+  color: #111827;
+  font-weight: 600;
+}
+
+body:not(.dark) .lg-week-meta {
+  color: #6b7280;
+}
+
+body:not(.dark) .lg-week-cta {
+  color: #1d4ed8;
+  font-weight: 500;
+}
+
+/* DARK MODE: baru kita bikin teks jadi terang */
+body.dark .lg-week-card {
+  color: #ffffff;
+}
+
+body.dark .lg-week-header span {
+  color: #ffd7c2; /* judul minggu & tanggal */
+}
+
+body.dark .lg-week-name {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+body.dark .lg-week-meta {
+  color: #ffbfa0;
+}
+
+body.dark .lg-week-cta {
+  color: #ffd7c2;
+  font-weight: 500;
+}
+
+
+/* =========================
+   LIGA – top right controls (theme toggle)
+   ========================= */
+
+.liga-top-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* tombol theme liga */
+#ligaThemeToggle {
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #ff8e8e, #ff7bbb);
+  color: #fff;
+}
+
+/* saat tema light (body TIDAK punya .dark) */
+body:not(.dark) #ligaThemeToggle {
+  background: #fff4d2;
+  color: #d07700;
+}
+
+/* =================================
+   FINAL FIX – LIGA HEADER DARK MODE
+   Biar nggak kelihatan kotak/garis
+================================= */
+
+body.dark .liga-header {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+body.dark .liga-topbar {
+  border: none;
+  background: transparent;
+}
+
+/* ================================
+    Bar status vote DTSL 
+=================================== */
+
+.liga-vote-status {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(255, 255, 255, 0.92);
+  color: #111827;
+  white-space: nowrap;
+}
+
+.liga-vote-label {
+  font-weight: 600;
+}
+
+.liga-vote-text,
+.liga-vote-countdown,
+.liga-vote-time {
+  font-size: 0.75rem;
+  opacity: 0.9;
+}
+
+/* Badge LIVE */
+.liga-vote-live-pill {
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  background: #ef4444;
+  color: #fff;
+}
+
+/* DARK MODE */
+body.dark .liga-vote-status {
+  background: rgba(15, 23, 42, 0.96);
+  border-color: rgba(148, 163, 184, 0.5);
+  color: #e5e7eb;
+}
+
+body.dark .liga-vote-text,
+body.dark .liga-vote-countdown,
+body.dark .liga-vote-time {
+  color: #e5e7eb;
+  opacity: 0.9;
+}
+
+/* ====== Season standings: rank + trend ====== */
+
+.lg-rank-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.lg-rank-number {
+  font-weight: 600;
+}
+
+.lg-rank-trend {
+  font-size: 0.7rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  line-height: 1.2;
+}
+
+/* naik */
+.lg-trend-up {
+  color: #16a34a;
+  border-color: rgba(34, 197, 94, 0.4);
+  background: rgba(22, 163, 74, 0.08);
+}
+
+/* turun */
+.lg-trend-down {
+  color: #dc2626;
+  border-color: rgba(248, 113, 113, 0.5);
+  background: rgba(248, 113, 113, 0.08);
+}
+
+/* tetap */
+.lg-trend-same {
+  color: #6b7280;
+  border-color: rgba(148, 163, 184, 0.6);
+  background: rgba(148, 163, 184, 0.08);
+}
+
+/* pendatang baru / belum ada data sebelumnya */
+.lg-trend-new {
+  color: #f59e0b;
+  border-color: rgba(245, 158, 11, 0.6);
+  background: rgba(245, 158, 11, 0.08);
+}
+
+/* DARK MODE penyesuaian ringan */
+body.dark .lg-trend-up {
+  background: rgba(22, 163, 74, 0.2);
+}
+
+body.dark .lg-trend-down {
+  background: rgba(220, 38, 38, 0.2);
+}
+
+body.dark .lg-trend-same,
+body.dark .lg-trend-new {
+  background: rgba(148, 163, 184, 0.2);
+}
+
+/* ====== Champion row (Rank 1) ====== */
+
+.lg-row-champion {
+  position: relative;
+  background: linear-gradient(
+    90deg,
+    rgba(251, 191, 36, 0.12),
+    rgba(253, 224, 71, 0.03)
+  );
+}
+
+body.dark .lg-row-champion {
+  background: linear-gradient(
+    90deg,
+    rgba(250, 204, 21, 0.18),
+    rgba(15, 23, 42, 0.02)
+  );
+}
+
+.lg-row-champion .lg-name {
+  font-weight: 700;
+}
+
+/* badge emas di sebelah nama juara */
+.lg-champion-badge {
+  margin-left: 0.3rem;
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  background: linear-gradient(135deg, #fbbf24, #facc15);
+  color: #7c2d12;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.lg-champion-badge::before {
+  content: "👑";
+  font-size: 0.8rem;
+}

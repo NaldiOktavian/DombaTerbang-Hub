@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Circle DombaTerbang - ROAD TO CONCERT</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fff;
+      color: #000;
+      text-align: center;
+    }
+
+    header {
+      background-color: #cc0033;
+      padding: 0.75rem 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    nav {
+      background-color: #cc0033;
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 0.5rem 1rem 0.75rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-size: 0.9rem;
+      letter-spacing: 0.03em;
+    }
+
+    /* ===== SLIDER ===== */
+    .slider {
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .slides {
+      display: flex;
+      width: 400%;           /* 4 gambar = 400% */
+      animation: slide 24s infinite ease-in-out;
+    }
+
+    .slides img {
+      width: 25%;            /* 4 gambar di dalam flex */
+      flex-shrink: 0;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+
+    @keyframes slide {
+      0%   { transform: translateX(0); }
+      20%  { transform: translateX(0); }
+
+      25%  { transform: translateX(-25%); }
+      45%  { transform: translateX(-25%); }
+
+      50%  { transform: translateX(-50%); }
+      70%  { transform: translateX(-50%); }
+
+      75%  { transform: translateX(-75%); }
+      95%  { transform: translateX(-75%); }
+
+      100% { transform: translateX(0); }
+    }
+
+    @media (max-width: 768px) {
+      .slides img {
+        height: 200px;
+      }
+    }
+
+    .section {
+      padding: 2rem 1rem;
+    }
+
+    h2 {
+      color: #ff3366;
+      border-bottom: 2px solid #ff3366;
+      padding-bottom: 0.5rem;
+      display: inline-block;
+      margin-bottom: 1.25rem;
+    }
+
+    /* NEWS text */
+    #news p {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+    }
+
+    /* RUNDOWN */
+    .rundown-wrapper {
+      max-width: 720px;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    .rundown-day {
+      margin-top: 2rem;
+    }
+
+    .rundown-day h3 {
+      color: #ff3366;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    ul {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    li {
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    #countdown {
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #cc0033;
+      margin: 1.5rem 0 0;
+    }
+
+    .form-container {
+      max-width: 400px;
+      margin: 2rem auto 0;
+      padding: 1rem;
+      background-color: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      text-align: left;
+    }
+
+    .form-container h3 {
+      color: #ff3366;
+      text-align: center;
+      margin-top: 0;
+    }
+
+    .form-container form {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-container input,
+    .form-container button {
+      padding: 0.75rem;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+    }
+
+    .form-container input {
+      background-color: #fff;
+      color: #000;
+      border: 1px solid #ccc;
+    }
+
+    .form-container button {
+      background-color: #ff3366;
+      color: white;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    footer {
+      background-color: #cc0033;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: #fff;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">Trisha Love Connection</div>
+    <div style="color:white; font-size:0.8rem;">My Page | Sign Out</div>
+  </header>
+
+  <nav>
+    <a href="#">NEWS</a>
+    <a href="#">SCHEDULE</a>
+    <a href="#">MEMBER</a>
+    <a href="#">THEATER</a>
+  </nav>
+
+  <!-- SLIDER -->
+  <div class="slider">
+    <div class="slides">
+      <img src="../img/rundown/full-house/banner1.png" alt="Banner 1">
+      <img src="../img/rundown/full-house/banner2.png" alt="Banner 2">
+      <img src="../img/rundown/full-house/banner3.png" alt="Banner 3">
+      <img src="../img/rundown/full-house/banner4.png" alt="Banner 4">
+    </div>
+  </div>
+
+  <!-- NEWS -->
+  <section class="section" id="news">
+    <h2>NEWS</h2>
+    <p><strong>24 Juli</strong> - <span style="color: red; font-weight: bold;">Pengumuman Mengenai Rundown DombaTerbang Special Event</span></p>
+  </section>
+
+  <!-- RUNDOWN -->
+  <section class="section" id="rundown">
+    <div class="rundown-wrapper">
+
+      <div class="rundown-day">
+        <h3>Day 1 - Friday, 25 Juli 2025</h3>
+        <ul>
+          <li>07.00 : Bangun Tidur</li>
+          <li>07.30 : Sarapan dirumah masing-masing</li>
+          <li>09.00 : Menyayikan Lagu Indonesia Raya</li>
+          <li>10.00 : Berkegiatan sesuai kegiatan masing-masing</li>
+          <li>12.00 : Isoma</li>
+          <li>13.00 : Lanjut Kegiatan</li>
+          <li>14.00 : OTW FX</li>
+          <li>14.15 : Cek in Penginapan</li>
+          <li>14.30 : Pembukaan serta Sambutan dari Masbi dan Doa Bersama Virtual yang akan dipimpin oleh Bapak Vincent Selaku manager Dewa United</li>
+          <li>15.00 : Isoma</li>
+          <li>16.00 : Upacara Sabutan untuk bang Hizuke dan bang Rubix</li>
+          <li>17.00 : Makan Sore</li>
+          <li>19.00 : Cerita waroku 3 materi (harus fresh)** kecuali kalau gadenger atau lupa, hukumnya diperbolehkan cerita ulang.</li>
+          <li>20.30 : Mandi cuci kaktus dan prepare untuk midnight party</li>
+          <li>20.45 : OTW Vanue Party (CGV Grand Indonesia)</li>
+          <li>21.00 : Penukaran tiket dan jajan snacks</li>
+          <li>21.15 : Enjoy the midnight party</li>
+          <li>23.30 : Acara selesai, persiapan kembali ke penginapan</li>
+          <li>23.45 : Penutupan Acara Day 1 oleh Masbi</li>
+          <li>00.30 : Peserta Persami (Persatuan MinorThreat) diharap untuk segera tidur agar bisa bangun pagi dan bisa sarapan bareng-</li>
+        </ul>
+      </div>
+
+      <div class="rundown-day">
+        <h3>Day 2 - Saturday, 26 Juli 2025</h3>
+        <ul>
+          <li>07.00 : Sarapan bareng-</li>
+          <li>08.00 : Kumpul di area kolam renang</li>
+          <li>09.00 : Senam pagi dan berenang</li>
+          <li>09.25 : Bilas badan dan persiapan konser</li>
+          <li>10.00 : Personil diharapkan untuk segera bersiap siap.</li>
+          <li>12.00 : Isoma</li>
+          <li>13.00 : Makan siang</li>
+          <li>13.30 : Persiapan menuju Vanue Konser</li>
+          <li>14.00 : Tukar tiket</li>
+          <li>16.00 : Temu sapa dulu dengan oshi</li>
+          <li>18.00 : Isoma</li>
+          <li>18.30 : Kumpul dan masuk vanue bersama sambil nyayi yel yel yang akan dipimpin oleh Farhan</li>
+          <li>19.00 : Enjoy the show</li>
+          <li>21.30 : Persiapan Encore yang akan dipimpin oleh Taufik (Encoruuu! i want more!)</li>
+          <li>23.15 : Kumpul dan penutupan dipimpin Farhan (circle pit)</li>
+          <li>23.30 : Otw penginapan</li>
+          <li>23.40 : Sampai penginapan dan bersih-bersih</li>
+          <li>23.50 : Kedatangan LC pilihan Ijlal dan Lutfi</li>
+          <li>00.00 : Balapan</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div id="countdown"></div>
+  </section>
+
+  <!-- FORM -->
+  <section class="section" id="form">
+    <div class="form-container">
+      <h3>Form Daftar Hadir</h3>
+      <form>
+        <input type="text" placeholder="Name" required />
+        <input type="email" placeholder="Email" required />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    &copy; 2025 Circle DombaTerbang. All Rights Reserved.
+  </footer>
+
+  <script>
+    const countdownDate = new Date("July 25, 2025 14:00:00").getTime();
+    const countdownEl = document.getElementById("countdown");
+
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = countdownDate - now;
+
+      if (distance < 0) {
+        clearInterval(interval);
+        countdownEl.innerHTML = "Acara telah dimulai!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      countdownEl.innerHTML =
+        `Countdown: ${days} hari ${hours} jam ${minutes} menit ${seconds} detik`;
+    }, 1000);
+  </script>
+</body>
+</html>

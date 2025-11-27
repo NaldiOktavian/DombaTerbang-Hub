@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Galeri Seram — Event</title>
+  <meta name="description" content="Galeri foto untuk setiap event DombaTerbang." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="gallery-event-page">
+  <!-- 🔄 PRELOADER -->
+  <div id="preloader">
+    <img src="img/logo.png" alt="Loading DombaTerbang..." />
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html#home">
+        <img src="img/logo.png" class="brand-logo" alt="DombaTerbang Logo" />
+        <span>DombaTerbang Hub</span>
+      </a>
+
+      <div class="menu" id="menu">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#news">News</a>
+        <a href="index.html#event">Event</a>
+        <a href="index.html#gallery" class="active">Galeri Seram</a>
+        <a href="liga/liga.html" class="nav-dtsl" target="_blank" rel="noopener">DTSL</a>
+        <a href="index.html#about">Tentang</a>
+      </div>
+
+      <button id="themeToggle" class="theme-toggle" aria-label="Ganti tema">🌙</button>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="event-gallery-shell">
+  <div class="mini-nav">
+    <a href="index.html#gallery">← Kembali ke Galeri Seram</a>
+    <span id="eventBreadcrumb"></span>
+  </div>
+
+    <section id="eventGalleryHeader" class="event-gallery-header">
+      <!-- Judul diisi dari script.js -->
+    </section>
+
+    <section id="eventGalleryPhotos" class="event-gallery-photos masonry">
+      <!-- Foto-foto di-inject dari script.js -->
+    </section>
+
+    <!-- Tombol Load More -->
+    <div class="gallery-loadmore-wrap">
+      <button id="galleryLoadMore" class="gallery-loadmore-btn">
+        Lihat foto lainnya ↓
+      </button>
+    </div>
+  </main>
+
+  <!-- LIGHTBOX untuk perbesar foto -->
+  <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+    <img id="lightboxImg" src="" alt="Preview foto" />
+  </div>
+
+    <!-- Tombol Back to Top (khusus halaman galeri event) -->
+  <button id="backToTop" class="back-to-top" aria-label="Kembali ke atas">
+    ↑
+  </button>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2025 DombaTerbang Hub</span>
+      <span class="muted">Created with ❤ by DombaTerbang</span>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

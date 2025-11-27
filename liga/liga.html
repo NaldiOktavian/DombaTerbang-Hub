@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DombaTerbang Super League</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <div class="liga-shell" id="ligaSeason">
+    <header class="liga-header">
+      <div class="liga-topbar">
+        <a href="../index.html" class="liga-back-btn">
+          <span class="liga-back-icon">←</span>
+          <span>Kembali ke Hub</span>
+        </a>
+        <button type="button" class="liga-pill" id="ligaThemeToggle">🌙</button>
+        <button type="button" class="liga-pill" id="ligaInfoBtn">ℹ️ Tentang Liga</button>
+      </div>
+
+      <div class="liga-season-header-row">
+        <h1 id="ligaSeasonTitle">DTSL — Season 1</h1>
+        <div id="ligaSeasonSwitch" class="liga-season-switch"></div>
+      </div>
+
+      <p id="ligaSeasonSubtitle" class="liga-sub">
+        Poin: Juara 1 = 5 pts, Juara 2 = 3 pts, Juara 3 = 1 pt — Total minggu: 0
+      </p>
+
+      <div id="ligaSeasonNotice"></div>
+
+      <div id="ligaSeasonProgress" class="liga-season-progress"></div>
+      <div id="ligaNextMatch" class="liga-next-match"></div>
+      
+      <div class="liga-brand">
+        <img src="../img/logo.png" alt="DombaTerbang" class="liga-brand-logo" />
+        <div>
+          <div class="liga-brand-title">DombaTerbang Super League</div>
+          <div class="liga-brand-sub">
+            Liga foto mingguan internal DombaTerbang, setiap Kamis member mengirimkan 1 foto terbaik untuk dinilai.
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="liga-main">
+      <!-- PODIUM MINGGU TERAKHIR -->
+      <section class="liga-block" id="ligaCurrentWeekSection">
+        <h2 class="liga-block-title">Podium Minggu Terakhir</h2>
+        <div id="ligaCurrentPodium" class="liga-podium-123"></div>
+      </section>
+
+      <!-- STATUS -->
+      <div class="liga-vote-status" id="ligaVoteStatus">
+        <span class="liga-vote-live-pill" id="ligaVoteStatusLive" style="display:none;">
+          LIVE
+        </span>
+        <span class="liga-vote-label">DombaTerbang SuperLeague</span>
+        <span class="liga-vote-text" id="ligaVoteStatusText">
+          Memuat status vote...
+        </span>
+        <span class="liga-vote-countdown" id="ligaVoteCountdown"></span>
+        <span class="liga-vote-time" id="ligaVoteStatusTime"></span>
+      </div>
+
+      <!-- KLASEMEN -->
+      <section class="liga-block">
+        <h2 class="liga-block-title">Season Standings</h2>
+        <div class="liga-table-wrap">
+          <table class="liga-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Member</th>
+                <th>Poin</th>
+                <th>1st</th>
+                <th>2nd</th>
+                <th>3rd</th>
+                <th>Total Vote</th>
+                <th>Form</th>
+              </tr>
+            </thead>
+            <tbody id="ligaTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+    <section class="liga-block">
+      <h2 class="liga-block-title">Head to Head</h2>
+      <p class="liga-sub">
+        Perbandingan langsung antar member di setiap minggu.
+      </p>
+      <div id="ligaHeadToHead" class="liga-h2h-grid"></div>
+    </section>
+
+      <!-- HASIL PER MINGGU -->
+    <section class="liga-block">
+      <h2 class="liga-block-title">Hasil Per Minggu</h2>
+      <p class="liga-sub">
+        Klik salah satu minggu untuk melihat detail lengkap dan foto pemenangnya.
+      </p>
+
+      <!-- Controls filter + sort -->
+      <div class="liga-weeks-controls">
+        <div id="ligaWeeksFilter" class="liga-weeks-filter"></div>
+        <div class="liga-weeks-sort">
+          <label for="ligaWeekSort">Sort:</label>
+          <select id="ligaWeekSort">
+            <option value="newest">Terbaru</option>
+            <option value="oldest">Terlama</option>
+            <option value="votes">Vote tertinggi</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="ligaWeeks" class="liga-weeks-grid"></div>
+    </section>
+
+    </main>
+
+    <footer class="liga-footer">
+      © 2025 DombaTerbang • Liga Foto Mingguan
+    </footer>
+  </div>
+
+  <!-- MODAL TENTANG LIGA -->
+  <div id="ligaInfoModal" class="liga-info-modal" aria-hidden="true">
+    <div class="liga-info-backdrop"></div>
+    <div class="liga-info-content">
+      <button type="button" class="liga-info-close" aria-label="Tutup">×</button>
+      <h2>Tentang Liga</h2>
+      <div class="liga-info-body">
+        <p>
+          <strong>DombaTerbang Super League</strong> adalah liga foto mingguan yang berjalan per season
+          (kurang lebih 3 bulan). Setiap Kamis, tiga member terpilih ;
+        </p>
+        <ul>
+          <li>Michelle Alexandra</li>
+          <li>Katherine Irenne</li>
+          <li>Mikaela Kusjanto</li>
+        </ul>
+        <p>
+          mengirimkan 1 foto terbaik untuk dinilai oleh circle DombaTerbang.
+        </p>
+
+        <p><strong>Sistem poin:</strong></p>
+        <ul>
+          <li>Juara 1: <strong>5 poin</strong></li>
+          <li>Juara 2: <strong>3 poin</strong></li>
+          <li>Juara 3: <strong>1 poin</strong></li>
+        </ul>
+
+        <p>
+          Pemenang mingguan ditentukan berdasarkan jumlah vote. Jika terjadi seri, penentuan posisi
+          dilakukan dengan melihat total vote atau kesepakatan internal panitia.
+        </p>
+
+        <p>
+          Voting saat ini dilakukan melalui platform internal (Discord grup), lalu direkap
+          dan dimasukkan ke sistem ini sebagai arsip resmi DombaTerbang.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="../script.js"></script>
+  <script src="liga-data.js"></script>
+  <script src="liga-script.js"></script>
+</body>
+</html>

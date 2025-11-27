@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Sister Reunion — Domba Terbang</title>
+
+  <style>
+    :root{
+      --bg-hero:#601411;   /* fallback warna di balik bg.png */
+      --text:#fff6fb;
+      --muted:#d7c9d4;
+
+      /* Rundown theme */
+      --rd-bg:#0e5a38;
+    }
+
+    /* ===== Global ===== */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;overflow-x:hidden}
+    img{display:block;max-width:100%;height:auto}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;color:var(--text);background:var(--bg-hero)}
+
+    /* ===== HERO / COVER ===== */
+    .cover{
+      position:relative;
+      width:100vw; height:100svh; min-height:480px;
+      overflow:hidden;
+      background: var(--bg-hero) url("../img/rundown/bsd-vol4/bg.png") center center / cover no-repeat;
+      isolation:isolate; will-change:background-position;
+    }
+    .hero-spot{
+      position:absolute; inset:8%;
+      background: radial-gradient(circle at 55% 35%, rgba(255,225,140,.18), transparent 65%);
+      filter: blur(60px); pointer-events:none; will-change: transform, opacity;
+    }
+    .logo-top{
+      position:absolute; top:2.6%; left:50%; transform:translate(-50%,0);
+      width:min(12vw,130px); filter:drop-shadow(0 6px 16px rgba(0,0,0,.35));
+      user-select:none; pointer-events:none; will-change:transform;
+    }
+    .title{
+      position:absolute; left:50%; top:50%;
+      --base:-52%; --ty:0px; --scale:1;
+      transform: translate(-50%, var(--base)) translateY(var(--ty)) scale(var(--scale));
+      transform-origin:center center; width:clamp(280px,72vw,860px);
+      filter:drop-shadow(0 12px 28px rgba(0,0,0,.4));
+      user-select:none; pointer-events:none; will-change: transform;
+    }
+    .nav-links{
+      position:absolute; left:50%; top:calc(50% + 210px);
+      transform:translateX(-50%); display:flex; gap:12px; flex-wrap:wrap; justify-content:center;
+    }
+    .pill{
+      appearance:none; text-decoration:none; color:#fff;
+      padding:10px 14px; border-radius:999px; font-weight:800; letter-spacing:.02em;
+      border:1px solid rgba(255,255,255,.5);
+      background:linear-gradient(135deg,rgba(255,255,255,.16),rgba(255,255,255,.08));
+      box-shadow: 0 10px 26px rgba(0,0,0,.25);
+    }
+    .pill.alt{ border-color:#ffd88f; color:#ffd88f }
+    .scroll-hint{
+      position:absolute; left:50%; bottom:18px; transform:translateX(-50%);
+      padding:10px 14px; border-radius:999px; border:1px solid rgba(255,255,255,.35);
+      color:var(--muted); background:rgba(0,0,0,.15); font-weight:700; letter-spacing:.03em;
+      backdrop-filter: blur(3px); cursor:pointer;
+      transition:transform .2s ease, background .2s ease, border-color .2s ease, opacity .2s ease;
+    }
+    .scroll-hint:hover{ transform:translateX(-50%) translateY(-2px); background:rgba(0,0,0,.25); border-color:rgba(255,255,255,.55)}
+    .scroll-hint.hide{ opacity:0; pointer-events:none }
+
+    /* ===== ANIMASI MASUK ===== */
+    @keyframes riseInVar{0%{opacity:0;--scale:.98}60%{opacity:1;--scale:1.01}100%{opacity:1;--scale:1}}
+    @keyframes fadePop{0%{opacity:0;transform:translate(-50%,6px)}100%{opacity:1;transform:translate(-50%,0)}}
+    .enter{opacity:0}
+    .enter.in.logo-top{animation:fadePop .6s ease forwards}
+    .enter.in.title{animation:riseInVar .8s cubic-bezier(.2,.6,.2,1) forwards}
+    .enter.in.scroll-hint,.enter.in .pill{animation:fadePop .6s .15s ease forwards}
+
+    /* ===== FLOATING SUITS (♥ ♦ ♣ ♠) ===== */
+    .floaters{position:absolute; inset:0; pointer-events:none; z-index:3}
+    .suit{
+      position:absolute; opacity:.18; font-size:28px;
+      animation:drift 8s ease-in-out infinite; will-change:transform,opacity;
+      text-shadow:0 4px 10px rgba(0,0,0,.35);
+    }
+    @keyframes drift{0%{transform:translateY(0) rotate(0)}50%{transform:translateY(-16px) rotate(6deg)}100%{transform:translateY(0) rotate(0)}}
+
+    /* ===== RUNDOWN ===== */
+    .page-rundown{ background:var(--rd-bg) }
+    .section-rundown{
+      position:relative; min-height:100vh; padding:40px 0 180px; color:#f6fff6;
+      background: radial-gradient(1200px 800px at 60% -10%, rgba(255,255,255,.08), transparent 60%), var(--rd-bg);
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .wrap{max-width:1000px;margin:0 auto;padding:0 20px}
+    .rd-list{ list-style:none; margin:14px 0 4px; padding:0; border-left:2px solid rgba(255,255,255,.18) }
+    .rd-item{
+      display:grid; grid-template-columns:110px 1fr; gap:12px; padding:10px 12px;
+      border-bottom:1px dashed rgba(255,255,255,.18); align-items:center;
+      opacity:0; transform:translateY(10px); transition:opacity .45s ease, transform .45s ease;
+    }
+    .rd-time{ font-weight:900; color:#fff3b4 } .rd-ttl{ font-weight:700 }
+    .reveal.in{ opacity:1; transform:none }
+
+    /* ===== PIN PARALLAX (di rundown) ===== */
+    .floaters{ position:absolute; inset:0; pointer-events:none; z-index:0 }
+    .pin-layer{ position:absolute; inset:0; pointer-events:none; z-index:1 }
+    .section-rundown .wrap{ position:relative; z-index:2 }
+
+    .pin{
+      --x:50%; --y:50%;
+      position:absolute; left:var(--x); top:var(--y);
+      transform:translate(-50%,-50%);
+      width:clamp(56px, 7.5vw, 110px);
+      filter: drop-shadow(0 16px 24px rgba(0,0,0,.35));
+      animation: pinFloat 6s ease-in-out infinite;
+      opacity:.92;
+    }
+    .pin.soft{ opacity:.88 }
+    .pin.tiny{ width:clamp(44px, 6vw, 90px) }
+
+    @keyframes pinFloat{
+      0%   { transform: translate(-50%,-50%) translateY(0) rotate(-1.5deg) }
+      50%  { transform: translate(-50%,-50%) translateY(-8px) rotate(1.5deg) }
+      100% { transform: translate(-50%,-50%) translateY(0) rotate(-1.5deg) }
+    }
+
+    /* Judul "Rundown — Domba Terbang" */
+    .rd-title{
+      margin: 6px 0 18px;
+      font-weight: 1000;
+      letter-spacing: .01em;
+      font-size: clamp(22px, 3.2vw, 34px);
+      text-shadow: 0 1px 0 rgba(0,0,0,.35);
+    }
+
+    /* Badge Day */
+    .day-badge{
+      display:inline-flex; align-items:center; gap:8px;
+      margin: 6px 0 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      font-weight: 900;
+      color: #fff;
+      background:
+        radial-gradient(140% 120% at 0% 0%, rgba(255,255,255,.16), rgba(255,255,255,.08)),
+        rgba(0,0,0,.20);
+      border: 1px solid rgba(255,255,255,.35);
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,.25),
+        0 10px 24px rgba(0,0,0,.25);
+    }
+    .day-badge .suit-ico{
+      display:inline-block;
+      width:26px; height:26px;
+      border-radius:50%;
+      font-size:14px; line-height:26px; text-align:center;
+      background: rgba(0,0,0,.25);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 2px 6px rgba(0,0,0,.25);
+    }
+
+    .day-badge.alt{
+      background:
+        radial-gradient(140% 120% at 0% 0%, rgba(255,255,255,.14), rgba(255,255,255,.06)),
+        rgba(0,0,0,.18);
+      border-color: rgba(255,255,255,.30);
+    }
+
+    /* ===== FOOTER ===== */
+    .footer{
+      position:relative;
+      text-align:center;
+      padding:30px 10px;
+      font-size:14px;
+      color:#fff;
+      background:linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,0));
+      font-weight:500;
+      letter-spacing:0.3px;
+    }
+    .footer p{
+      margin:0;
+      opacity:.8;
+    }
+
+    /* ===== Responsive tweaks ===== */
+    @media (max-width: 900px){
+      .title{ width:clamp(260px,78vw,900px); }
+    }
+    @media (max-width: 768px){
+      .logo-top{ width:84px; top:4% }
+      .title{ width:clamp(240px,84vw,900px); }
+      .rd-item{ grid-template-columns:92px 1fr }
+    }
+    @media (max-width: 480px){
+      .logo-top{ width:72px; top:5% }
+      .title{ width:clamp(220px,88vw,900px); }
+      .rd-item{ grid-template-columns:80px 1fr }
+    }
+  </style>
+</head>
+<body>
+  <!-- ===== SECTION 1 — COVER ===== -->
+  <header id="hero" class="cover" aria-label="Cover Sister Reunion">
+    <img class="logo-top enter" src="../img/rundown/bsd-vol4/logodomba-w.png" alt="Domba Terbang" />
+    <img class="title enter" src="../img/rundown/bsd-vol4/logosisterreunion.png" alt="SISTER REUNION" />
+
+    <nav class="nav-links enter">
+      <a href="#rundown" class="pill">Rundown</a>
+    </nav>
+
+    <button class="scroll-hint enter" data-scroll="#rundown" aria-label="Scroll ke Rundown">
+      Scroll ke rundown ⟱
+    </button>
+
+    <div class="hero-spot"></div>
+    <div class="floaters" aria-hidden="true"></div>
+  </header>
+
+  <!-- ===== SECTION 2 — RUNDOWN ===== -->
+  <section id="rundown" class="section-rundown page-rundown" aria-label="Rundown">
+    <div class="pin-layer" aria-hidden="true"></div>
+    <div class="wrap">
+      <h1 class="rd-title reveal">Rundown — Domba Terbang</h1>
+
+      <!-- DAY 1 -->
+      <div class="day-badge reveal">
+        <span class="suit-ico">♠</span>
+        Day 1 · Friday, 24 Oktober 2025
+      </div>
+
+      <ul class="rd-list">
+        <li class="rd-item reveal"><time class="rd-time">07.00</time><div class="rd-ttl">Bangun Tidur</div></li>
+        <li class="rd-item reveal"><time class="rd-time">07.30</time><div class="rd-ttl">Sarapan di rumah masing-masing</div></li>
+        <li class="rd-item reveal"><time class="rd-time">09.00</time><div class="rd-ttl">Menyanyikan Lagu Sonichi</div></li>
+        <li class="rd-item reveal"><time class="rd-time">10.00</time><div class="rd-ttl">Berkegiatan sesuai kegiatan masing-masing</div></li>
+        <li class="rd-item reveal"><time class="rd-time">12.00</time><div class="rd-ttl">Sholat Jumat</div></li>
+        <li class="rd-item reveal"><time class="rd-time">13.00</time><div class="rd-ttl">Lanjut Kegiatan</div></li>
+        <li class="rd-item reveal"><time class="rd-time">14.00</time><div class="rd-ttl">OTW Regentown</div></li>
+        <li class="rd-item reveal"><time class="rd-time">14.15</time><div class="rd-ttl">Cek in Rumah</div></li>
+        <li class="rd-item reveal"><time class="rd-time">14.30</time><div class="rd-ttl">Pembukaan & Sambutan Masbi + Doa Virtual (Bapak Vincent)</div></li>
+        <li class="rd-item reveal"><time class="rd-time">15.00</time><div class="rd-ttl">Isoma</div></li>
+        <li class="rd-item reveal"><time class="rd-time">16.00</time><div class="rd-ttl">Upacara Sabutan untuk bang Hizuke & bang Rubix</div></li>
+        <li class="rd-item reveal"><time class="rd-time">17.00</time><div class="rd-ttl">Makan Sore</div></li>
+        <li class="rd-item reveal"><time class="rd-time">19.00</time><div class="rd-ttl">Fun Run Rute Komplek Regentown (coach Babay)</div></li>
+        <li class="rd-item reveal"><time class="rd-time">21.00</time><div class="rd-ttl">Istirahat & Mandi setelah Fun Run</div></li>
+        <li class="rd-item reveal"><time class="rd-time">22.00</time><div class="rd-ttl">Cerita Waroku, prepare gimmick MnG</div></li>
+        <li class="rd-item reveal"><time class="rd-time">23.00</time><div class="rd-ttl">Midnight party</div></li>
+        <li class="rd-item reveal"><time class="rd-time">23.30</time><div class="rd-ttl">Penutupan Acara Day 1 oleh Lookman</div></li>
+        <li class="rd-item reveal"><time class="rd-time">00.00</time><div class="rd-ttl">Acara Bebas</div></li>
+      </ul>
+
+      <!-- DAY 2 -->
+      <div class="day-badge reveal alt">
+        <span class="suit-ico">♦</span>
+        Day 2 · Sabtu, 25 Oktober 2025
+      </div>
+
+      <ul class="rd-list">
+        <li class="rd-item reveal"><time class="rd-time">07.00</time><div class="rd-ttl">Bangun Tidur</div></li>
+        <li class="rd-item reveal"><time class="rd-time">07.30</time><div class="rd-ttl">Sarapan</div></li>
+        <li class="rd-item reveal"><time class="rd-time">07.45</time><div class="rd-ttl">Menyanyikan Lagu Sahabat atau Cinta</div></li>
+        <li class="rd-item reveal"><time class="rd-time">08.00</time><div class="rd-ttl">Mandi & Bersiap untuk acara</div></li>
+        <li class="rd-item reveal"><time class="rd-time">08.45</time><div class="rd-ttl">Foto Bersama di depan rumah + Yel Yel dipimpin Egalit Marsha</div></li>
+        <li class="rd-item reveal"><time class="rd-time">09.00</time><div class="rd-ttl">OTW Venue ICE BSD</div></li>
+        <li class="rd-item reveal"><time class="rd-time">09.30</time><div class="rd-ttl">Doa Bersama dipimpin oleh Vincent Manager Dewa United</div></li>
+        <li class="rd-item reveal"><time class="rd-time">09.35</time><div class="rd-ttl">Masuk Venue</div></li>
+        <li class="rd-item reveal"><time class="rd-time">09.45</time><div class="rd-ttl">Lanjut MnG & 2s · titip tas ke tim Shuttersheep</div></li>
+        <li class="rd-item reveal"><time class="rd-time">12.15</time><div class="rd-ttl">Istirahat · ketemu di parkiran (makan)</div></li>
+        <li class="rd-item reveal"><time class="rd-time">14.30</time><div class="rd-ttl">Lanjut Kegiatan MnG & 2s masing-masing</div></li>
+        <li class="rd-item reveal"><time class="rd-time">17.30</time><div class="rd-ttl">Istirahat · kumpul ke tempat tas</div></li>
+        <li class="rd-item reveal"><time class="rd-time">18.00</time><div class="rd-ttl">Persiapan After Show · cari tempat duduk</div></li>
+        <li class="rd-item reveal"><time class="rd-time">20.00</time><div class="rd-ttl">Enjoy After Show</div></li>
+        <li class="rd-item reveal"><time class="rd-time">22.00</time><div class="rd-ttl">Selesai After Show · Foto bareng Giant flag + yel yel</div></li>
+        <li class="rd-item reveal"><time class="rd-time">22.20</time><div class="rd-ttl">Keluar Venue · OTW pulang ke Regentown</div></li>
+        <li class="rd-item reveal"><time class="rd-time">23.00</time><div class="rd-ttl">Makan Ketoprak indomie 2 jam</div></li>
+        <li class="rd-item reveal"><time class="rd-time">23.30</time><div class="rd-ttl">Penutupan Acara Day 2 oleh Raple</div></li>
+        <li class="rd-item reveal"><time class="rd-time">00.00</time><div class="rd-ttl">Acara Bebas</div></li>
+      </ul>
+    </div>
+
+    <!-- floating suits untuk section rundown -->
+    <div class="floaters" aria-hidden="true"></div>
+  </section>
+
+  <footer class="footer">
+    <p>© 2025 DombaTerbang. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // ===== Entrance animation =====
+    window.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.enter').forEach((el) => {
+        if (el.classList.contains('logo-top')) el.classList.add('in','logo-top');
+        else if (el.classList.contains('title')) el.classList.add('in','title');
+        else el.classList.add('in');
+      });
+    });
+
+    // ===== Smooth scroll anchors =====
+    document.querySelectorAll('[data-scroll], a[href^="#"]').forEach(link=>{
+      link.addEventListener('click', (e)=>{
+        const href = link.getAttribute('href') || link.getAttribute('data-scroll');
+        if(!href || href === '#') return;
+        if(href.startsWith('#')){
+          const target = document.querySelector(href) || document.querySelector(link.getAttribute('data-scroll'));
+          if(target){
+            e.preventDefault();
+            target.scrollIntoView({behavior:'smooth'});
+          }
+        }
+      });
+    });
+
+    // ===== Reveal rundown items =====
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: .15 });
+    document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+    // ===== Floating suits =====
+    function spawnSuits(){
+      document.querySelectorAll('.floaters').forEach(wrap=>{
+        wrap.querySelectorAll('.suit').forEach(n => n.remove());
+
+        const SUITS = ['♥','♦','♣','♠'];
+        const rectH = wrap.parentElement?.scrollHeight || wrap.getBoundingClientRect().height;
+        const density = Math.max(14, Math.min(28, Math.round((window.innerWidth * rectH) / 90000)));
+        for(let i=0;i<density;i++){
+          const s = document.createElement('span');
+          s.className = 'suit';
+          s.textContent = SUITS[Math.floor(Math.random()*SUITS.length)];
+          s.style.left = (Math.random()*100).toFixed(2) + '%';
+          s.style.top  = (Math.random()*100).toFixed(2) + '%';
+          s.style.fontSize = (18 + Math.random()*22).toFixed(0) + 'px';
+          s.style.animationDelay = (Math.random()*4).toFixed(2) + 's';
+          wrap.appendChild(s);
+        }
+      });
+    }
+    spawnSuits();
+    window.addEventListener('load', spawnSuits);
+    window.addEventListener('resize', () => { spawnSuits(); });
+
+    // ===== Parallax halus di cover =====
+    (function(){
+      const hero  = document.getElementById('hero');
+      if(!hero) return;
+
+      const title = document.querySelector('.title');
+      const logo  = document.querySelector('.logo-top');
+      const spot  = document.querySelector('.hero-spot');
+      const hint  = document.querySelector('.scroll-hint');
+
+      let ticking = false;
+      const clamp = (v,min,max)=> Math.max(min, Math.min(max, v));
+
+      function onScroll(){
+        if(ticking) return; ticking = true;
+        requestAnimationFrame(()=>{
+          const y  = window.scrollY || document.documentElement.scrollTop;
+          const vh = Math.max(window.innerHeight, hero?.offsetHeight || 1);
+          const inHero = y < vh;
+          const p  = inHero ? clamp(y / vh, 0, 1) : 1;
+
+          const bgY = -p * 40;
+          hero.style.backgroundPosition = `center calc(50% + ${bgY}px)`;
+          if(spot){
+            spot.style.transform = `translateY(${bgY * 0.6}px)`;
+            spot.style.opacity   = String(1 - p * 0.35);
+          }
+
+          if(title){ title.style.setProperty('--ty', (p * -12) + 'px'); }
+          if(logo){  logo.style.transform = `translate(-50%, ${p * -4}px)`; }
+
+          if(hint){ (p > 0.05) ? hint.classList.add('hide') : hint.classList.remove('hide'); }
+
+          ticking = false;
+        });
+      }
+      window.addEventListener('scroll', onScroll, { passive:true });
+      window.addEventListener('resize', onScroll);
+      onScroll();
+    })();
+
+    // ===== Parallax PIN (hanya di section rundown) =====
+    function setupPins(){
+      const section = document.getElementById('rundown');
+      if(!section) return;
+
+      const layer = section.querySelector('.pin-layer');
+      const contentWrap = section.querySelector('.wrap');
+      if(!layer || !contentWrap) return;
+
+      layer.innerHTML = '';
+
+      function getNoFly(){
+        const r = contentWrap.getBoundingClientRect();
+        const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+        const left = (r.left - 28) / vw * 100;
+        const right = (r.right + 28) / vw * 100;
+        return { left, right };
+      }
+      function safeRandomX(){
+        const nf = getNoFly();
+        for (let i=0;i<20;i++){
+          const x = Math.random()*100;
+          if (x < nf.left || x > nf.right) return x;
+        }
+        return (Math.random()<.5) ? (nf.left - 4) : (nf.right + 4);
+      }
+
+      const IMGS = [
+        '../img/rundown/bsd-vol4/pinMerah.png',
+        '../img/rundown/bsd-vol4/pinhitam.png'
+      ];
+      const desired = Math.max(12, Math.min(24, Math.round(window.innerWidth / 70)));
+
+      for(let i=0;i<desired;i++){
+        const img = document.createElement('img');
+        img.className = 'pin';
+        if (Math.random() < .35) img.classList.add('soft');
+        if (Math.random() < .20) img.classList.add('tiny');
+        img.src = IMGS[i % IMGS.length];
+
+        const x = safeRandomX().toFixed(2) + '%';
+        const y = (Math.random()*100).toFixed(2) + '%';
+        img.style.setProperty('--x', x);
+        img.style.setProperty('--y', y);
+
+        img.dataset.speed = (Math.random()*0.22 + 0.14).toFixed(2);
+        layer.appendChild(img);
+      }
+
+      const pins = Array.from(layer.querySelectorAll('.pin'));
+      let ticking = false;
+
+      function update(){
+        if(ticking) return; ticking = true;
+        requestAnimationFrame(()=>{
+          const rect = section.getBoundingClientRect();
+          const vh = window.innerHeight || 1;
+          const centerOffset = (vh/2 - (rect.top + rect.height/2)) / vh;
+          const base = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
+
+          pins.forEach(pin=>{
+            const speed = parseFloat(pin.dataset.speed || '0.25');
+            const offsetY = -centerOffset * 50 * speed;
+            const blur = (0.2 + 0.8 * Math.abs(centerOffset) * speed).toFixed(2);
+            const shadowY = (14 - base * 6).toFixed(1);
+            const shadowB = (22 - base * 8).toFixed(1);
+            pin.style.transform = `translate(-50%,-50%) translateY(${offsetY}px)`;
+            pin.style.filter = `blur(${blur}px) drop-shadow(0 ${shadowY}px ${shadowB}px rgba(0,0,0,.45))`;
+            pin.style.opacity = String(0.9 + (0.08 * base));
+          });
+          ticking = false;
+        });
+      }
+
+      window.addEventListener('scroll', update, { passive:true });
+      window.addEventListener('resize', update);
+      update();
+    }
+
+    document.addEventListener('DOMContentLoaded', setupPins);
+    window.addEventListener('load', setupPins);
+  </script>
+</body>
+</html>

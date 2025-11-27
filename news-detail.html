@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>News — DombaTerbang Hub</title>
+  <meta name="description" content="Berita dan pengumuman terbaru dari DombaTerbang Hub." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="news-detail-page">
+  <!-- 🔄 PRELOADER (sama seperti index) -->
+  <div id="preloader">
+    <img src="img/logo.png" alt="Loading DombaTerbang..." />
+  </div>
+
+  <!-- NAVBAR SIMPLE (link balik ke index) -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html#home">
+        <img src="img/logo.png" class="brand-logo" alt="DombaTerbang Logo" />
+        <span>DombaTerbang Hub</span>
+      </a>
+
+      <div class="menu" id="menu">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#news" class="active">News</a>
+        <a href="index.html#event">Event</a>
+        <a href="index.html#gallery">Galeri Seram</a>
+        <a href="liga/liga.html" class="nav-dtsl" target="_blank" rel="noopener">DTSL</a>
+        <a href="index.html#about">Tentang</a>
+      </div>
+
+      <button id="themeToggle" class="theme-toggle" aria-label="Ganti tema">🌙</button>
+
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <main class="news-detail-shell">
+    <div class="mini-nav">
+      <a href="index.html#news">← Kembali ke daftar News</a>
+    </div>
+
+    <article class="news-detail-card">
+      <header class="news-detail-header">
+        <div class="news-detail-meta-row">
+          <span id="newsDetailBadge" class="news-detail-badge">Kategori</span>
+          <span id="newsDetailDate" class="news-detail-date">Tanggal</span>
+        </div>
+        <h1 id="newsDetailTitle" class="news-detail-title">
+          Judul berita akan muncul di sini
+        </h1>
+      </header>
+
+      <div id="newsDetailCover" class="news-detail-cover"></div>
+
+      <section id="newsDetailBody" class="news-detail-body">
+        <!-- Konten paragraf akan di-inject dari script.js -->
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© 2025 DombaTerbang Hub</span>
+      <span class="muted">Created with ❤ by DombaTerbang</span>
+    </div>
+  </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
