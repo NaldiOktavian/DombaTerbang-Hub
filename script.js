@@ -461,7 +461,7 @@ function renderGalleryEvent() {
   /* ============================
      SISTEM LOAD PER BATCH
   ============================ */
-  const BATCH = 12;
+  const BATCH = 8;
   let index = 0;
 
   function loadBatch() {
@@ -1273,5 +1273,5 @@ window.addEventListener('load', ()=>{
   if(!pre) return;
   setTimeout(()=>{
     pre.classList.add('hidden');
-  }, 2000);
+  }, 500);
 });
