@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DombaTerbang Super League – Detail Minggu</title>
-    <!-- Favicon / Tab Icon -->
-  <link rel="icon" type="image/png" href="img/domba-favicon.png">
-  <link rel="apple-touch-icon" href="/img/domba-favicon.png">
+  <!-- Favicon / Tab Icon -->
+  <link rel="icon" type="image/png" href="../img/domba-favicon.png">
+  <link rel="apple-touch-icon" href="../img/domba-favicon.png">
   <meta name="theme-color" content="#ffe5f2">
   <link rel="stylesheet" href="../styles.css" />
 </head>
@@ -14,7 +14,10 @@
   <div class="liga-shell">
     <header class="liga-header">
       <div class="liga-topbar">
-        <a href="liga.html" class="liga-back">← Kembali ke Klasemen</a>
+        <a href="liga.html" class="liga-back-btn">
+          <span class="liga-back-icon">←</span>
+          <span>Kembali ke Klasemen</span>
+        </a>
         <button type="button" class="liga-pill">🏆 DombaTerbang Liga Kamisan</button>
       </div>
 
@@ -28,19 +31,19 @@
     <main class="liga-main">
 
       <!-- WINNING PHOTO -->
-        <section class="liga-block">
+      <section class="liga-block">
         <h2 class="liga-block-title">Winning Photo</h2>
 
         <!-- Layout dua kolom -->
         <div class="winner-layout">
-            <!-- foto -->
-            <div class="winner-photo-area">
+          <!-- foto -->
+          <div class="winner-photo-area">
             <div id="week-photo"></div>
-            </div>
-            <!-- panel -->
-            <div id="winner-panel"></div>
+          </div>
+          <!-- panel pemenang -->
+          <div id="winner-panel" class="winner-panel"></div>
         </div>
-        </section>
+      </section>
 
       <!-- PODIUM MINGGUAN -->
       <section class="liga-block">
@@ -50,34 +53,21 @@
         </div>
       </section>
 
-      <!-- PANEL PEMENANG + TABEL HASIL -->
+      <!-- TABEL HASIL -->
       <section class="liga-block">
         <h2 class="liga-block-title">Tabel Hasil Lengkap</h2>
-
-        <div class="liga-week-detail-layout">
-          <!-- Panel pemenang -->
-          <div class="liga-week-detail-left">
-            <div id="winner-panel" class="winner-panel">
-              <!-- Diisi oleh JS -->
-            </div>
-          </div>
-
-          <!-- Tabel hasil -->
-          <div class="liga-week-detail-right">
-            <div class="liga-table-wrap">
-              <table class="liga-table">
-                <thead>
-                  <tr>
-                    <th>Rank</th>
-                    <th>Member</th>
-                    <th>Vote</th>
-                    <th>Poin</th>
-                  </tr>
-                </thead>
-                <tbody id="week-table-body"></tbody>
-              </table>
-            </div>
-          </div>
+        <div class="liga-table-wrap">
+          <table class="liga-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Member</th>
+                <th>Vote</th>
+                <th>Poin</th>
+              </tr>
+            </thead>
+            <tbody id="week-table-body"></tbody>
+          </table>
         </div>
       </section>
     </main>

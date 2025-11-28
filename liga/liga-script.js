@@ -20,16 +20,23 @@
     return;
   }
 
-  function pickSeason() {
+    function pickSeason() {
     const params = new URLSearchParams(window.location.search);
     const seasonId = params.get("season");
+
+    const visibleSeasons = seasons.filter((s) => !s.hidden);
+    const defaultSeason = visibleSeasons[0] || seasons[0];
+
     if (seasonId) {
-      const found = seasons.find((s) => s.seasonId === seasonId);
+      const found = seasons.find(
+        (s) => s.seasonId === seasonId && !s.hidden
+      );
       if (found) return found;
     }
-    // default: season pertama
-    return seasons[0];
+
+    return defaultSeason;
   }
+
 
   const data = pickSeason();
 
@@ -81,15 +88,16 @@
     });
   }
 
-  function renderSeasonSwitch() {
+    function renderSeasonSwitch() {
     const el = getEl("ligaSeasonSwitch");
-    if (!el || seasons.length <= 1) return;
+    const visibleSeasons = seasons.filter((s) => !s.hidden);
+    if (!el || visibleSeasons.length <= 1) return;
 
     const currentId = data.seasonId;
 
     el.innerHTML =
       `<div class="liga-season-label">Season</div>` +
-      seasons
+      visibleSeasons
         .map((s) => {
           const active = s.seasonId === currentId;
           const label = s.label || s.seasonId;
@@ -322,77 +330,99 @@
 
   /* ==========================================
      3. PODIUM MINGGU TERAKHIR (liga.html)
+     → pakai layout .liga-podium-123 v3
   =========================================== */
 
   function renderLatestWeekPodium() {
-    const weeks = data.weeks || [];
-    if (!weeks.length) return;
-
-    const latest = sortWeeksDesc(weeks)[0];
-    const resultsSorted = sortResultsForPodium(latest.results || []);
-    if (!resultsSorted.length) return;
-
     const podiumEl = getEl("ligaCurrentPodium");
     if (!podiumEl) return;
 
-    const top3 = resultsSorted.slice(0, 3);
-    const mapToView = (r) => {
-      const m = memberIndex[r.memberId] || {};
-      return {
-        id: r.memberId,
-        name: m.name || r.memberId,
+    const weeks = data.weeks || [];
+
+    // kalau belum ada minggu sama sekali
+    if (!weeks.length) {
+      podiumEl.innerHTML = `
+        <p class="liga-sub">Belum ada hasil minggu terakhir.</p>
+      `;
+      return;
+    }
+
+    const latest = sortWeeksDesc(weeks)[0];
+    const resultsSorted = sortResultsForPodium(latest.results || []);
+
+    if (!resultsSorted.length) {
+      podiumEl.innerHTML = `
+        <p class="liga-sub">Belum ada data hasil untuk minggu ini.</p>
+      `;
+      return;
+    }
+
+    const top3Raw = resultsSorted.slice(0, 3);
+
+    // mapping ke view model + kasih rank 1/2/3
+    const podiumData = [];
+    if (top3Raw[0]) {
+      const m = memberIndex[top3Raw[0].memberId] || {};
+      podiumData.push({
+        rank: 1,
+        name: m.name || top3Raw[0].memberId,
         avatar: m.avatar,
-        votes: r.votes || 0,
-        points: r.points || 0
-      };
-    };
+        votes: top3Raw[0].votes || 0,
+        points: top3Raw[0].points || 0,
+      });
+    }
+    if (top3Raw[1]) {
+      const m = memberIndex[top3Raw[1].memberId] || {};
+      podiumData.push({
+        rank: 2,
+        name: m.name || top3Raw[1].memberId,
+        avatar: m.avatar,
+        votes: top3Raw[1].votes || 0,
+        points: top3Raw[1].points || 0,
+      });
+    }
+    if (top3Raw[2]) {
+      const m = memberIndex[top3Raw[2].memberId] || {};
+      podiumData.push({
+        rank: 3,
+        name: m.name || top3Raw[2].memberId,
+        avatar: m.avatar,
+        votes: top3Raw[2].votes || 0,
+        points: top3Raw[2].points || 0,
+      });
+    }
 
-    const p1 = top3[0] ? mapToView(top3[0]) : null; // Juara 1
-    const p2 = top3[1] ? mapToView(top3[1]) : null; // Juara 2
-    const p3 = top3[2] ? mapToView(top3[2]) : null; // Juara 3
+    // helper ambil slot berdasarkan rank
+    function getSlot(rank) {
+      return podiumData.find((p) => p.rank === rank);
+    }
 
-    // Urutan: 2 (kiri), 1 (tengah), 3 (kanan)
-    podiumEl.innerHTML = `
-      <div class="podium-wrapper">
-        ${
-          p2
-            ? `
-        <div class="podium podium-2">
-          <div class="podium-rank">2</div>
-          ${p2.avatar ? `<img src="${p2.avatar}" alt="${p2.name}">` : ""}
-          <div class="podium-name">${p2.name}</div>
-          <div class="podium-sub">${p2.votes} vote • ${p2.points} pts</div>
-        </div>
-        `
-            : ""
-        }
-        ${
-          p1
-            ? `
-        <div class="podium podium-1">
-          <div class="podium-rank">1</div>
-          ${p1.avatar ? `<img src="${p1.avatar}" alt="${p1.name}">` : ""}
-          <div class="podium-name">${p1.name}</div>
-          <div class="podium-sub">${p1.votes} vote • ${p1.points} pts</div>
-        </div>
-        `
-            : ""
-        }
-        ${
-          p3
-            ? `
-        <div class="podium podium-3">
-          <div class="podium-rank">3</div>
-          ${p3.avatar ? `<img src="${p3.avatar}" alt="${p3.name}">` : ""}
-          <div class="podium-name">${p3.name}</div>
-          <div class="podium-sub">${p3.votes} vote • ${p3.points} pts</div>
-        </div>
-        `
-            : ""
-        }
-      </div>
-    `;
+    // markup sesuai CSS baru:
+    // .liga-podium-123 > .podium-wrapper > .podium.podium-1/2/3
+    let html = '<div class="podium-wrapper">';
+
+    [2, 1, 3].forEach((rank) => {
+      const slot = getSlot(rank);
+      if (!slot) return;
+
+      html += `
+        <article class="podium podium-${rank}">
+          <div class="podium-rank">${rank}</div>
+          ${
+            slot.avatar
+              ? `<img src="${slot.avatar}" alt="${slot.name}">`
+              : ""
+          }
+          <div class="podium-name">${slot.name}</div>
+          <div class="podium-sub">${slot.votes} vote • ${slot.points} pts</div>
+        </article>
+      `;
+    });
+
+    html += "</div>";
+    podiumEl.innerHTML = html;
   }
+
 
   /* ==========================================
      4. HASIL PER MINGGU (GRID CARD liga.html)
@@ -676,33 +706,53 @@ function buildHeadToHead() {
     }
 
 
-    // Podium detail
+        // Podium detail (tiga baris Juara 1/2/3)
     const podiumEl = getEl("week-podium");
     if (podiumEl && podium.length) {
-      podiumEl.innerHTML = `
-        <div class="liga-podium-inline">
-          ${podium
-            .map((p, idx) => {
-              const medal =
-                idx === 0 ? "🥇 Juara 1" : idx === 1 ? "🥈 Juara 2" : "🥉 Juara 3";
-              const cls = idx === 0 ? "lg-podium-1" : idx === 1 ? "lg-podium-2" : "lg-podium-3";
-              return `
-                <div class="lg-podium-card ${cls}">
-                  <div class="lg-podium-rank">${medal}</div>
-                  <div class="lg-podium-main">
-                    ${p.avatar ? `<img src="${p.avatar}" alt="${p.name}">` : ""}
-                    <div>
-                      <div class="lg-name">${p.name}</div>
-                      <div class="lg-sub">${p.votes} vote • ${p.points} pts</div>
-                    </div>
+      const rowsHtml = podium
+        .map((p, idx) => {
+          const medal =
+            idx === 0 ? "🥇" : idx === 1 ? "🥈" : "🥉";
+          const label =
+            idx === 0 ? "Juara 1" : idx === 1 ? "Juara 2" : "Juara 3";
+          const rowClass =
+            idx === 0
+              ? "liga-week-podium-row rank-1"
+              : idx === 1
+              ? "liga-week-podium-row rank-2"
+              : "liga-week-podium-row rank-3";
+
+          return `
+            <div class="${rowClass}">
+              <div class="liga-week-podium-medal">
+                <span class="liga-week-podium-medal-icon">${medal}</span>
+                <span>${label}</span>
+              </div>
+              <div class="liga-week-podium-main">
+                ${
+                  p.avatar
+                    ? `<img src="${p.avatar}" alt="${p.name}" class="liga-week-podium-avatar" />`
+                    : ""
+                }
+                <div class="liga-week-podium-info">
+                  <div class="liga-week-podium-name">${p.name}</div>
+                  <div class="liga-week-podium-meta">
+                    ${p.votes} vote • ${p.points} pts
                   </div>
                 </div>
-              `;
-            })
-            .join("")}
+              </div>
+            </div>
+          `;
+        })
+        .join("");
+
+      podiumEl.innerHTML = `
+        <div class="liga-week-podium-list">
+          ${rowsHtml}
         </div>
       `;
     }
+
 
 
     // Tabel hasil minggu (urut sesuai podium)
@@ -1075,4 +1125,45 @@ function buildHeadToHead() {
     });
 
 
+})();
+
+/* =====================================
+   DTSL – Podium animation helper
+   (naik podium + delay 1–2–3)
+===================================== */
+(function () {
+  function animatePodiumSlots() {
+    var wrapper = document.querySelector(".liga-podium-123 .podium-wrapper");
+    if (!wrapper) return;
+
+    var slots = wrapper.querySelectorAll(".podium");
+    if (!slots.length) return;
+
+    // reset dulu supaya kalau di-render ulang, animasinya bisa jalan lagi
+    slots.forEach(function (slot) {
+      slot.classList.remove("podium-enter");
+    });
+
+    // kasih delay kecil biar naik satu-satu
+    slots.forEach(function (slot, index) {
+      setTimeout(function () {
+        slot.classList.add("podium-enter");
+      }, 120 * index);
+    });
+  }
+
+  // 1) jalan pas DOM sudah siap
+  document.addEventListener("DOMContentLoaded", function () {
+    animatePodiumSlots();
+  });
+
+  // 2) kalau konten podium di-update lewat JS lama,
+  //    kita observe perubahan di dalam .liga-podium-123
+  var host = document.querySelector(".liga-podium-123");
+  if (host && "MutationObserver" in window) {
+    var obs = new MutationObserver(function () {
+      animatePodiumSlots();
+    });
+    obs.observe(host, { childList: true, subtree: true });
+  }
 })();

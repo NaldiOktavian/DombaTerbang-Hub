@@ -128,6 +128,7 @@ window.LIGA_SEASONS = [
     seasonId: "2026-S1",
     label: "Season 2 — Jan–Mar 2026",
     plannedWeeks: 12,
+    hidden: true, //digembok dulu bosque
     members: [
       // untuk sekarang pakai peserta yang sama
       {
