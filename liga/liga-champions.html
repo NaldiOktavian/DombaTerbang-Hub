@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>DTSL Champions League</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../css/styles.css">
+  <link rel="stylesheet" href="../liga/liga-champions.css">
+</head>
+<body class="champions-league">
+  <main class="liga-shell">
+    <!-- HEADER -->
+    <header class="liga-header">
+      <div class="liga-topbar">
+        <a href="../liga/dtsl-hub.html" class="liga-back-btn">
+          <span class="liga-back-icon">←</span>
+          <span>Kembali ke Hub</span>
+        </a>
+
+        <div class="liga-top-right">
+          <div class="liga-vote-status">
+            <span class="liga-vote-label">DTSL Champions League</span>
+            <span class="liga-vote-text" id="clStatusText">
+              Fase knockout dengan peserta dari Monday & Kamis.
+            </span>
+          </div>
+          <button id="ligaThemeToggle">✨ Night Mode</button>
+        </div>
+      </div>
+
+      <h1>DTSL Champions League</h1>
+      <p class="liga-sub">
+        Turnamen knockout khusus untuk para top performer Monday Prieme League
+        & Liga Kamis. Format parody UEFA Champions League.
+      </p>
+
+      <div class="liga-brand">
+        <div class="liga-brand-logo">
+          <!-- taruh logo parodi Champions League di sini -->
+          <!-- <img src="../img/logo-dtsl-champions.png" alt="DTSL Champions League"> -->
+        </div>
+        <div>
+          <div class="liga-brand-title">DTSL Champions League</div>
+          <div class="liga-brand-sub">
+            Top 2 Liga Kamis + Top 4 Monday Prieme League. 6 peserta, hanya satu juara. ⭐
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="liga-block format-turnamen">
+      <h2 class="liga-block-title">Format Turnamen</h2>
+
+      <div class="cl-rules">
+        <p>
+          <strong>DTSL Champions League</strong> menggunakan format
+          <strong>knockout satu leg</strong>.
+          Setiap pertandingan hanya dimainkan satu kali.
+        </p>
+
+        <ul>
+          <li>⚔️ Sistem <strong>1 vs 1</strong></li>
+          <li>🗳️ Pemenang ditentukan melalui <strong>voting di Discord</strong></li>
+          <li>❌ Tidak ada leg kedua / agregat</li>
+          <li>🚪 Kalah satu kali = <strong>langsung tereliminasi</strong></li>
+          <li>🏆 Pemenang lanjut ke babak berikutnya</li>
+        </ul>
+
+        <p class="cl-note">
+          Seluruh pertandingan DTSL Champions League akan dimulai pada
+          <strong>Februari 2026</strong>.
+        </p>
+      </div>
+    </section>
+
+    <section class="champions-hero">
+      <h2 class="champions-hero-title">Champions Participants</h2>
+      <p class="champions-hero-sub">
+        Delapan peserta terpilih dari Liga Kamis & Monday Prime League
+      </p>
+
+      <div class="champions-hero-grid">
+        <!-- Dummy dulu -->
+        <div class="hero-card"><img src="../img/liga/profile-dummy.jpg"><span>Katherine</span></div>
+        <div class="hero-card"><img src="../img/liga/profile-dummy.jpg"><span>Michelle</span></div>
+        <div class="hero-card"><img src="../img/liga/profile-dummy.jpg"><span>Mikaela</span></div>
+        <div class="hero-card"><img src="../img/liga/profile-dummy.jpg"><span>Anin</span></div>
+        <div class="hero-card"><img src="../img/liga/profile-dummy.jpg"><span>Cynthia</span></div>
+        <div class="hero-card"><img src="../img/liga/profile-dummy.jpg"><span>Jemima</span></div>
+        <div class="hero-card"><img src="../img/liga/profile-dummy.jpg"><span>Indah</span></div>
+        <div class="hero-card"><img src="../img/liga/profile-dummy.jpg"><span>Nala</span></div>
+      </div>
+    </section>
+
+    <section class="liga-block">
+      <h2 class="liga-block-title">Match Preview</h2>
+
+      <div class="match-preview disabled">
+        <p>Drawing pertandingan akan diumumkan sebelum turnamen dimulai.</p>
+      </div>
+    </section>
+
+    <section class="liga-main">
+      <!-- Info kualifikasi -->
+      <section class="liga-block">
+        <h2 class="liga-block-title">Qualified Teams</h2>
+
+        <div class="cl-qualifiers" id="clQualifiers">
+          <!-- cards diisi via JS -->
+        </div>
+      </section>
+
+      <!-- Bracket utama -->
+      <section class="liga-block">
+        <h2 class="liga-block-title">Knockout Bracket</h2>
+
+      <div class="cl-bracket-note">
+        Pertandingan dimulai Februari 2026
+      </div>
+
+      <div class="cl-bracket">
+
+        <!-- QUARTER FINAL -->
+        <div class="cl-round">
+          <h3>Quarter Final</h3>
+
+          <div class="cl-match-box" data-match="qf1"></div>
+          <div class="cl-match-box" data-match="qf2"></div>
+          <div class="cl-match-box" data-match="qf3"></div>
+          <div class="cl-match-box" data-match="qf4"></div>
+        </div>
+
+        <!-- SEMI FINAL -->
+        <div class="cl-round">
+          <h3>Semi Final</h3>
+
+          <div class="cl-match-box" data-match="sf1"></div>
+          <div class="cl-match-box" data-match="sf2"></div>
+        </div>
+
+        <!-- FINAL -->
+        <div class="cl-round">
+          <h3>Grand Final</h3>
+
+          <div class="cl-match-box" data-match="f1"></div>
+        </div>
+
+      </div>
+
+        <!-- panel champion -->
+        <div class="cl-champion-panel" id="clChampionPanel">
+          <div class="cl-champion-title">Champion (TBA)</div>
+          <div class="cl-champion-name" id="clChampionName">-</div>
+        </div>
+      </section>
+    </section>
+
+  <section class="liga-block">
+  <h2 class="liga-block-title">Champions News</h2>
+
+  <ul class="champions-news">
+    <li>📣 Pengumuman peserta DTSL Champions League</li>
+    <li>📅 Turnamen dimulai Februari 2026</li>
+    <li>🗳️ Voting pertandingan dilakukan melalui Discord</li>
+  </ul>
+  </section>
+
+    <footer class="liga-footer">
+      DTSL Champions League adalah turnamen penutup musim DombaTerbang Super League.
+    </footer>
+  </main>
+
+  <script src="../liga/liga-champions.js"></script>
+</body>
+</html>

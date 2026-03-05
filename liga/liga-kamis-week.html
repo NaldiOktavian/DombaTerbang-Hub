@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DombaTerbang Super League – Detail Minggu</title>
+  <!-- Favicon / Tab Icon -->
+  <link rel="icon" type="image/webp" href="../img/domba-favicon.webp">
+  <link rel="apple-touch-icon" href="../img/domba-favicon.webp">
+  <meta name="theme-color" content="#ffe5f2">
+  <link rel="stylesheet" href="../liga/liga-styles.css" />
+</head>
+<body>
+  <div class="liga-shell">
+    <header class="liga-header">
+      <div class="liga-topbar">
+        <a id="backToSeason" class="liga-back-btn">
+          ← Kembali ke Klasemen
+        </a>
+        <button type="button" class="liga-pill">🏆 DombaTerbang Liga Kamisan</button>
+      </div>
+
+      <!-- Judul akan diisi JS -->
+      <h1 id="week-title">Minggu ? — ????-??-??</h1>
+      <p class="liga-sub">
+        Detail hasil vote dan perolehan poin minggu ini.
+      </p>
+    </header>
+
+    <main class="liga-main">
+
+      <!-- WINNING PHOTO -->
+      <section class="liga-block">
+        <h2 class="liga-block-title">Winning Photo</h2>
+
+        <!-- Layout dua kolom -->
+        <div class="winner-layout">
+          <!-- foto -->
+          <div class="winner-photo-area">
+            <div id="week-photo"></div>
+          </div>
+          <!-- panel pemenang -->
+          <div id="winner-panel" class="winner-panel"></div>
+        </div>
+      </section>
+
+      <!-- PODIUM MINGGUAN -->
+      <section class="liga-block">
+        <h2 class="liga-block-title">Podium Mingguan</h2>
+        <div id="week-podium">
+          <!-- Diisi oleh JS -->
+        </div>
+      </section>
+
+      <!-- TABEL HASIL -->
+      <section class="liga-block">
+        <h2 class="liga-block-title">Tabel Hasil Lengkap</h2>
+        <div class="liga-table-wrap">
+          <table class="liga-table">
+            <thead>
+              <tr>
+                <th>Rank</th>
+                <th>Member</th>
+                <th>Vote</th>
+                <th>Poin</th>
+              </tr>
+            </thead>
+            <tbody id="week-table-body"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="liga-footer">
+      © 2025 DombaTerbang • Liga Foto Mingguan
+    </footer>
+  </div>
+
+  <script src="../script.js"></script>
+  <script src="liga-data.js"></script>
+  <script src="liga-script.js"></script>
+</body>
+</html>

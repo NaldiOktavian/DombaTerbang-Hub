@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Monday Prieme League — DTSL</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Styles khusus Monday Prieme League -->
+  <link rel="stylesheet" href="liga-monday.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body class="monday-league">
+  <!-- kalau kamu punya top navbar global, taruh di sini -->
+
+<main id="ligaSeason" class="liga-shell">
+    <!-- HEADER -->
+    <header class="liga-header">
+      <div class="liga-topbar">
+        <a href="../liga/dtsl-hub.html" class="liga-back-btn">
+          <span class="liga-back-icon">←</span>
+          <span>Kembali ke Hub</span>
+        </a>
+
+        <div class="liga-top-right">
+          <!-- Theme toggle -->
+          <button id="ligaThemeToggle">🌤️ Monday Mode</button>
+        </div>
+      </div>
+
+      <!-- Judul + subtitle harus punya ID yang dipakai script -->
+      <h1 id="ligaSeasonTitle">Monday Prieme League — Season 1</h1>
+      <p id="ligaSeasonSubtitle" class="liga-sub">
+        Liga foto internal DombaTerbang setiap hari Senin. Foto terbaik akan
+        mendapatkan poin untuk klasemen musim.
+      </p>
+
+      <div class="liga-brand">
+        <div class="liga-brand-logo">
+          <img src="../img/logo.webp" alt="Monday Prime League Logo">
+        </div>
+        <div>
+          <div class="liga-brand-title">Monday Prieme League</div>
+          <div class="liga-brand-sub">Senin cerah, foto cerah, mood cerah. 🌤️</div>
+        </div>
+      </div>
+
+      <!-- Progress Season -->
+      <div class="liga-season-progress">
+        <div class="liga-progress-top">
+          <span id="ligaProgressLabel">Matchday 1</span>
+          <span id="ligaProgressPercent">0% Season</span>
+        </div>
+        <div class="liga-progress-bar">
+          <div class="liga-progress-fill" id="ligaProgressFill" style="width:0%"></div>
+        </div>
+        <div class="liga-next-match" id="ligaNextMatchInfo">
+          <span class="liga-next-label">Next Matchday</span>
+          <span class="liga-next-date" id="ligaNextMatchDate">–</span>
+          <span class="liga-next-count" id="ligaNextMatchCountdown">TBA</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <section class="liga-main">
+      <!-- PODIUM MINGGU TERAKHIR -->
+      <section class="liga-block" id="ligaCurrentWeekSection">
+        <h2 class="liga-block-title"id="ligaPodiumTitle">Podium Minggu Terakhir</h2>
+        <div id="ligaCurrentPodium"></div>
+      </section>
+
+      <!-- Status vote -->
+          <div class="liga-vote-status" id="ligaVoteStatus">
+            <span class="liga-vote-label">Monday Prieme League</span>
+            <span class="liga-vote-text" id="ligaVoteStatusText">Voting belum dimulai.</span>
+            <span class="liga-vote-time" id="ligaVoteStatusTime">-</span>
+            <span class="liga-vote-live-pill" id="ligaVoteStatusLive" style="display:none">LIVE</span>
+          </div>
+
+      <!-- Season standings -->
+      <section class="liga-block">
+        <div class="liga-season-header-row">
+          <h2 class="liga-block-title">Season Standings</h2>
+
+          <!-- kalau nanti kamu mau multi-season, disini tempat toggle -->
+          <div class="liga-season-switch" id="ligaSeasonSwitch" style="display:none">
+            <span class="liga-season-label">Season</span>
+            <!-- season pill akan ditambah via JS kalau dibutuhkan -->
+          </div>
+        </div>
+
+        <div class="liga-table-wrap">
+          <div class="liga-table-scroll">
+            <table class="liga-table">
+              <thead>
+                <tr>
+                  <th class="lg-rank">Rank</th>
+                  <th>Member</th>
+                  <th>Matchday</th>
+                  <th>1st</th>
+                  <th>2nd</th>
+                  <th>3rd</th>
+                  <th>Total Vote</th>
+                  <th>Point</th>
+                  <th>Form</th>
+                </tr>
+              </thead>
+              <tbody id="ligaSeasonTableBody">
+                <!-- diisi via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOROTAN MUSIM -->
+      <section class="liga-block">
+        <h2 class="liga-block-title">Season Highlights</h2>
+        <p class="liga-sub">
+          Key statistics and top achievements this season.
+        </p>
+
+        <div id="ligaHighlights" class="liga-highlights-grid"></div>
+      </section>
+      
+      <!-- Hasil per minggu -->
+      <section class="liga-block">
+        <h2 class="liga-block-title">Hasil Per Minggu</h2>
+        <p class="liga-sub">
+          Klik salah satu minggu untuk melihat detail lengkap dan foto pemenangnya.
+        </p>
+
+      <!-- Controls filter + sort -->
+      <div class="liga-weeks-controls">
+        <div id="ligaWeeksFilter" class="liga-weeks-filter"></div>
+        <div class="liga-weeks-sort">
+          <label for="ligaWeekSort">Sort:</label>
+          <select id="ligaWeekSort">
+            <option value="newest">Terbaru</option>
+            <option value="oldest">Terlama</option>
+            <option value="votes">Vote tertinggi</option>
+          </select>
+        </div>
+      </div>
+
+        <div id="ligaWeeks" class="liga-weeks-grid">
+          <!-- cards diisi via JS -->
+        </div>
+
+        <div class="liga-empty-season" id="ligaWeeksEmpty" style="display:none">
+          Belum ada minggu yang berjalan di Monday Prieme League.
+        </div>
+      </section>
+
+    </section>
+
+    <footer class="liga-footer">
+      Monday Prieme League adalah bagian dari DombaTerbang Super League (DTSL).
+    </footer>
+  </main>
+
+  <!-- Monday data + script (pastikan path benar dan kedua file di-include sebelum ini) -->
+  <script src="../script.js"></script>
+  <script src="liga-monday.js"></script>
+  <script src="liga-monday-script.js"></script>
+</body>
+</html>

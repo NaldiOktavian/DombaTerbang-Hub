@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+
+<html lang="id">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Bataline Puasa DombaTerbang 2026</title>
+<!-- Favicon -->
+<link rel="icon" type="image/webp" href="../img/domba-favicon.webp">
+<link rel="apple-touch-icon" href="../img/domba-favicon.webp">
+<meta name="theme-color" content="#0f2c46">
+
+<style>
+
+/* ================= RESET ================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:system-ui,-apple-system,Segoe UI,Roboto;
+background:#0f2c46;
+color:white;
+overflow-x:hidden;
+}
+
+
+/* ================= HERO ================= */
+
+.hero{
+
+position:relative;
+width:100%;
+height:100vh;
+
+background:
+linear-gradient(rgba(0,0,0,0.25),rgba(0,0,0,0.35)),
+url("../img/rundown/bukber2026/background.webp");
+
+background-size:cover;
+background-position:center;
+
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+
+text-align:center;
+
+overflow:hidden;
+
+}
+
+
+/* LOGO */
+
+.logo-top{
+
+position:absolute;
+top:30px;
+left:50%;
+transform:translateX(-50%);
+width:140px;
+
+}
+
+.event-logo{
+
+width:780px;
+max-width:90%;
+margin-bottom:10px;
+
+filter:drop-shadow(0 20px 40px rgba(0,0,0,0.45));
+
+animation:fadeUp 1.2s ease;
+
+}
+
+.event-subtitle{
+
+font-size:28px;
+letter-spacing:4px;
+margin-bottom:35px;
+opacity:0.9;
+
+}
+
+
+/* ================= COUNTDOWN ================= */
+
+.countdown{
+
+display:flex;
+gap:18px;
+margin-bottom:40px;
+flex-wrap:wrap;
+justify-content:center;
+
+}
+
+.count-box{
+
+background:rgba(255,255,255,0.15);
+border-radius:18px;
+padding:18px;
+min-width:90px;
+
+backdrop-filter:blur(14px);
+border:1px solid rgba(255,255,255,0.25);
+
+}
+
+.count-number{
+
+font-size:30px;
+font-weight:700;
+transition:transform .3s;
+
+}
+
+.count-label{
+
+font-size:12px;
+opacity:0.8;
+
+}
+
+
+/* ================= GLASS INFO ================= */
+
+.hero-info{
+
+display:flex;
+gap:22px;
+flex-wrap:wrap;
+justify-content:center;
+
+}
+
+.hero-card{
+
+background: rgba(255,255,255,0.12);
+
+border-radius:20px;
+
+padding:22px 26px;
+
+min-width:170px;
+
+backdrop-filter: blur(18px);
+
+border:1px solid rgba(255,255,255,0.25);
+
+box-shadow:
+0 10px 30px rgba(0,0,0,0.25),
+inset 0 1px 0 rgba(255,255,255,0.35);
+
+transition:.3s;
+
+}
+
+.hero-card:hover{
+
+transform:translateY(-6px);
+
+background:rgba(255,255,255,0.18);
+
+box-shadow:
+0 20px 40px rgba(0,0,0,0.4),
+0 0 20px rgba(255,255,255,0.3);
+
+}
+
+.hero-card h3{
+
+font-size:13px;
+letter-spacing:1px;
+text-transform:uppercase;
+opacity:0.85;
+
+}
+
+.hero-card p{
+
+font-size:18px;
+font-weight:700;
+margin-top:6px;
+
+}
+
+.icon{
+
+font-size:24px;
+margin-bottom:6px;
+
+}
+
+
+/* SCROLL BUTTON */
+
+.scroll-btn{
+
+margin-top:40px;
+padding:12px 26px;
+
+background:rgba(255,255,255,0.2);
+
+border:none;
+border-radius:30px;
+
+color:white;
+cursor:pointer;
+
+backdrop-filter:blur(10px);
+
+}
+
+
+/* ================= CLOUD PARALLAX ================= */
+
+.cloud{
+
+position:absolute;
+opacity:.9;
+
+}
+
+.cloud1{top:15%; left:-200px; width:260px; animation:cloudMove 90s linear infinite;}
+.cloud2{top:45%; left:-250px; width:300px; animation:cloudMove 120s linear infinite;}
+.cloud3{top:75%; left:-200px; width:240px; animation:cloudMove 100s linear infinite;}
+
+@keyframes cloudMove{
+
+from{transform:translateX(0)}
+to{transform:translateX(140vw)}
+
+}
+
+
+/* ================= RUNDOWN ================= */
+
+.rundown{
+
+padding:120px 20px;
+background:#0f2c46;
+
+}
+
+.rundown h2{
+
+text-align:center;
+font-size:36px;
+margin-bottom:50px;
+
+}
+
+.timeline{
+
+max-width:700px;
+margin:auto;
+
+}
+
+.timeline-item{
+
+display:flex;
+gap:20px;
+
+background:rgba(255,255,255,0.08);
+
+padding:20px;
+
+border-radius:12px;
+
+margin-bottom:16px;
+
+align-items:center;
+
+opacity:0;
+transform:translateY(20px);
+
+transition:all .6s ease;
+
+}
+
+.timeline-item.show{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+.time{
+
+font-weight:bold;
+color:#ffd36b;
+min-width:90px;
+
+}
+
+.activity{
+
+font-size:18px;
+
+}
+
+
+/* ================= MAP ================= */
+
+.map-section{
+
+padding:120px 20px;
+background:#081c2b;
+text-align:center;
+
+}
+
+.map-section h2{
+
+font-size:36px;
+margin-bottom:40px;
+
+}
+
+.map-container{
+
+max-width:900px;
+margin:auto;
+
+border-radius:16px;
+overflow:hidden;
+
+box-shadow:0 20px 50px rgba(0,0,0,0.4);
+
+}
+
+
+/* ================= CONFETTI ================= */
+
+.confetti{
+
+position:fixed;
+top:-10px;
+
+width:8px;
+height:12px;
+
+background:gold;
+
+animation:fall linear forwards;
+
+}
+
+@keyframes fall{
+
+to{
+transform:translateY(100vh) rotate(720deg);
+opacity:0;
+}
+
+}
+
+
+/* ================= MOBILE ================= */
+
+@media (max-width:768px){
+
+.hero{
+padding:40px 20px;
+height:auto;
+min-height:100vh;
+}
+
+.event-logo{
+max-width:420px;
+}
+
+.event-subtitle{
+font-size:22px;
+margin-bottom:25px;
+}
+
+.countdown{
+gap:12px;
+margin-bottom:25px;
+}
+
+.count-box{
+min-width:70px;
+padding:14px;
+}
+
+.count-number{
+font-size:22px;
+}
+
+.hero-info{
+gap:14px;
+}
+
+.hero-card{
+min-width:140px;
+padding:16px;
+}
+
+.hero-card p{
+font-size:15px;
+}
+
+.rundown{
+padding:60px 20px;
+}
+
+.timeline-item{
+padding:14px 16px;
+margin-bottom:10px;
+gap:12px;
+}
+
+.time{
+min-width:70px;
+font-size:14px;
+}
+
+.activity{
+font-size:15px;
+}
+
+}
+
+@keyframes fadeUp{
+
+from{
+opacity:0;
+transform:translateY(20px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="hero">
+
+<img class="logo-top"
+src="../img/rundown/bukber2026/logo.webp">
+
+<img class="event-logo"
+src="../img/rundown/bukber2026/logo_bataline.webp">
+
+<h2 class="event-subtitle">DombaTerbang</h2>
+
+<div class="countdown">
+
+<div class="count-box">
+<div class="count-number" id="days">0</div>
+<div class="count-label">Hari</div>
+</div>
+
+<div class="count-box">
+<div class="count-number" id="hours">0</div>
+<div class="count-label">Jam</div>
+</div>
+
+<div class="count-box">
+<div class="count-number" id="minutes">0</div>
+<div class="count-label">Menit</div>
+</div>
+
+<div class="count-box">
+<div class="count-number" id="seconds">0</div>
+<div class="count-label">Detik</div>
+</div>
+
+</div>
+
+<div class="hero-info">
+
+<div class="hero-card">
+<div class="icon">📅</div>
+<h3>Tanggal</h3>
+<p>Minggu<br>8 Maret 2026</p>
+</div>
+
+<div class="hero-card">
+<div class="icon">⏰</div>
+<h3>Waktu</h3>
+<p>17.00 WIB</p>
+</div>
+
+<div class="hero-card">
+<div class="icon">📍</div>
+<h3>Lokasi</h3>
+<p>Hartaka Space Tebet</p>
+</div>
+
+<div class="hero-card">
+<div class="icon">👕</div>
+<h3>Dresscode</h3>
+<p>Putih / Hitam</p>
+</div>
+
+</div>
+
+<button class="scroll-btn" data-scroll="#rundown">
+
+Scroll ke Rundown ↓
+
+</button>
+
+<img class="cloud cloud1" src="../img/rundown/bukber2026/cloud-1.webp">
+<img class="cloud cloud2" src="../img/rundown/bukber2026/cloud-2.webp">
+<img class="cloud cloud3" src="../img/rundown/bukber2026/cloud-3.webp">
+
+</header>
+
+<section class="rundown" id="rundown">
+
+<!-- RUNDOWN -->
+
+<section class="rundown" id="rundown">
+
+<h2>Rundown Acara</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<div class="time">16.30</div>
+<div class="activity">Open Gate</div>
+</div>    
+
+<div class="timeline-item">
+<div class="time">17.00</div>
+<div class="activity">Kedatangan Member DombaTerbang</div>
+</div>
+
+<div class="timeline-item">
+<div class="time">17.15</div>
+<div class="activity">Opening Acara oleh parhan Limbahbaru dan sambutan oleh Egalit Humaira</div>
+</div>
+
+<div class="timeline-item">
+<div class="time">17.20</div>
+<div class="activity">Persiapan Bagi-bagi Takjil</div>
+</div>
+
+<div class="timeline-item">
+<div class="time">17.30</div>
+<div class="activity">Bagi Takjil</div>
+</div>
+
+<div class="timeline-item">
+<div class="time">18.05</div>
+<div class="activity">Berzikir dan Doa Bersama dipimpin Koh Pinceng</div>
+</div>
+
+<div class="timeline-item">
+<div class="time">18.15</div>
+<div class="activity">Bataline Puasa</div>
+</div>
+
+<div class="timeline-item">
+<div class="time">18.30</div>
+<div class="activity">Sholat Maghrib bersama Imam Luher bin Muzzamil</div>
+</div>
+
+<div class="timeline-item">
+<div class="time">19.00</div>
+<div class="activity">Makan Bersama</div>
+</div>
+
+<div class="timeline-item">
+<div class="time">20.00</div>
+<div class="activity">Foto Bersama</div>
+</div>
+
+<div class="timeline-item">
+<div class="time">20.15</div>
+<div class="activity">Closingan dipimpin Masbeni a.k.a Masbi</div>
+</div>
+
+<div class="timeline-item">
+<div class="time">20.20</div>
+<div class="activity">Acara Bebas</div>
+</div>
+
+</div>
+
+</section>
+
+<section class="map-section">
+
+<h2>Lokasi Acara</h2>
+
+<div class="map-container">
+
+<iframe
+src="https://www.google.com/maps?q=Hartaka%20Space%20Tebet&output=embed"
+width="100%"
+height="420"
+style="border:0;"
+loading="lazy">
+</iframe>
+
+</div>
+
+</section>
+
+<script>
+
+/* SMOOTH SCROLL */
+
+document.querySelectorAll("[data-scroll]").forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+document.querySelector(btn.dataset.scroll).scrollIntoView({behavior:"smooth"})
+
+})
+
+})
+
+
+/* COUNTDOWN */
+
+function updateCountdown(){
+
+const targetDate = new Date("March 8, 2026 17:00:00").getTime();
+const now = new Date().getTime();
+
+const distance = targetDate - now;
+
+const days = Math.floor(distance/(1000*60*60*24));
+const hours = Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+const minutes = Math.floor((distance%(1000*60*60))/(1000*60));
+const seconds = Math.floor((distance%(1000*60))/1000);
+
+flipNumber("days",days)
+flipNumber("hours",hours)
+flipNumber("minutes",minutes)
+flipNumber("seconds",seconds)
+
+if(distance < 0){
+
+launchConfetti()
+
+}
+
+}
+
+function flipNumber(id,value){
+
+const el=document.getElementById(id)
+
+if(el.innerHTML!=value){
+
+el.style.transform="rotateX(90deg)"
+
+setTimeout(()=>{
+
+el.innerHTML=value
+el.style.transform="rotateX(0deg)"
+
+},150)
+
+}
+
+}
+
+setInterval(updateCountdown,1000)
+
+
+
+/* SCROLL ANIMATION */
+
+const items=document.querySelectorAll(".timeline-item")
+
+const observer=new IntersectionObserver(entries=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show")
+
+}
+
+})
+
+})
+
+items.forEach(el=>observer.observe(el))
+
+
+
+/* CONFETTI */
+
+function launchConfetti(){
+
+for(let i=0;i<80;i++){
+
+const conf=document.createElement("div")
+
+conf.className="confetti"
+
+conf.style.left=Math.random()*100+"vw"
+
+conf.style.animationDuration=2+Math.random()*2+"s"
+
+document.body.appendChild(conf)
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

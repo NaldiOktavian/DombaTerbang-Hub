@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>DombaTerbang Super League Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Global style website -->
+  <link rel="stylesheet" href="../css/styles.css">
+  <!-- Style khusus dashboard DTSL -->
+  <link rel="stylesheet" href="../liga/css/dtsl-hub.css">
+</head>
+<body class="dtsl-hub">
+  <!-- OPTIONAL: navbar global kamu di sini -->
+  <!-- <header class="site-header">...</header> -->
+
+  <main class="dtsl-shell">
+    <!-- TOP BAR -->
+    <header class="dtsl-header">
+      <div class="dtsl-topbar">
+        <a href="../index.html" class="dtsl-back-btn">
+          <span class="dtsl-back-icon">←</span>
+          <span>Kembali ke DombaTerbang Hub</span>
+        </a>
+
+        <div class="dtsl-top-right">
+          <div class="dtsl-season-pill">
+            <span class="dtsl-season-label">DombaTerbang Super League</span>
+            <span class="dtsl-season-value" id="dtslSeasonLabel">Season 1</span>
+          </div>
+
+          <button id="dtslThemeToggle" class="dtsl-theme-btn">
+            🌤️ Light Mode
+          </button>
+        </div>
+      </div>
+
+      <!-- HERO -->
+      <div class="dtsl-hero">
+        <div class="dtsl-hero-main">
+          <h1>DombaTerbang Super League</h1>
+          <p class="dtsl-hero-sub">
+            Dashboard utama semua kompetisi foto DombaTerbang: 
+            <strong>Monday Prieme League</strong>, <strong>Liga Kamis</strong>, dan 
+            <strong>DTSL Champions League</strong>.
+          </p>
+
+          <div class="dtsl-hero-chips">
+            <div class="dtsl-chip">
+              <span class="dtsl-chip-label">Total Liga</span>
+              <span class="dtsl-chip-value">3 kompetisi</span>
+            </div>
+            <div class="dtsl-chip">
+              <span class="dtsl-chip-label">Format</span>
+              <span class="dtsl-chip-value">Liga + Knockout</span>
+            </div>
+            <div class="dtsl-chip">
+              <span class="dtsl-chip-label">Mode</span>
+              <span class="dtsl-chip-value" id="dtslHeroModeLabel">Regular Season</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dtsl-hero-side">
+          <div class="dtsl-hero-card">
+            <div class="dtsl-hero-card-header">
+              <span class="dtsl-hero-badge">Status Hari Ini</span>
+              <span class="dtsl-hero-date" id="dtslTodayLabel">-</span>
+            </div>
+
+            <ul class="dtsl-status-list">
+              <li>
+                <span class="dtsl-status-dot" id="statusDotMonday"></span>
+                <span class="dtsl-status-label">Monday Prieme League</span>
+                <span class="dtsl-status-text" id="statusTextMonday"></span>
+              </li>
+              <li>
+                <span class="dtsl-status-dot" id="statusDotThursday"></span>
+                <span class="dtsl-status-label">Liga Kamis</span>
+                <span class="dtsl-status-text" id="statusTextThursday"></span>
+              </li>
+              <li>
+                <span class="dtsl-status-dot" id="statusDotChampions"></span>
+                <span class="dtsl-status-label">DTSL Champions League</span>
+                <span class="dtsl-status-text" id="statusTextChampions"></span>
+              </li>
+            </ul>
+
+            <p class="dtsl-note" id="dtslStatusNote">
+              Semua jadwal & status voting bisa berubah sesuai timeline event DombaTerbang.
+            </p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- GRID LIGA -->
+    <section class="dtsl-main">
+      <section class="dtsl-grid">
+        <!-- MONDAY PRIEME LEAGUE -->
+        <a href="./liga-monday.html" class="dtsl-card dtsl-card-monday" id="cardMonday">
+          <div class="dtsl-card-top">
+            <span class="dtsl-card-pill">Senin • Seasonal League</span>
+            <span class="dtsl-card-status" data-league-status="monday"></span>
+          </div>
+
+          <h2 class="dtsl-card-title">Monday Prieme League</h2>
+          <p class="dtsl-card-sub">
+            Liga foto yang menggambarkan vibe cerah, warm, dan happy setiap hari Senin.
+            Cocok untuk buka minggu dengan foto paling fresh.
+          </p>
+
+          <div class="dtsl-card-meta-row">
+            <div class="dtsl-meta">
+              <span class="dtsl-meta-label">Format</span>
+              <span class="dtsl-meta-value">Liga poin mingguan</span>
+            </div>
+            <div class="dtsl-meta">
+              <span class="dtsl-meta-label">Kualifikasi CL</span>
+              <span class="dtsl-meta-value">Top 4 → Champions League</span>
+            </div>
+          </div>
+
+          <div class="dtsl-card-footer">
+            <span class="dtsl-card-footer-left" data-league-meta="monday">
+              Season 1 • Matchday 1
+            </span>
+            <span class="dtsl-card-footer-right">Lihat detail →</span>
+          </div>
+        </a>
+
+        <!-- LIGA KAMIS -->
+        <a href="./liga-kamis.html" class="dtsl-card dtsl-card-thursday" id="cardThursday">
+          <div class="dtsl-card-top">
+            <span class="dtsl-card-pill">Kamis • Legacy League</span>
+            <span class="dtsl-card-status" data-league-status="thursday"></span>
+          </div>
+
+          <h2 class="dtsl-card-title">Liga Kamis</h2>
+          <p class="dtsl-card-sub">
+            Liga foto Kamisan yang jadi core dari DTSL. Photo battle reguler dengan
+            nuansa kompetitif tapi tetap santai ala DombaTerbang.
+          </p>
+
+          <div class="dtsl-card-meta-row">
+            <div class="dtsl-meta">
+              <span class="dtsl-meta-label">Format</span>
+              <span class="dtsl-meta-value">Liga poin mingguan</span>
+            </div>
+            <div class="dtsl-meta">
+              <span class="dtsl-meta-label">Kualifikasi CL</span>
+              <span class="dtsl-meta-value">Top 2 → Champions League</span>
+            </div>
+          </div>
+
+          <div class="dtsl-card-footer">
+            <span class="dtsl-card-footer-left" data-league-meta="thursday">
+              Season 1 • Matchday berjalan
+            </span>
+            <span class="dtsl-card-footer-right">Lihat klasemen →</span>
+          </div>
+        </a>
+
+        <!-- DTSL CHAMPIONS LEAGUE -->
+        <a href="./liga-champions.html" class="dtsl-card dtsl-card-champions" id="cardChampions">
+          <div class="dtsl-card-top">
+            <span class="dtsl-card-pill">Knockout • Turnamen</span>
+            <span class="dtsl-card-status" data-league-status="champions"></span>
+          </div>
+
+          <h2 class="dtsl-card-title">DTSL Champions League</h2>
+          <p class="dtsl-card-sub">
+            Turnamen knockout parody Champions League. Diisi oleh top 2 Liga Kamis dan 
+            top 4 Monday Prieme League. Satu juara, banyak drama. ⭐
+          </p>
+
+          <div class="dtsl-card-meta-row">
+            <div class="dtsl-meta">
+              <span class="dtsl-meta-label">Peserta</span>
+              <span class="dtsl-meta-value">6 member • langsung knockout</span>
+            </div>
+            <div class="dtsl-meta">
+              <span class="dtsl-meta-label">Tahap</span>
+              <span class="dtsl-meta-value" id="clStageMeta">Menunggu playoff selesai</span>
+            </div>
+          </div>
+
+          <div class="dtsl-card-footer">
+            <span class="dtsl-card-footer-left" data-league-meta="champions">
+              Status: Belum dimulai
+            </span>
+            <span class="dtsl-card-footer-right">Lihat bracket →</span>
+          </div>
+        </a>
+      </section>
+    </section>
+
+    <footer class="dtsl-footer">
+      DombaTerbang Super League (DTSL) • Semua kompetisi dan format dapat berubah
+      mengikuti timeline event DombaTerbang.
+    </footer>
+  </main>
+
+  <script src="../js/dtsl-hub.js"></script>
+</body>
+</html>

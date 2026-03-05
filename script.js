@@ -106,8 +106,8 @@ function initClouds() {
   if (!layer) return;
 
   const spriteSrcs = [
-    'img/cloud-1.png','img/cloud-2.png','img/cloud-3.png',
-    'img/cloud-4.png','img/cloud-5.png'
+    'img/cloud-1.webp','img/cloud-2.webp','img/cloud-3.webp',
+    'img/cloud-4.webp','img/cloud-5.webp'
   ];
 
   function spawnCloud() {
@@ -162,7 +162,7 @@ const EVENTS = [
     title:'Last Voyage — Graduation Show Shania Indira',
     date:'2024-04-27',
     place:'Tennis Indoor Senayan',
-    cover:'img/last-voyage_bg.jpg',
+    cover:'img/last-voyage_bg.webp',
     link:'rundown/last-voyage.html',
     published: '2024-04-27'   // TANGGAL NEWS PENGUMUMAN DIUPLOAD
   },
@@ -171,7 +171,7 @@ const EVENTS = [
     title:'BSD Vol. 1 — Spring Has Come',
     date:'2024-05-11',
     place:'ICE BSD',
-    cover:'img/shc_bg.jpg',
+    cover:'img/shc_bg.webp',
     link:'rundown/bsd-vol1.html',
     published: '2024-05-11'   // TANGGAL NEWS PENGUMUMAN DIUPLOAD
   },
@@ -180,7 +180,7 @@ const EVENTS = [
     title:'BSD Vol. 2 — Road to SSK',
     date:'2024-09-27',
     place:'ICE BSD',
-    cover:'img/rts_bg.jpg',
+    cover:'img/rts_bg.webp',
     link:'rundown/bsd-vol2.html',
     published: '2024-05-11'   // TANGGAL NEWS PENGUMUMAN DIUPLOAD
   },
@@ -189,7 +189,7 @@ const EVENTS = [
     title:'Indonesia Arena — Anniversary 13 JKT48',
     date:'2024-12-14',
     place:'Indonesia Arena',
-    cover:'img/wonderland_bg.jpg',
+    cover:'img/wonderland_bg.webp',
     link:'rundown/anniv-13.html',
     published: '2024-12-14'   // TANGGAL NEWS PENGUMUMAN DIUPLOAD
   },
@@ -198,7 +198,7 @@ const EVENTS = [
     title:'BSD Vol. 4 — Sister Reunion',
     date:'2025-10-24',
     place:'BSD',
-    cover:'img/sisterreunion_bg.jpg',
+    cover:'img/sisterreunion_bg.webp',
     link:'rundown/bsd-vol4.html',
     published: '2025-10-24'   // TANGGAL NEWS PENGUMUMAN DIUPLOAD
   },
@@ -207,7 +207,7 @@ const EVENTS = [
     title:'BSD Vol. 3 — Meet & Greet Event 26th Single',
     date:'2025-02-08',
     place:'BSD',
-    cover:'img/sukinanda_bg.jpg',
+    cover:'img/sukinanda_bg.webp',
     link:'rundown/bsd-vol3.html',
     published: '2025-02-08'   // TANGGAL NEWS PENGUMUMAN DIUPLOAD
   },
@@ -216,9 +216,18 @@ const EVENTS = [
     title:'Full House — Setlist Original Concert',
     date:'2025-03-01',
     place:'Istora Senayan',
-    cover:'img/fullhouse_bg.jpg',
+    cover:'img/fullhouse_bg.webp',
     link:'rundown/full-house.html',
     published: '2025-03-01'   // TANGGAL NEWS PENGUMUMAN DIUPLOAD
+  },
+    {
+    id:'bataline2026',
+    title:'Bataline Puasa — Dombaterbang',
+    date:'2026-03-08',
+    place:'HARTAKA Space Tebet',
+    cover:'img/bukber2026_bg.webp',
+    link:'rundown/bataline-puasa-2026.html',
+    published: '2026-03-03'   // TANGGAL NEWS PENGUMUMAN DIUPLOAD
   }
 ];
 
@@ -300,7 +309,7 @@ function buildSeq(folder,prefix,from,to,pad2=false){
   const arr=[];
   for(let i=from;i<=to;i++){
     const n=pad2?String(i).padStart(2,'0'):i;
-    arr.push(`${folder}/${prefix}${n}.jpg`);
+    arr.push(`${folder}/${prefix}${n}.webp`);
   }
   return arr;
 }
@@ -310,49 +319,49 @@ const GALLERIES = [
     id: 'bsd-vol1',
     date: '2024-05-11',
     title: 'BSD Vol. 1 — Spring Has Come',
-    cover: 'img/shc_bg.jpg',
+    cover: 'img/shc_bg.webp',
     photos: buildSeq('img/gallery/bsd-vol1','bsd1-',1,11,true)
   },
   {
     id: 'bsd-vol2',
     date: '2024-09-27',
     title: 'BSD Vol. 2 — Road to SSK',
-    cover: 'img/rts_bg.jpg',
+    cover: 'img/rts_bg.webp',
     photos: buildSeq('img/gallery/bsd-vol2','bsd2-',1,21,true)
   },
   {
     id: 'bsd-vol3',
     date: '2025-02-08',
     title: 'BSD Vol. 3 — MT MNG / 2S',
-    cover: 'img/sukinanda_bg.jpg',
+    cover: 'img/sukinanda_bg.webp',
     photos: buildSeq('img/gallery/bsd-vol3','bsd3-',1,24,true)
   },
   {
     id: 'bsd-vol4',
     date: '2025-10-24',
     title: 'BSD Vol. 4 — Sister Reunion',
-    cover: 'img/sisterreunion_bg.jpg',
+    cover: 'img/sisterreunion_bg.webp',
     photos: buildSeq('img/gallery/bsd-vol4','bsd4-',1,13,true)
   },
   {
     id: 'last-voyage',
     date: '2024-04-27',
     title:'Last Voyage — Graduation Ci Shani',
-    cover:'img/last-voyage_bg.jpg',
+    cover:'img/last-voyage_bg.webp',
     photos:buildSeq('img/gallery/last-voyage','lastvoyage',1,11,false)
   },
   {
     id:'anniv13',
     date: '2024-12-14',
     title:'Indonesia Arena — Anniversary JKT48',
-    cover:'img/wonderland_bg.jpg',
+    cover:'img/wonderland_bg.webp',
     photos:buildSeq('img/gallery/anniv13','anniv13-',1,18,false)
   },
   {
     id:'full-house',
     date: '2025-03-01',
     title:'Full House — Istora Senayan',
-    cover:'img/fullhouse_bg.jpg',
+    cover:'img/fullhouse_bg.webp',
     photos:buildSeq('img/gallery/full-house','fullhouse',1,13,false)
   }
 ];
@@ -547,9 +556,9 @@ const NEWS_ITEMS = [
       'Website resmi DombaTerbang Hub akhirnya online! Mulai sekarang semua info event, rundown, galeri foto, dan update DombaTerbang Super League dikumpulkan di satu tempat.',
     link: 'news-detail.html?id=news-site-launch',
     linkLabel: 'Detail pengumuman',
-    thumbDesktop: 'img/news/news-site-launch-desktop.png',
-    thumbMobile:  'img/news/news-site-launch-mobile.png',
-    cover: 'img/news/dthub-launch.png',
+    thumbDesktop: 'img/news/news-site-launch-desktop.webp',
+    thumbMobile:  'img/news/news-site-launch-mobile.webp',
+    cover: 'img/news/dthub-launch.webp',
 
     content: `
       <p>
@@ -583,9 +592,9 @@ const NEWS_ITEMS = [
       'DombaTerbang Super League (DTSL) adalah liga foto mingguan antar oshimen DombaTerbang, lengkap dengan sistem poin, klasemen musim, dan rekap pemenang tiap minggu.',
     link: 'news-detail.html?id=news-dtsl-announce',
     linkLabel: 'Detail pengumuman',
-    thumbDesktop: 'img/news/dtsl-thumb-desktop.png',
-    thumbMobile:  'img/news/dtsl-thumb-mobile.png',
-    cover: 'img/news/dtsl-announce.png',
+    thumbDesktop: 'img/news/dtsl-thumb-desktop.webp',
+    thumbMobile:  'img/news/dtsl-thumb-mobile.webp',
+    cover: 'img/news/dtsl-announce.webp',
 
     content: `
       <p>
@@ -623,6 +632,69 @@ const NEWS_ITEMS = [
         Silakan cek halaman liga untuk melihat klasemen terbaru, hasil minggu sebelumnya,
         dan siapa yang lagi panas form-nya musim ini. 🏆
       </p>
+    `
+  },
+
+    // NEWS 3 – Pengumuman DombaTerbang Bataline Puasa
+  {
+    id: 'news-bataline-announce',
+    date: '2026-03-08',
+    category: 'event',
+    badge: 'Event',
+    title: 'Bataline Puasa DombaTerbang 2026',
+    summary:
+      'Untuk merayakan bulan yang bahagia ini, kami keluarga besar DombaTerbang mengadakan acara tahunan yaitu Buka Bersama bertajuk Bataline Puasa DombaTerbang 2026.',
+    link: 'news-detail.html?id=news-bataline-announce',
+    linkLabel: 'Detail pengumuman',
+    thumbDesktop: 'img/news/news-bataline-desktop.webp',
+    thumbMobile:  'img/news/news-bataline-mobile.webp',
+    cover: 'img/news/news-bataline-desktop.webp',
+
+    content: `
+    <p>
+      Tradisi tahunan kembali hadir! ✨  
+      Keluarga <strong>DombaTerbang</strong> akan mengadakan acara
+      <strong>Bataline Puasa / Buka Bersama DombaTerbang 2026</strong>
+      sebagai momen silaturahmi sekaligus penutup kegiatan Ramadhan
+      sebelum kembali ke rutinitas event berikutnya.
+    </p>
+
+    <p>
+      Tahun ini kegiatan tidak hanya diisi dengan buka puasa bersama,
+      tetapi juga diawali dengan <strong>kegiatan berbagi takjil</strong>
+      untuk warga sekitar. Melalui kegiatan ini, DombaTerbang
+      ingin ikut berbagi kebahagiaan kecil di bulan Ramadhan
+      sekaligus menghadirkan momen kebersamaan yang lebih bermakna.
+    </p>
+
+    <h3>Rangkaian kegiatan</h3>
+    <ul>
+      <li>Berbagi takjil untuk warga sekitar menjelang waktu berbuka</li>
+      <li>Buka puasa bersama seluruh anggota DombaTerbang</li>
+      <li>Ngobrol santai dan sharing cerita selama Ramadhan</li>
+      <li>Dokumentasi foto untuk galeri kenangan</li>
+      <li>Sesi seru-seruan ringan setelah makan</li>
+    </ul>
+
+    <p>
+      Acara ini diharapkan bisa menjadi momen untuk mempererat
+      kebersamaan antar anggota circle sekaligus menutup
+      bulan Ramadhan dengan suasana yang hangat dan penuh
+      kebersamaan.
+    </p>
+
+    <p>
+      Dokumentasi dari kegiatan ini nantinya juga akan
+      dimasukkan ke dalam <strong>Galeri Seram DombaTerbang Hub</strong>
+      sebagai bagian dari arsip kegiatan DombaTerbang.
+    </p>
+
+    <p>
+      Detail waktu, lokasi, dan rundown kegiatan akan
+      diumumkan lebih lanjut melalui halaman ini.
+      Sampai jumpa di acara
+      <strong>Bataline Puasa DombaTerbang 2026</strong>! 🐑✨
+    </p>
     `
   }
 ];
@@ -721,7 +793,7 @@ function renderNewsList() {
       const isExternal = n.link.startsWith('http') || n.link.startsWith('liga/');
       const targetAttr = isExternal ? ' target="_blank" rel="noopener"' : '';
 
-      const thumbDesktop = n.thumbDesktop || 'img/news/default-desktop.jpg';
+      const thumbDesktop = n.thumbDesktop || 'img/news/default-desktop.webp';
       const thumbMobile  = n.thumbMobile  || thumbDesktop;
 
       listEl.insertAdjacentHTML(
@@ -1110,7 +1182,7 @@ function initHomeHighlights() {
   // konten detail per berita
 const NEWS_DETAIL = {
   'news-dtsl-archive': {
-    cover: 'img/news/dtsl-archive.jpg', // opsional, kalau belum ada boleh kosong / nanti diganti
+    cover: 'img/news/dtsl-archive.webp', // opsional, kalau belum ada boleh kosong / nanti diganti
     body: `
       <p>
         DombaTerbang Super League Season 1 resmi ditutup dengan penuh drama & tawa.
@@ -1138,7 +1210,7 @@ const NEWS_DETAIL = {
   },
 
   'news-dtsl-s2': {
-    cover: 'img/news/dtsl-s2.jpg',
+    cover: 'img/news/dtsl-s2.webp',
     body: `
       <p>
         Setelah keberhasilan Season 1, DombaTerbang Super League akan lanjut ke
@@ -1165,7 +1237,7 @@ const NEWS_DETAIL = {
   },
 
   'news-gallery-bsd4': {
-    cover: 'img/sisterreunion_bg.jpg',
+    cover: 'img/sisterreunion_bg.webp',
     body: `
       <p>
         Galeri Seram untuk <strong>BSD Vol. 4 — Sister Reunion</strong> sudah
@@ -1192,7 +1264,7 @@ const NEWS_DETAIL = {
   },
 
   'news-site-darkmode': {
-    cover: 'img/wonderland_bg.jpg',
+    cover: 'img/wonderland_bg.webp',
     body: `
       <p>
         Website <strong>DombaTerbang Hub</strong> hadir dengan tampilan baru ✨.

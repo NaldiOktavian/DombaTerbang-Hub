@@ -88,28 +88,54 @@
     });
   }
 
-    function renderSeasonSwitch() {
+  function computeResultsWithPoints(week) {
+    const items = (week.results || []).map(r => ({
+      memberId: r.memberId,
+      votes: Number(r.votes || 0)
+    }));
+
+    // urutkan berdasarkan vote
+    items.sort((a, b) => b.votes - a.votes);
+
+    // assign point podium
+    return items.map((it, idx) => ({
+      memberId: it.memberId,
+      votes: it.votes,
+      points: idx === 0 ? 5 : idx === 1 ? 3 : idx === 2 ? 1 : 0
+    }));
+  }
+
+  function renderSeasonSwitch(){
     const el = getEl("ligaSeasonSwitch");
-    const visibleSeasons = seasons.filter((s) => !s.hidden);
-    if (!el || visibleSeasons.length <= 1) return;
+    const visibleSeasons = seasons.filter((s)=>!s.hidden);
+    if(!el || visibleSeasons.length<=1) return;
 
     const currentId = data.seasonId;
 
+    el.classList.add("liga-season-switch");
+
     el.innerHTML =
-      `<div class="liga-season-label">Season</div>` +
-      visibleSeasons
-        .map((s) => {
-          const active = s.seasonId === currentId;
-          const label = s.label || s.seasonId;
-          const href = `?season=${encodeURIComponent(s.seasonId)}`;
-          return `
-            <a href="${href}"
-              class="liga-season-pill ${active ? "active" : ""}">
-              ${label.replace("Season ", "S")}
-            </a>
-          `;
-        })
-        .join("");
+      `<div class="liga-season-indicator"></div>` +
+      visibleSeasons.map(s=>{
+        const active = s.seasonId===currentId;
+        const label = s.label || s.seasonId;
+        const href = `?season=${encodeURIComponent(s.seasonId)}`;
+
+        return `
+          <a href="${href}"
+            class="liga-season-pill ${active?"active":""}">
+            ${label.replace("Season ","S")}
+          </a>
+        `;
+      }).join("");
+
+      // move indicator
+      const indicator = el.querySelector(".liga-season-indicator");
+      const active = el.querySelector(".active");
+      if(active){
+        indicator.style.left = active.offsetLeft+"px";
+        indicator.style.width = active.offsetWidth+"px";
+      }
   }
 
     function renderSeasonNotice(totalWeeks) {
@@ -237,6 +263,31 @@
       return list;
     }
 
+      function renderChampionBanner(standings){
+    const el = document.getElementById("ligaChampionBanner");
+    if(!el || !standings?.length) return;
+
+    const seasonFinished =
+      (data.weeks || []).length >= (data.plannedWeeks || 0) ||
+      data.seasonId === "2025-S1"; // paksa Season 1 dianggap selesai
+
+    if(!seasonFinished){
+      el.hidden = true;
+      return;
+    }
+
+    const champ = standings[0];
+    el.hidden = false;
+    el.innerHTML = `
+      <span class="liga-champion-crown">🏆</span>
+      <img class="liga-champion-avatar" src="${champ.avatar}" alt="${champ.name}">
+      <div class="liga-champion-text">
+        <div class="liga-champion-title">Season Champion</div>
+        <div class="liga-champion-name">${champ.name}</div>
+        <div class="liga-champion-sub">${data.label}</div>
+      </div>
+    `;
+  }
 
   /* ==========================================
      2. RENDER KLASEMEN SEASON (liga.html)
@@ -334,96 +385,102 @@
   =========================================== */
 
   function renderLatestWeekPodium() {
-    const podiumEl = getEl("ligaCurrentPodium");
+    const podiumEl = document.getElementById("ligaCurrentPodium");
     if (!podiumEl) return;
 
     const weeks = data.weeks || [];
-
-    // kalau belum ada minggu sama sekali
     if (!weeks.length) {
-      podiumEl.innerHTML = `
-        <p class="liga-sub">Belum ada hasil minggu terakhir.</p>
-      `;
+      podiumEl.innerHTML = `<p class="liga-sub">Belum ada hasil.</p>`;
       return;
     }
 
-    const latest = sortWeeksDesc(weeks)[0];
-    const resultsSorted = sortResultsForPodium(latest.results || []);
+    const latest = weeks.sort((a,b) => b.week - a.week)[0];
+    const results = computeResultsWithPoints(latest).slice(0, 3);
 
-    if (!resultsSorted.length) {
-      podiumEl.innerHTML = `
-        <p class="liga-sub">Belum ada data hasil untuk minggu ini.</p>
-      `;
-      return;
-    }
-
-    const top3Raw = resultsSorted.slice(0, 3);
-
-    // mapping ke view model + kasih rank 1/2/3
-    const podiumData = [];
-    if (top3Raw[0]) {
-      const m = memberIndex[top3Raw[0].memberId] || {};
-      podiumData.push({
-        rank: 1,
-        name: m.name || top3Raw[0].memberId,
+    const podium = results.map((r, idx) => {
+      const m = memberIndex[r.memberId] || {};
+      return {
+        rank: idx + 1,
+        name: m.name,
+        nickname: (m.name || "").split("")[0],
         avatar: m.avatar,
-        votes: top3Raw[0].votes || 0,
-        points: top3Raw[0].points || 0,
-      });
-    }
-    if (top3Raw[1]) {
-      const m = memberIndex[top3Raw[1].memberId] || {};
-      podiumData.push({
-        rank: 2,
-        name: m.name || top3Raw[1].memberId,
-        avatar: m.avatar,
-        votes: top3Raw[1].votes || 0,
-        points: top3Raw[1].points || 0,
-      });
-    }
-    if (top3Raw[2]) {
-      const m = memberIndex[top3Raw[2].memberId] || {};
-      podiumData.push({
-        rank: 3,
-        name: m.name || top3Raw[2].memberId,
-        avatar: m.avatar,
-        votes: top3Raw[2].votes || 0,
-        points: top3Raw[2].points || 0,
-      });
-    }
-
-    // helper ambil slot berdasarkan rank
-    function getSlot(rank) {
-      return podiumData.find((p) => p.rank === rank);
-    }
-
-    // markup sesuai CSS baru:
-    // .liga-podium-123 > .podium-wrapper > .podium.podium-1/2/3
-    let html = '<div class="podium-wrapper">';
-
-    [2, 1, 3].forEach((rank) => {
-      const slot = getSlot(rank);
-      if (!slot) return;
-
-      html += `
-        <article class="podium podium-${rank}">
-          <div class="podium-rank">${rank}</div>
-          ${
-            slot.avatar
-              ? `<img src="${slot.avatar}" alt="${slot.name}">`
-              : ""
-          }
-          <div class="podium-name">${slot.name}</div>
-          <div class="podium-sub">${slot.votes} vote • ${slot.points} pts</div>
-        </article>
-      `;
+        podiumImage: m.podiumImage, // ⬅️ PENTING
+        votes: r.votes,
+        points: r.points
+      };
     });
 
-    html += "</div>";
-    podiumEl.innerHTML = html;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const order = isMobile ? [1,2,3] : [2,1,3];
+
+    podiumEl.innerHTML = `
+      <div class="mpl-podium">
+        ${order.map(rank => {
+          const p = podium.find(x => x.rank === rank);
+          if (!p) return "";
+          return `
+            <div class="mpl-bar rank-${rank}">
+              <img class="mpl-avatar" src="${p.podiumImage || p.avatar}" alt="${p.name}">
+              <div class="mpl-content">
+                <div class="mpl-sub">${p.name.split(" ")[0]}</div>
+                <div class="mpl-name">${p.name.split(" ")[1] || p.name}</div>
+              </div>
+              <div class="mpl-score">
+                <strong>${p.points} pts</strong>
+                <span>${p.votes} vote</span>
+              </div>
+              <div class="mpl-rank">${rank}</div>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    `;
   }
 
+  function renderFinalPodium(standings) {
+    const podiumEl = document.getElementById("ligaCurrentPodium");
+    if (!podiumEl || !standings?.length) return;
 
+    const podium = standings.slice(0,3).map((s, idx) => {
+      const m = memberIndex[s.id] || {};
+
+      return {
+        rank: idx + 1,
+        name: s.name,
+        avatar: s.avatar,
+        podiumImage: m.podiumImage,
+        votes: s.totalVotes,
+        points: s.totalPoints
+      };
+    });
+
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    const order = isMobile ? [1,2,3] : [2,1,3];
+
+    podiumEl.innerHTML = `
+      <div class="mpl-podium">
+        ${order.map(rank => {
+          const p = podium.find(x => x.rank === rank);
+          if (!p) return "";
+
+          return `
+            <div class="mpl-bar rank-${rank}">
+              <img class="mpl-avatar" src="${p.podiumImage || p.avatar}" alt="${p.name}">
+              <div class="mpl-content">
+                <div class="mpl-sub">${p.name.split(" ")[0]}</div>
+                <div class="mpl-name">${p.name.split(" ")[1] || p.name}</div>
+              </div>
+              <div class="mpl-score">
+                <strong>${p.points} pts</strong>
+                <span>${p.votes} vote</span>
+              </div>
+              <div class="mpl-rank">${rank}</div>
+            </div>
+          `;
+        }).join("")}
+      </div>
+    `;
+  }
   /* ==========================================
      4. HASIL PER MINGGU (GRID CARD liga.html)
   =========================================== */
@@ -442,7 +499,6 @@
         return top && top.memberId === weekFilterMember;
       });
     }
-
 
     // Sort
     if (weekSortMode === "oldest") {
@@ -507,9 +563,8 @@
       container.insertAdjacentHTML(
         "beforeend",
         `
-        <a class="lg-week-card" href="liga-week.html?week=${encodeURIComponent(
-          week.week
-        )}">
+        <a class="lg-week-card" href="liga-kamis-week.html?season=${encodeURIComponent(data.seasonId)}&week=${encodeURIComponent(
+          week.week)}">
           <div class="lg-week-header">
             <span class="lg-week-label">Minggu ${week.week}</span>
             <span class="lg-week-date">${week.label}</span>
@@ -606,6 +661,52 @@ function buildHeadToHead() {
     });
   }
 
+  function renderSeasonSummary(standings) {
+  const el = document.getElementById("ligaSummary");
+  if (!el || !standings.length) return;
+
+    const weeks = data.weeks || [];
+
+    // most wins
+    const mostWins = [...standings].sort(
+      (a, b) => b.first - a.first || b.totalPoints - a.totalPoints
+    )[0];
+
+    // highest votes in single week
+    let bestWeek = null;
+    weeks.forEach((week) => {
+      (week.results || []).forEach((r) => {
+        if (!bestWeek || r.votes > bestWeek.votes) {
+          bestWeek = r;
+        }
+      });
+    });
+
+    const totalVotes = standings.reduce(
+      (sum, s) => sum + (s.totalVotes || 0),
+      0
+    );
+
+    el.innerHTML = `
+      <div class="liga-summary-card">
+        <div class="liga-summary-title">Most Wins</div>
+        <div class="liga-summary-main">${mostWins.name}</div>
+        <div class="liga-summary-sub">Juara 1 × ${mostWins.first}</div>
+      </div>
+
+      <div class="liga-summary-card">
+        <div class="liga-summary-title">Highest Votes in a Week</div>
+        <div class="liga-summary-main">${memberIndex[bestWeek.memberId]?.name}</div>
+        <div class="liga-summary-sub">${bestWeek.votes} vote</div>
+      </div>
+
+      <div class="liga-summary-card">
+        <div class="liga-summary-title">Total Votes This Season</div>
+        <div class="liga-summary-main">${totalVotes}</div>
+        <div class="liga-summary-sub">All members combined</div>
+      </div>
+    `;
+  }
 
   /* ==========================================
      5. DETAIL MINGGU – liga-week.html
@@ -863,16 +964,19 @@ function buildHeadToHead() {
     const el = getEl("ligaSeasonProgress");
     if (!el) return;
 
+    const isFinished = data.seasonId === "2025-S1";
+
     const total = plannedWeeks || playedWeeks || 1;
-    const pct = Math.max(
-      0,
-      Math.min(100, Math.round((playedWeeks / total) * 100))
-    );
+    const pct = isFinished ? 100 : Math.round((playedWeeks / total) * 100);
+
+    const label = isFinished
+      ? "Season Completed"
+      : `${playedWeeks} / ${total} weeks`;
 
     el.innerHTML = `
       <div class="liga-progress-top">
         <span>Season Progress</span>
-        <span>${playedWeeks} / ${total} weeks</span>
+        <span>${label}</span>
       </div>
       <div class="liga-progress-bar">
         <div class="liga-progress-fill" style="width:${pct}%"></div>
@@ -882,8 +986,19 @@ function buildHeadToHead() {
 
 //Countdown Next Matchday
   function renderNextMatchCountdown() {
+
     const el = getEl("ligaNextMatch");
     if (!el) return;
+
+    // Season sudah selesai
+    if (data.seasonId === "2025-S1") {
+      el.innerHTML = `
+        <span class="liga-next-label">Season Status</span>
+        <span class="liga-next-date">Season Finished</span>
+        <span class="liga-next-count">🏆 Champion: Katherine Irenne</span>
+      `;
+      return;
+    }
 
     const hasWeeks = (data.weeks || []).length > 0;
 
@@ -1059,6 +1174,18 @@ function buildHeadToHead() {
       const seasonShell = getEl("ligaSeason");
       const totalWeeks = (data.weeks || []).length;
 
+/* =====================
+  UBAH JUDUL PODIUM
+===================== */
+        const podiumTitle = document.getElementById("ligaPodiumTitle");
+
+        if (podiumTitle) {
+          podiumTitle.textContent =
+            data.seasonId === "2025-S1"
+              ? "🏆 Final Podium Season 1"
+              : "Podium Minggu Terakhir";
+        }
+
       // --- Vote Kamisan Status ---
       if (document.querySelector('#ligaVoteStatus')) {
         initLigaVoteStatus();
@@ -1083,8 +1210,23 @@ function buildHeadToHead() {
         });
       }
 
+      // Back button keep season
+      (function fixBackLink(){
+        const btn = document.getElementById("backToSeason");
+        if(!btn) return;
+
+        const params = new URLSearchParams(window.location.search);
+        const season = params.get("season");
+
+        if(season){
+          btn.href = `liga-kamis.html?season=${encodeURIComponent(season)}`;
+        }else{
+          btn.href = "liga-kamis.html";
+        }
+      })();
+
       /* =========================
-         SEASON SHELL (liga.html)
+      SEASON SHELL (liga.html)
       ========================== */
       if (seasonShell) {
         const titleEl = getEl("ligaSeasonTitle");
@@ -1104,28 +1246,75 @@ function buildHeadToHead() {
         renderSeasonSwitch();
         renderSeasonNotice(totalWeeks);
 
+
         const standings = buildSeasonStandings();
         renderSeasonTable(standings);
+        renderChampionBanner(standings);
 
         // pakai plannedWeeks dari data
         renderSeasonProgress(totalWeeks, data.plannedWeeks || 12);
         renderNextMatchCountdown();
 
-        renderLatestWeekPodium();
+        /* PODIUM */
+        if (data.finished) {
+          renderFinalPodium(standings);
+        } else {
+          renderLatestWeekPodium();
+        }
         setupWeekControls();
         renderWeeklyCards();
         renderHeadToHead();
+        renderSeasonSummary(standings);
         renderSeasonHighlights(standings);
       }
 
       /* =========================
-         DETAIL WEEK (liga-week.html)
+      DETAIL WEEK (liga-week.html)
       ========================== */
       renderWeekDetailPage();
     });
 
 
 })();
+
+  /* ===============================
+    MODAL: TENTANG LIGA (FINAL FIX)
+  =============================== */
+  (function () {
+    const btn = document.getElementById("ligaInfoBtn");
+    const modal = document.getElementById("ligaInfoModal");
+
+    if (!btn || !modal) {
+      console.warn("Liga info modal: element tidak ditemukan");
+      return;
+    }
+
+    const backdrop = modal.querySelector(".liga-info-backdrop");
+    const closeBtn = modal.querySelector(".liga-info-close");
+
+    function openModal() {
+      modal.classList.add("open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeModal() {
+      modal.classList.remove("open");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+    }
+
+    btn.addEventListener("click", openModal);
+    backdrop.addEventListener("click", closeModal);
+    closeBtn.addEventListener("click", closeModal);
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && modal.classList.contains("open")) {
+        closeModal();
+      }
+    });
+  })();
+
 
 /* =====================================
    DTSL – Podium animation helper

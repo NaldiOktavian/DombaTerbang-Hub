@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DombaTerbang Super League – Detail Minggu (Monday)</title>
+  <!-- Styles khusus Monday Prieme League -->
+  <link rel="stylesheet" href="liga-monday.css">
+</head>
+
+<body class="monday-league week">
+  <div class="liga-shell">
+    <header class="liga-header">
+      <div class="liga-topbar">
+        <a href="liga-monday.html" class="liga-back-btn">
+          <span class="liga-back-icon">←</span>
+          <span>Kembali ke Klasemen</span>
+        </a>
+        <button id="ligaThemeToggle" class="liga-back-btn">
+          🌙 Mode
+        </button>
+        <a href="liga-monday.html#about" class="liga-back-btn">
+          🏆 DombaTerbang Monday Prime League
+        </a>
+      </div>
+
+      <!-- Judul akan diisi oleh JS (renderWeekDetailPage) -->
+      <h1 id="week-title">Minggu ? — ????-??-??</h1>
+      <p class="liga-sub">
+        Detail hasil vote dan perolehan poin minggu ini.
+      </p>
+    </header>
+
+    <main class="liga-main">
+
+      <!-- WINNING PHOTO -->
+      <section class="liga-block">
+        <h2 class="liga-block-title">Winning Photo</h2>
+
+        <!-- Layout dua kolom -->
+        <div class="winner-layout">
+          <!-- foto -->
+          <div class="winner-photo-area">
+            <div id="week-photo"></div>
+          </div>
+
+          <!-- panel pemenang -->
+          <aside id="winner-panel" class="winner-panel"></aside>
+        </div>
+      </section>
+
+      <!-- PODIUM MINGGUAN -->
+      <section class="liga-block">
+        <h2 class="liga-block-title">Matchday Summary</h2>
+
+        <div id="week-summary" class="week-summary-grid">
+          <!-- diisi via JS -->
+        </div>
+      </section>
+
+      <!-- TABEL HASIL -->
+      <section class="liga-block">
+        <h2 class="liga-block-title">Week Standings</h2>
+        <div id="week-standings" class="week-standings-wrap"></div>
+      </section>
+
+    </main>
+
+    <footer class="liga-footer">
+      © 2025 DombaTerbang • Liga Foto Mingguan
+    </footer>
+  </div>
+
+  <!-- Monday data + script (pastikan path benar dan kedua file di-include sebelum ini) -->
+  <script src="liga-monday.js"></script>
+  <script src="liga-monday-script.js"></script>
+</body>
+</html>

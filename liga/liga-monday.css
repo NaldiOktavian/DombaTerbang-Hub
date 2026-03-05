@@ -1,0 +1,2758 @@
+/* ============================================
+   MONDAY PRIEME LEAGUE – LAYOUT & BASE COLORS
+   ============================================ */
+
+/* Full page background – light & dark */
+body.monday-league {
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, #ffedd5 0, transparent 55%),
+    radial-gradient(circle at bottom right, #dbeafe 0, transparent 60%),
+    #fefce8;
+  color: #111827;
+}
+
+/* Darkmode khusus Monday (full screen) */
+body.monday-league.dark {
+  background:
+    radial-gradient(circle at 10% 0, rgba(248, 171, 94, 0.22) 0, transparent 55%),
+    radial-gradient(circle at 90% 100%, rgba(56, 189, 248, 0.28) 0, transparent 60%),
+    #020617;
+  color: #e5e7eb;
+}
+
+/* ============================================
+   SHELL & HEADER – layout sama Liga Kamis
+   ============================================ */
+
+.monday-league .liga-shell {
+  max-width: 1080px;
+  margin: 72px auto 40px;
+  padding: 0 16px 40px;
+}
+
+.monday-league .liga-header {
+  margin-bottom: 20px;
+}
+
+.monday-league .liga-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.monday-league .liga-top-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.monday-league .liga-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  text-decoration: none;
+  background: rgba(15, 23, 42, 0.03);
+  color: #111827;
+  box-shadow: 0 1px 0 rgba(148, 163, 184, 0.6);
+  transition: all 0.18s ease;
+}
+.monday-league .liga-back-btn:hover {
+  background: rgba(248, 171, 94, 0.15);
+  box-shadow: 0 6px 18px rgba(248, 171, 94, 0.4);
+  transform: translateY(-1px);
+}
+
+.monday-league .liga-header h1 {
+  font-size: 24px;
+  margin: 0 0 4px;
+  color: #111827;
+}
+
+.monday-league .liga-sub {
+  font-size: 13px;
+  color: #6b7280;
+  margin: 0;
+}
+
+/* brand strip */
+.monday-league .liga-brand {
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 0;
+  background: transparent;
+}
+
+.monday-league .liga-brand-logo {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  background: #fff7ed;
+  border: 2px solid rgba(251, 146, 60, 0.5);
+  box-shadow: 0 12px 30px rgba(251, 146, 60, 0.55);
+  object-fit: cover;
+}
+
+.monday-league .liga-brand-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.monday-league .liga-brand-sub {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* Main blocks */
+.monday-league .liga-main {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.monday-league .liga-block {
+  background: rgba(255, 255, 255, 0.96);
+  border-radius: 24px;
+  padding: 18px 20px 20px;
+  box-shadow: 0 18px 45px rgba(148, 163, 184, 0.35);
+  border: 1px solid rgba(254, 215, 170, 0.6);
+}
+
+.monday-league .liga-block-title {
+  font-size: 17px;
+  font-weight: 600;
+  margin: 0 0 8px;
+  color: #111827;
+}
+
+.monday-league .liga-footer {
+  margin-top: 18px;
+  font-size: 12px;
+  text-align: center;
+  color: #9ca3af;
+}
+
+/* ============================================
+   THEME TOGGLE (pakai yang sama dengan Kamis)
+   ============================================ */
+
+.monday-league #ligaThemeToggle {
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient(90deg, #fb923c, #facc15);
+  color: #1f2937;
+  font-weight: 600;
+  box-shadow: 0 10px 24px rgba(248, 171, 94, 0.6);
+}
+
+body.monday-league:not(.dark) #ligaThemeToggle {
+  background: #fff7ed;
+  color: #c05621;
+}
+
+/* ============================================
+   PROGRESS BAR + NEXT MATCHDAY
+   ============================================ */
+
+.monday-league .liga-season-progress {
+  margin: 10px 0 4px;
+}
+
+.monday-league .liga-progress-top {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #6b7280;
+  margin-bottom: 4px;
+}
+
+.monday-league .liga-progress-bar {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: #fee2b3;
+  overflow: hidden;
+}
+
+.monday-league .liga-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #f97316, #22c55e);
+  transition: width 0.3s ease;
+}
+
+.monday-league .liga-next-match {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-items: center;
+  margin-top: 4px;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(219, 234, 254, 0.9);
+  color: #1d4ed8;
+}
+
+.monday-league .liga-next-label {
+  font-weight: 600;
+}
+.monday-league .liga-next-date {
+  color: #111827;
+}
+.monday-league .liga-next-count {
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: #1e293b;
+  color: #f9fafb;
+  font-size: 11px;
+}
+
+/* ============================================
+   SEASON TABLE (standings) – sama struktur
+   ============================================ */
+
+.monday-league .liga-table-wrap,
+.monday-league .liga-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.monday-league .liga-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.monday-league .liga-table thead th {
+  text-align: left;
+  padding: 8px 10px;
+  font-weight: 600;
+  color: #fb923c;
+  border-bottom: 1px solid #fed7aa;
+  background: #fffbeb;
+}
+
+.monday-league .liga-table tbody td {
+  padding: 9px 10px;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.monday-league .lg-member-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.monday-league .lg-member-info img {
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(248, 171, 94, 0.7);
+}
+.monday-league .lg-name {
+  font-weight: 600;
+  font-size: 13px;
+  color: #111827;
+}
+.monday-league .lg-sub {
+  font-size: 11px;
+  color: #9ca3af;
+}
+.monday-league .lg-points {
+  font-weight: 700;
+  color: #b45309;
+}
+
+/* vote form dots */
+.monday-league .lg-form-dot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  font-size: 11px;
+  margin-right: 3px;
+  background: #fee2b3;
+}
+.monday-league .lg-form-5 { background: rgba(34, 197, 94, 0.18); }
+.monday-league .lg-form-3 { background: rgba(56, 189, 248, 0.18); }
+.monday-league .lg-form-1 { background: rgba(251, 191, 36, 0.18); }
+
+/* champion row */
+.monday-league .lg-row-champion {
+  background: linear-gradient(
+    90deg,
+    rgba(251, 191, 36, 0.18),
+    rgba(254, 243, 199, 0.1)
+  );
+}
+.monday-league .lg-row-champion .lg-name {
+  font-weight: 700;
+}
+.monday-league .lg-champion-badge {
+  margin-left: 0.3rem;
+  padding: 0.05rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  background: linear-gradient(135deg, #fbbf24, #facc15);
+  color: #7c2d12;
+}
+
+/* ============================================
+   WEEKLY CARDS & VOTE STATUS (recycle struktur)
+   ============================================ */
+
+.monday-league #ligaWeeks,
+.monday-league .liga-weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+}
+
+.monday-league .lg-week-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(248, 171, 94, 0.4);
+}
+
+.monday-league .lg-week-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 11px;
+  color: #6b7280;
+}
+.monday-league .lg-week-label {
+  font-weight: 600;
+  color: #f97316;
+}
+.monday-league .lg-week-date {
+  font-style: italic;
+}
+
+.monday-league .lg-week-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+.monday-league .lg-week-meta {
+  font-size: 11px;
+  color: #6b7280;
+}
+.monday-league .lg-week-cta {
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+/* vote status bar */
+.monday-league .liga-vote-status,
+.monday-league #ligaVoteStatus {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px 12px;
+  padding: 8px 14px;
+  margin-top: 14px;
+  border-radius: 999px;
+  background: #ffffff;
+  box-shadow: 0 6px 18px rgba(148, 163, 184, 0.25);
+  font-size: 0.8rem;
+  color: #1f2937;
+}
+.monday-league .liga-vote-label {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.monday-league .liga-vote-text { flex: 1 1 160px; min-width: 0; }
+.monday-league .liga-vote-time {
+  white-space: nowrap;
+  font-size: 0.75rem;
+  opacity: 0.8;
+}
+.monday-league .liga-vote-live-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  background: linear-gradient(135deg, #f97316, #22c55e);
+  color: #fff;
+}
+
+/* small screens */
+@media (max-width: 640px) {
+  .monday-league .liga-shell {
+    margin-top: 64px;
+    padding-bottom: 28px;
+  }
+  .monday-league .liga-header h1 {
+    font-size: 20px;
+  }
+  .monday-league .liga-vote-status,
+  .monday-league #ligaVoteStatus {
+    flex-wrap: wrap;
+    align-items: flex-start;
+    border-radius: 18px;
+    padding: 8px 10px;
+  }
+}
+
+/* ============================================
+   DARK MODE OVERRIDES – Monday vibe
+   ============================================ */
+
+body.monday-league.dark .liga-header h1,
+body.monday-league.dark .liga-block-title,
+body.monday-league.dark .lg-name {
+  color: #fef9c3;
+}
+
+body.monday-league.dark .liga-sub,
+body.monday-league.dark .lg-sub,
+body.monday-league.dark .lg-week-meta {
+  color: rgba(248, 250, 252, 0.78);
+}
+
+body.monday-league.dark .liga-block {
+  background: rgba(15, 23, 42, 0.96);
+  border-color: rgba(248, 171, 94, 0.5);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.9);
+}
+
+body.monday-league.dark .liga-table thead th {
+  background: rgba(15, 23, 42, 1);
+  color: #fed7aa;
+  border-color: rgba(248, 171, 94, 0.5);
+}
+body.monday-league.dark .liga-table tbody td {
+  color: #e5e7eb;
+  border-bottom-color: rgba(30, 41, 59, 0.9);
+}
+
+body.monday-league.dark .lg-week-card {
+  background:
+    radial-gradient(circle at top left, rgba(248, 171, 94, 0.35) 0, transparent 55%),
+    rgba(15, 23, 42, 0.98);
+  border: 1px solid rgba(248, 171, 94, 0.6);
+  color: #fef9c3;
+}
+
+body.monday-league.dark .liga-vote-status,
+body.monday-league.dark #ligaVoteStatus {
+  background: rgba(15, 23, 42, 0.98);
+  color: #fef9c3;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+}
+
+body.monday-league.dark #ligaSeasonTitle {
+  text-shadow: 0 2px 12px rgba(251, 191, 36, 0.35);
+}
+
+
+/* FIX: Back button visibility (Monday) */
+.monday-league .liga-back-btn {
+  background: rgba(255, 255, 255, 0.85);
+  color: #7c2d12;
+  font-weight: 600;
+}
+
+body.monday-league.dark .liga-back-btn {
+  background: rgba(15, 23, 42, 0.9);
+  color: #fde68a; /* kuning lembut */
+  border: 1px solid rgba(251, 191, 36, 0.6);
+}
+
+body.monday-league.dark .liga-back-btn:hover {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fef3c7;
+}
+
+body.monday-league.dark .lg-week-avatar {
+  border-color: rgba(251, 191, 36, 0.6);
+  box-shadow: 0 6px 20px rgba(251, 191, 36, 0.45);
+}
+
+/* =========================
+   SEASON HIGHLIGHTS – MONDAY (FINAL)
+   ========================= */
+
+.monday-league .liga-highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.monday-league .liga-highlight-card {
+  position: relative;
+  padding: 16px 18px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  box-shadow: 0 14px 34px rgba(251, 146, 60, 0.35);
+  overflow: hidden;
+}
+
+/* icon bubble */
+.monday-league .liga-highlight-card::before {
+  content: attr(data-icon);
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  font-size: 22px;
+  opacity: 0.35;
+}
+
+.monday-league .liga-highlight-title {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #c2410c;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.monday-league .liga-highlight-main {
+  font-size: 20px;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.1;
+}
+
+.monday-league .liga-highlight-sub {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* DARK MODE */
+body.monday-league.dark .liga-highlight-card {
+  background: rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(251, 191, 36, 0.5);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.9);
+}
+
+body.monday-league.dark .liga-highlight-title {
+  color: #facc15;
+}
+
+body.monday-league.dark .liga-highlight-main {
+  color: #fef9c3;
+}
+
+body.monday-league.dark .liga-highlight-sub {
+  color: rgba(248, 250, 252, 0.75);
+}
+
+/* =========================
+   WEEKLY RESULTS – MATCH KAMIS STYLE
+   ========================= */
+
+.monday-league .lg-week-card {
+  padding: 14px 16px;
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 200, 120, 0.35) 0, transparent 55%),
+    #fff7ed;
+  border: 1px solid rgba(251, 191, 36, 0.45);
+  box-shadow: 0 14px 36px rgba(251, 146, 60, 0.35);
+}
+
+.monday-league .lg-week-header {
+  font-size: 11px;
+  color: #92400e;
+  font-weight: 600;
+}
+
+.monday-league .lg-week-label {
+  color: #c2410c;
+}
+
+.monday-league .lg-week-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+}
+
+.monday-league .lg-week-name {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.monday-league .lg-week-meta {
+  font-size: 12px;
+  color: #7c2d12;
+}
+
+.monday-league .lg-week-cta {
+  font-size: 12px;
+  font-weight: 600;
+  color: #2563eb;
+}
+
+/* DARK MODE */
+body.monday-league.dark .lg-week-card {
+  background:
+    radial-gradient(circle at top left, rgba(251, 191, 36, 0.35) 0, transparent 55%),
+    rgba(15, 23, 42, 0.98);
+  border-color: rgba(251, 191, 36, 0.6);
+  box-shadow: 0 20px 44px rgba(0, 0, 0, 0.9);
+}
+
+body.monday-league.dark .lg-week-meta {
+  color: rgba(254, 240, 138, 0.85);
+}
+
+/* =========================
+   WEEKLY RESULT – EXACT MATCH LIGA KAMIS
+   ========================= */
+
+/* winner block: avatar kiri, teks kanan */
+.monday-league .lg-week-winner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* avatar */
+.monday-league .lg-week-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+
+  border: 2px solid rgba(251, 191, 36, 0.9);
+  box-shadow: 0 6px 18px rgba(251, 146, 60, 0.6);
+}
+
+/* text container di kanan avatar */
+.monday-league .lg-week-winner > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+/* nama member */
+.monday-league .lg-week-name {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+/* vote + pts */
+.monday-league .lg-week-meta {
+  font-size: 12px;
+  color: #7c2d12;
+}
+
+/* body layout kiri-kanan */
+.monday-league .lg-week-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+/* =========================
+   WEEK FILTER – MATCH LIGA KAMIS
+   ========================= */
+
+.monday-league .liga-weeks-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.monday-league .liga-weeks-filter {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.monday-league .liga-weeks-filter::-webkit-scrollbar {
+  display: none;
+}
+
+/* pill */
+.monday-league .liga-week-filter-btn {
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+
+  border: 1px solid rgba(251, 191, 36, 0.6);
+  background: #fff7ed;
+  color: #92400e;
+
+  transition: all 0.2s ease;
+}
+
+/* hover */
+.monday-league .liga-week-filter-btn:hover {
+  background: rgba(251, 191, 36, 0.15);
+}
+
+/* active (INI YANG PENTING) */
+.monday-league .liga-week-filter-btn.active {
+  background: linear-gradient(135deg, #fbbf24, #f97316);
+  color: #1f2937;
+  box-shadow: 0 6px 18px rgba(251, 146, 60, 0.6);
+  border-color: transparent;
+}
+
+/* SORT */
+.monday-league .liga-weeks-sort {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+}
+
+.monday-league .liga-weeks-sort select {
+  padding: 5px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(251, 191, 36, 0.6);
+  background: #fff7ed;
+  font-size: 12px;
+}
+
+/* DARK MODE */
+body.monday-league.dark .liga-week-filter-btn {
+  background: rgba(15, 23, 42, 0.9);
+  color: #fef9c3;
+  border-color: rgba(251, 191, 36, 0.6);
+}
+
+body.monday-league.dark .liga-week-filter-btn.active {
+  background: linear-gradient(135deg, #facc15, #fb923c);
+  color: #020617;
+}
+
+/* EMPTY STATE – sama rasa dengan week card */
+.monday-league .lg-week-empty {
+  background: linear-gradient(
+    to bottom right,
+    #fff7ed,
+    #ffedd5
+  );
+  border: 1px dashed rgba(251, 146, 60, 0.4);
+  box-shadow: none;
+}
+
+body.monday-league.dark .lg-week-empty {
+  background:
+    radial-gradient(circle at top left,
+      rgba(248,171,94,0.25), transparent 55%),
+    rgba(15,23,42,0.95);
+  border-color: rgba(248,171,94,0.4);
+}
+
+.monday-league .lg-week-empty .lg-week-name {
+  font-weight: 600;
+  color: #92400e;
+}
+
+body.monday-league.dark .lg-week-empty .lg-week-name {
+  color: #fcd34d;
+}
+
+.monday-league .lg-week-empty .lg-week-meta {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ============================================
+   WEEK DETAIL – MONDAY (FINAL, MATCH KAMIS)
+   ============================================ */
+
+/* layout kiri foto – kanan info */
+.monday-league .winner-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 18px;
+}
+
+@media (max-width: 900px) {
+  .monday-league .winner-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* frame foto pemenang */
+.monday-league .winner-frame {
+  position: relative;
+  border-radius: 22px;
+  overflow: visible;
+  background: #fff7ed;
+  box-shadow: 0 20px 50px rgba(251,146,60,0.45);
+}
+
+.monday-league .winner-frame img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.monday-league .winner-frame-title {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  background: linear-gradient(135deg,#fbbf24,#fb923c);
+  color: #1f2937;
+  box-shadow: 0 6px 18px rgba(251,146,60,0.6);
+}
+
+/* panel info pemenang */
+.monday-league .winner-panel {
+  background: linear-gradient(135deg,#fff7ed,#ffedd5);
+  border-radius: 22px;
+  padding: 18px;
+  box-shadow: 0 14px 36px rgba(251,146,60,0.35);
+}
+
+.monday-league .winner-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.monday-league .winner-avatar {
+  width: 54px;
+  height: 54px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 2px solid #fbbf24;
+}
+
+.monday-league .winner-name {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.monday-league .winner-gen {
+  font-size: 12px;
+  color: #92400e;
+}
+
+.monday-league .winner-divider {
+  height: 1px;
+  background: rgba(251,191,36,0.4);
+  margin: 14px 0;
+}
+
+.monday-league .winner-vote-line {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.monday-league .winner-caption-title {
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #92400e;
+}
+
+.monday-league .winner-caption {
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+body.monday-league.dark .winner-panel {
+  background: rgba(15,23,42,0.95);
+  border: 1px solid rgba(251,191,36,0.5);
+}
+
+body.monday-league.dark .winner-frame {
+  box-shadow: 0 30px 70px rgba(0,0,0,0.85);
+}
+
+body.monday-league.dark .winner-caption,
+body.monday-league.dark .winner-gen {
+  color: rgba(254,240,138,0.85);
+}
+
+/* =========================
+   DETAIL WEEK – WINNING PHOTO (FIX SIZE)
+   ========================= */
+
+.monday-league .winner-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 520px) 280px;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+/* frame foto */
+.monday-league .winner-frame {
+  position: relative;
+  border-radius: 18px;
+  overflow: visible;
+  background: #000;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.25);
+}
+
+/* label juara */
+.monday-league .winner-frame-title {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #fbbf24, #f97316);
+  color: #1f2937;
+  z-index: 2;
+}
+
+/* foto */
+.monday-league .winner-frame img {
+  width: 100%;
+  height: 420px;            /* ⬅️ KUNCI UTAMA */
+  object-fit: cover;        /* crop rapi */
+  display: block;
+}
+
+/* panel kanan */
+.monday-league .winner-panel {
+  background: #fff7ed;
+  border-radius: 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(251,191,36,0.4);
+}
+
+@media (max-width: 768px) {
+  .monday-league .winner-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .monday-league .winner-frame img {
+    height: 320px;
+  }
+}
+
+/* =========================
+   DETAIL WEEK – PODIUM CARD
+   ========================= */
+
+.monday-league .liga-week-podium-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.monday-league .liga-week-podium-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #fff7ed, #ffedd5);
+  border: 1px solid rgba(251,191,36,0.45);
+}
+
+/* avatar kecil & konsisten */
+.monday-league .liga-week-podium-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 2px solid #fbbf24;
+}
+
+/* medal */
+.monday-league .liga-week-podium-medal {
+  min-width: 80px;
+  font-weight: 700;
+  font-size: 13px;
+  color: #92400e;
+}
+
+/* info */
+.monday-league .liga-week-podium-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.monday-league .liga-week-podium-meta {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* =========================
+   FORCE REMOVE LINK STYLE – MONDAY WEEK
+   ========================= */
+
+body.monday-league .lg-week-card a,
+body.monday-league .lg-week-card a:link,
+body.monday-league .lg-week-card a:visited,
+body.monday-league .lg-week-card a:hover,
+body.monday-league .lg-week-card a:active {
+  text-decoration: none !important;
+  color: inherit !important;
+}
+
+/* =========================
+   GLOBAL LINK CLEAN – MONDAY ONLY
+   ========================= */
+
+/* semua link di halaman Monday */
+body.monday-league a {
+  text-decoration: none !important;
+}
+
+/* hover juga aman */
+body.monday-league a:hover {
+  text-decoration: none !important;
+}
+
+body.monday-league .lg-week-card a,
+body.monday-league .winner-panel a,
+body.monday-league .liga-week-podium-row a,
+body.monday-league .liga-back-btn {
+  text-decoration: none !important;
+  color: inherit;
+}
+
+/* =========================
+   MOBILE FIX – STANDINGS
+   ========================= */
+@media (max-width: 768px) {
+  /* sembunyikan kolom minor */
+  .liga-table th:nth-child(4),
+  .liga-table th:nth-child(5),
+  .liga-table th:nth-child(6),
+  .liga-table td:nth-child(4),
+  .liga-table td:nth-child(5),
+  .liga-table td:nth-child(6) {
+    display: none;
+  }
+
+  .liga-table {
+    font-size: 12px;
+  }
+
+  .lg-member-info {
+    gap: 6px;
+  }
+
+  .lg-member-info img {
+    width: 28px;
+    height: 28px;
+  }
+
+  .lg-form-dot {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+  }
+}
+
+/* =========================
+   MOBILE FIX – WEEKLY CARDS
+   ========================= */
+@media (max-width: 768px) {
+  .monday-league .liga-weeks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 12px;
+  }
+
+  .monday-league .lg-week-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .monday-league .lg-week-cta {
+    align-self: flex-end;
+    font-size: 11px;
+  }
+}
+
+/* =========================
+   DARK MODE – MOBILE & DESKTOP
+   ========================= */
+body.monday-league.dark {
+  color: #f8fafc;
+}
+
+body.monday-league.dark .liga-block {
+  background: rgba(2, 6, 23, 0.95);
+  border: 1px solid rgba(251, 191, 36, 0.45);
+}
+
+body.monday-league.dark .liga-block-title {
+  color: #fde68a;
+}
+
+body.monday-league.dark .liga-sub {
+  color: rgba(248, 250, 252, 0.75);
+}
+
+body.monday-league.dark .lg-week-card {
+  background: rgba(15, 23, 42, 0.95);
+  border-color: rgba(251, 191, 36, 0.55);
+}
+
+body.monday-league.dark .lg-week-name,
+body.monday-league.dark .winner-name {
+  color: #fef9c3;
+}
+
+@media (max-width: 768px) {
+  .monday-league .liga-header h1 {
+    font-size: 20px;
+    line-height: 1.25;
+  }
+
+  .monday-league .liga-season-progress {
+    margin-top: 12px;
+  }
+
+  .monday-league .liga-next-match {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+}
+
+/* =========================
+   DARK MODE – HEADER TEXT FIX
+   ========================= */
+body.monday-league.dark {
+
+  /* Judul utama */
+  #ligaSeasonTitle {
+    color: #fef9c3; /* kuning terang */
+  }
+
+  /* Subtitle */
+  #ligaSeasonSubtitle {
+    color: rgba(254, 249, 195, 0.75);
+  }
+
+  /* Nama liga */
+  .liga-brand-title {
+    color: #fde68a;
+  }
+
+  /* Deskripsi liga */
+  .liga-brand-sub {
+    color: rgba(248, 250, 252, 0.7);
+  }
+
+  /* Matchday label */
+  #ligaProgressLabel {
+    color: #fde68a;
+    font-weight: 600;
+  }
+
+  /* Persentase season */
+  #ligaProgressPercent {
+    color: rgba(248, 250, 252, 0.75);
+  }
+
+  /* Next match container */
+  .liga-next-match {
+    background: rgba(15, 23, 42, 0.9);
+    color: #fef9c3;
+    border: 1px solid rgba(251, 191, 36, 0.45);
+  }
+
+  .liga-next-label {
+    color: #fde68a;
+  }
+
+  .liga-next-date {
+    color: #fefce8;
+  }
+
+  .liga-next-count {
+    background: #020617;
+    color: #fef9c3;
+  }
+}
+
+/* ===============================
+   PODIUM BAR – FINAL (DESKTOP)
+   =============================== */
+
+.mpl-podium {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 12px;
+}
+
+.mpl-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 120px;
+  padding: 0 28px 0 160px;
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+/* FOTO */
+.mpl-avatar {
+  position: absolute;
+  left: -28px;
+  bottom: 0;
+  width: 130px;
+  height: 160px;
+  object-fit: contain;
+  z-index: 5;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,.35));
+}
+
+/* TEXT */
+.mpl-content {
+  flex: 1;
+  z-index: 2;
+}
+
+.mpl-sub {
+  font-size: 13px;
+  opacity: .85;
+}
+
+.mpl-name {
+  font-family: 'Orbitron', system-ui, sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  line-height: 1;
+}
+
+/* SCORE */
+.mpl-score {
+  text-align: right;
+  z-index: 2;
+}
+
+.mpl-score strong {
+  display: block;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.mpl-score span {
+  font-size: 14px;
+  opacity: .9;
+}
+
+/* RANK NUMBER */
+.mpl-rank {
+  position: absolute;
+  left: 130px;
+  font-size: 84px;
+  font-weight: 900;
+  opacity: .18;
+  z-index: 1;
+  line-height: 1;
+}
+
+/* WARNA */
+.mpl-bar.rank-1 {
+  background: #f3ea8b;
+  color: #1f2937;
+}
+
+.mpl-bar.rank-2 {
+  background: #2f5fd0;
+  color: #ffffff;
+}
+
+.mpl-bar.rank-3 {
+  background: #f2b36d;
+  color: #1f2937;
+}
+
+/* ===============================
+   PODIUM BAR – MOBILE
+   =============================== */
+@media (max-width: 768px) {
+
+  .mpl-bar {
+    height: 92px;
+    padding: 0 16px 0 110px;
+    border-radius: 18px;
+  }
+
+  .mpl-avatar {
+    width: 90px;
+    height: 110px;
+    left: -12px;
+  }
+
+  .mpl-name {
+    font-family: 'Orbitron', system-ui, sans-serif;
+    font-size: 28px;
+  }
+
+  .mpl-rank {
+    font-family: 'Orbitron', system-ui, sans-serif;
+    font-size: 64px;
+    left: 86px;
+  }
+
+  .mpl-score strong {
+    font-size: 22px;
+  }
+
+  .mpl-score span {
+    font-size: 13px;
+  }
+}
+
+/* ===============================
+   PODIUM CONTAINER FIX
+   =============================== */
+
+/* biar foto boleh keluar */
+.monday-league .liga-block:has(.mpl-podium) {
+  overflow: visible;
+}
+
+/* judul tidak ketutup */
+.monday-league .liga-block:has(.mpl-podium) .liga-block-title {
+  position: relative;
+  z-index: 5;
+}
+
+/* ======================================
+   PODIUM DESKTOP — FINAL (FULL PHOTO)
+   ====================================== */
+@media (min-width: 769px) {
+
+  /* GRID */
+  .mpl-podium {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr 1fr;
+    gap: 48px;
+    align-items: end;
+    padding: 56px 24px 32px;
+  }
+
+  /* CARD */
+  .mpl-bar {
+    position: relative;
+    height: 220px;
+    padding: 96px 32px 32px;
+    border-radius: 36px;
+    overflow: visible; /* ⬅️ WAJIB */
+  }
+
+  /* URUTAN */
+  .mpl-bar.rank-1 {
+    order: 2;
+    transform: translateY(-64px);
+    background: #f3ea8b;
+  }
+
+  .mpl-bar.rank-2 {
+    order: 1;
+    background: #2f5fd0;
+    color: #fff;
+  }
+
+  .mpl-bar.rank-3 {
+    order: 3;
+    background: #f2b36d;
+  }
+
+  /* FOTO — FULL, TIDAK DIPOTONG */
+  .mpl-avatar {
+    position: absolute;
+    left: 50%;
+    top: -72px;                 /* ⬅️ naik, efek keluar */
+    transform: translateX(-50%);
+    width: 180px;
+    height: auto;               /* ⬅️ PENTING */
+    object-fit: contain;        /* ⬅️ PENTING */
+    z-index: 5;
+    filter: drop-shadow(0 24px 32px rgba(0,0,0,.35));
+    pointer-events: none;
+  }
+
+  /* TEXT */
+  .mpl-content {
+    padding-top: 28px;
+    position: relative;
+    z-index: 3;
+    text-align: center;
+  }
+
+  .mpl-sub {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    opacity: .85;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+
+  .mpl-name {
+    font-family: 'Orbitron', system-ui, sans-serif;
+    margin-top: 2px;
+    font-size: 46px;              /* ⬅️ dikit lebih gede */
+    font-weight: 900;
+    letter-spacing: 0.1em;        /* ⬅️ racing look */
+    line-height: 1.05;
+    text-shadow: 0 2px 0 rgba(0,0,0,0.12);
+  }
+
+  /* SCORE */
+  .mpl-score {
+    position: absolute;
+    right: 28px;
+    bottom: 28px;
+    text-align: right;
+    z-index: 3;
+  }
+
+  .mpl-score strong {
+    display: block;
+    font-size: 26px;
+    font-weight: 900;
+  }
+
+  .mpl-score span {
+    font-size: 14px;
+    opacity: .9;
+  }
+
+  /* ANGKA RANK */
+  .mpl-rank {
+    position: absolute;
+    top: 20px;
+    left: 24px;
+    font-size: 96px;
+    font-weight: 900;
+    opacity: .18;
+    z-index: 1;
+    line-height: 1;
+    font-family: 'Orbitron', system-ui, sans-serif;
+  }
+}
+
+@media (min-width: 769px) {
+  /* Rank 1 lebih spesial */
+  .mpl-bar.rank-1 .mpl-name {
+    font-size: 50px;
+    letter-spacing: 0.12em;
+  }
+}
+
+@media (min-width: 769px) {
+
+  .mpl-score strong {
+    font-family: 'Orbitron', system-ui, sans-serif;
+    font-size: 30px;          /* ⬅️ poin = kuat */
+    font-weight: 900;
+    letter-spacing: 0.06em;
+  }
+
+  .mpl-score span {
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.75;
+    letter-spacing: 0.04em;
+  }
+
+  /* Rank 1 lebih standout */
+  .mpl-bar.rank-1 .mpl-score strong {
+    font-size: 34px;
+  }
+}
+
+@media (min-width: 769px) {
+  .mpl-bar.rank-1 .mpl-name {
+    text-shadow:
+      0 2px 0 rgba(0,0,0,0.15),
+      0 0 12px rgba(255,255,255,0.35);
+  }
+}
+@media (min-width: 769px) {
+  .mpl-bar.rank-1 .mpl-name {
+    text-shadow:
+      0 2px 0 rgba(0,0,0,0.15),
+      0 0 12px rgba(255,255,255,0.35);
+  }
+}
+
+/* =========================================
+   F1 LEADERBOARD – FINAL (DESKTOP ONLY)
+   ========================================= */
+@media (min-width: 769px) {
+
+  /* TABLE RESET → CARD ROW */
+  .monday-league .liga-table {
+    border-collapse: separate;
+    border-spacing: 0 10px;
+  }
+
+  .monday-league .liga-table thead {
+    display: none;
+  }
+
+  .monday-league .liga-table tbody tr {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0.95),
+      rgba(255,255,255,0.9)
+    );
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(148,163,184,0.25);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+
+  .monday-league .liga-table tbody tr:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(248,171,94,0.35);
+  }
+
+  .monday-league .liga-table tbody td {
+    border: none;
+    padding: 14px 12px;
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  /* =========================
+     RANK – BESAR & DOMINAN
+     ========================= */
+  .monday-league .liga-table td.lg-rank {
+    font-family: 'Orbitron', system-ui, sans-serif;
+    font-size: 34px;
+    font-weight: 900;
+    text-align: center;
+    width: 56px;
+    color: #f97316;
+    opacity: .9;
+  }
+
+  /* =========================
+     MEMBER INFO
+     ========================= */
+  .monday-league .lg-member-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .monday-league .lg-member-info img {
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    object-fit: cover;
+    box-shadow: 0 6px 18px rgba(248,171,94,.6);
+    flex-shrink: 0;
+  }
+
+  .monday-league .lg-name {
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .monday-league .lg-sub {
+    font-size: 11px;
+    opacity: .75;
+    margin-top: 2px;
+  }
+
+  /* =========================
+     STATS → CHIP STYLE
+     ========================= */
+  .monday-league .liga-table td:nth-child(3),
+  .monday-league .liga-table td:nth-child(7),
+  .monday-league .liga-table td:nth-child(8) {
+    font-weight: 700;
+    font-size: 12px;
+  }
+
+  /* Matchday */
+  .monday-league .liga-table td:nth-child(3)::before {
+    content: "MD ";
+    opacity: .6;
+  }
+
+  /* Total Vote */
+  .monday-league .liga-table td:nth-child(7) {
+    color: #2563eb;
+  }
+  .monday-league .liga-table td:nth-child(7)::after {
+    content: " votes";
+    font-size: 11px;
+    opacity: .7;
+  }
+
+  /* Point – PALING TEGAS */
+  .monday-league .liga-table td:nth-child(8) {
+    font-family: 'Orbitron', system-ui, sans-serif;
+    font-size: 16px;
+    color: #b45309;
+  }
+  .monday-league .liga-table td:nth-child(8)::after {
+    content: " pts";
+    font-size: 11px;
+    opacity: .7;
+    margin-left: 2px;
+  }
+
+  /* =========================
+     FORM DOTS – RAPAT & RAPI
+     ========================= */
+  .monday-league .liga-table td:last-child {
+    text-align: right;
+  }
+
+  .monday-league .lg-form-dot {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+    margin-right: 2px;
+  }
+
+  /* =========================
+     CHAMPION ROW (RANK 1)
+     ========================= */
+  .monday-league .lg-row-champion {
+    background: linear-gradient(
+      90deg,
+      rgba(251,191,36,0.22),
+      rgba(254,243,199,0.15)
+    );
+    box-shadow: 0 16px 40px rgba(251,191,36,0.45);
+  }
+
+  .monday-league .lg-row-champion .lg-name {
+    font-weight: 900;
+  }
+
+}
+
+/* =========================================
+   STANDINGS – PODIUM INFO EXPLANATION
+   ========================================= */
+@media (min-width: 769px) {
+
+  /* Kolom 1st, 2nd, 3rd */
+  .monday-league .liga-table td:nth-child(4),
+  .monday-league .liga-table td:nth-child(5),
+  .monday-league .liga-table td:nth-child(6) {
+    font-weight: 700;
+    font-size: 12px;
+    text-align: center;
+    padding: 6px 4px;
+  }
+
+  /* Label podium */
+  .monday-league .liga-table td:nth-child(4)::before {
+    content: "🥇 ";
+    opacity: .8;
+  }
+
+  .monday-league .liga-table td:nth-child(5)::before {
+    content: "🥈 ";
+    opacity: .8;
+  }
+
+  .monday-league .liga-table td:nth-child(6)::before {
+    content: "🥉 ";
+    opacity: .8;
+  }
+
+}
+/* =========================================
+   STANDINGS – COMPACT MODE
+   ========================================= */
+@media (min-width: 769px) {
+
+  .monday-league .liga-table tbody td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .monday-league .lg-member-info img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .monday-league .lg-name {
+    font-size: 14px;
+  }
+
+  .monday-league .lg-sub {
+    font-size: 10px;
+  }
+
+}
+.monday-league .liga-table td:nth-child(4):not(:empty),
+.monday-league .liga-table td:nth-child(5):not(:empty) {
+  color: #b45309;
+}
+.monday-league .lg-rank {
+  font-family: 'Orbitron', system-ui, sans-serif;
+}
+
+/* =========================================
+   STANDINGS – DARK MODE (DESKTOP)
+   ========================================= */
+body.monday-league.dark .liga-table {
+  background: transparent;
+}
+
+body.monday-league.dark .liga-table thead th {
+  background: rgba(15, 23, 42, 0.95);
+  color: #facc15;
+  border-bottom: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+body.monday-league.dark .liga-table tbody tr {
+  background: rgba(15, 23, 42, 0.85);
+}
+
+body.monday-league.dark .liga-table tbody tr:nth-child(even) {
+  background: rgba(30, 41, 59, 0.85);
+}
+
+body.monday-league.dark .liga-table tbody td {
+  color: #e5e7eb;
+  border-bottom: 1px solid rgba(251, 191, 36, 0.25);
+}
+
+/* Nama member */
+body.monday-league.dark .lg-name {
+  color: #fef9c3;
+}
+
+/* Sub (generasi) */
+body.monday-league.dark .lg-sub {
+  color: rgba(248, 250, 252, 0.7);
+}
+
+/* Votes */
+body.monday-league.dark .liga-table td a {
+  color: #60a5fa;
+}
+
+/* Points */
+body.monday-league.dark .lg-points {
+  color: #fbbf24;
+  font-weight: 800;
+}
+
+/* =========================================
+   STANDINGS – MOBILE MODE
+   ========================================= */
+@media (max-width: 768px) {
+
+  /* Sembunyikan kolom tidak penting */
+  .liga-table th:nth-child(3),
+  .liga-table th:nth-child(4),
+  .liga-table th:nth-child(5),
+  .liga-table th:nth-child(6),
+  .liga-table td:nth-child(3),
+  .liga-table td:nth-child(4),
+  .liga-table td:nth-child(5),
+  .liga-table td:nth-child(6) {
+    display: none;
+  }
+
+  .liga-table {
+    font-size: 12px;
+  }
+
+  .liga-table tbody td {
+    padding: 10px 8px;
+  }
+
+  /* Member info */
+  .lg-member-info {
+    gap: 10px;
+  }
+
+  .lg-member-info img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .lg-name {
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .lg-sub {
+    font-size: 10px;
+  }
+
+  /* Votes */
+  .liga-table td:nth-child(7) {
+    font-size: 11px;
+    white-space: nowrap;
+  }
+
+  /* Points */
+  .liga-table td:nth-child(8) {
+    font-size: 13px;
+    font-weight: 800;
+    color: #f97316;
+    white-space: nowrap;
+  }
+
+  /* Form dots */
+  .lg-form-dot {
+    width: 18px;
+    height: 18px;
+    font-size: 10px;
+  }
+}
+
+/* =========================================
+   STANDINGS – DARK MODE MOBILE
+   ========================================= */
+@media (max-width: 768px) {
+
+  body.monday-league.dark .liga-table tbody tr {
+    background: rgba(15, 23, 42, 0.9);
+  }
+
+  body.monday-league.dark .liga-table tbody tr:nth-child(even) {
+    background: rgba(30, 41, 59, 0.9);
+  }
+
+  body.monday-league.dark .liga-table tbody td {
+    color: #f8fafc;
+    border-bottom: 1px solid rgba(251, 191, 36, 0.3);
+  }
+
+  body.monday-league.dark .lg-name {
+    color: #fde68a;
+  }
+
+  body.monday-league.dark .lg-sub {
+    color: rgba(248, 250, 252, 0.65);
+  }
+
+  body.monday-league.dark .liga-table td:nth-child(8) {
+    color: #facc15;
+  }
+}
+
+/* =========================================
+   STANDINGS – MOBILE COMPACT (HIDE FORM)
+   ========================================= */
+@media (max-width: 768px) {
+
+  /* HILANGKAN HEADER FORM */
+  .liga-table th:last-child {
+    display: none;
+  }
+
+  /* HILANGKAN ISI FORM */
+  .liga-table td:last-child {
+    display: none;
+  }
+
+  /* RAPIKAN TINGGI BARIS */
+  .liga-table tbody tr {
+    height: auto;
+  }
+
+  .liga-table tbody td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+
+  /* KECILKAN AVATAR */
+  .lg-member-info img {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* RAPIKAN TEKS */
+  .lg-name {
+    font-size: 13px;
+    line-height: 1.2;
+  }
+
+  .lg-sub {
+    font-size: 10px;
+  }
+
+  /* POINT LEBIH DOMINAN */
+  .liga-table td:nth-child(8) {
+    font-size: 14px;
+    font-weight: 900;
+  }
+}
+
+/* =========================================
+   summery standings darkmode friendly 
+   ========================================= */
+.week-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.week-summary-card {
+  background: linear-gradient(180deg, #0f172a, #020617);
+  border: 1px solid rgba(255,200,80,.25);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+.week-summary-title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  opacity: .7;
+  margin-bottom: 6px;
+}
+
+.week-summary-main {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.week-summary-sub {
+  font-size: 13px;
+  opacity: .85;
+}
+
+
+/*
+  Tombol informasi
+*/
+
+.liga-back-btn {
+  position: relative;
+}
+
+.liga-back-btn:hover::after {
+  content: "Liga foto mingguan setiap Senin • DTSL";
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background: #020617;
+  color: #ffd36a;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* ===============================
+   LIGA BRAND (LOGO + TITLE)
+=============================== */
+
+.liga-brand {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+.liga-brand-logo {
+  width: 56px;
+  height: 56px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at top left, #fff7ed, #fed7aa);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.liga-brand-logo img {
+  width: 70%;
+  height: 70%;
+  object-fit: contain;
+}
+
+.liga-brand-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.liga-brand-sub {
+  font-size: 0.9rem;
+  opacity: 0.8;
+}
+
+
+/* =========================================================
+   WEEK DETAIL PAGE ONLY
+   FILE: liga-monday-week.html
+   SAFE SCOPE – TIDAK GANGGU STANDINGS
+   ========================================================= */
+
+body.monday-league.week {
+
+  /* ===== THEME VAR ===== */
+  --week-bg: #ffffff;
+  --week-card: #fff7eb;
+  --week-border: #f0d9b5;
+  --week-text: #1f2937;
+  --week-sub: #6b7280;
+}
+
+body.monday-league.week.dark {
+  --week-bg: #0b1220;
+  --week-card: #0f1a2e;
+  --week-border: rgba(255,183,3,.25);
+  --week-text: #f9fafb;
+  --week-sub: #9ca3af;
+}
+
+/* =========================================================
+   WINNING PHOTO
+   ========================================================= */
+
+body.monday-league.week .winner-layout {
+  display: grid;
+  grid-template-columns: minmax(0,520px) 280px;
+  gap: 18px;
+  align-items: flex-start;
+}
+
+@media (max-width: 900px) {
+  body.monday-league.week .winner-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+body.monday-league.week .winner-frame {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 20px 50px rgba(0,0,0,.25);
+}
+
+body.monday-league.week .winner-frame img {
+  width: 100%;
+  height: auto; /* ⬅️ RASIO ASLI */
+  display: block;
+}
+
+body.monday-league.week .winner-frame-title {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 6px 12px;
+  font-size: 12px;
+  font-weight: 800;
+  border-radius: 999px;
+  background: linear-gradient(135deg,#fbbf24,#fb923c);
+  color: #1f2937;
+  box-shadow: 0 6px 18px rgba(251,146,60,.6);
+}
+
+/* =========================================================
+   WINNER PANEL
+   ========================================================= */
+
+body.monday-league.week .winner-panel {
+  background: var(--week-card);
+  border-radius: 18px;
+  padding: 16px;
+  border: 1px solid var(--week-border);
+}
+
+body.monday-league.week .winner-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+body.monday-league.week .winner-avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  object-fit: cover;
+  border: 2px solid #fbbf24;
+}
+
+body.monday-league.week .winner-name {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--week-text);
+}
+
+body.monday-league.week .winner-gen {
+  font-size: 12px;
+  color: var(--week-sub);
+}
+
+body.monday-league.week .winner-divider {
+  height: 1px;
+  background: var(--week-border);
+  margin: 12px 0;
+}
+
+body.monday-league.week .winner-vote-line {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+body.monday-league.week .winner-caption-title {
+  margin-top: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--week-sub);
+}
+
+body.monday-league.week .winner-caption {
+  font-size: 13px;
+  color: var(--week-text);
+}
+
+/* =========================================================
+   MATCHDAY SUMMARY
+   ========================================================= */
+
+body.monday-league.week .week-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+  gap: 16px;
+}
+
+body.monday-league.week .week-summary-card {
+  background: var(--week-card);
+  border: 1px solid var(--week-border);
+  border-radius: 16px;
+  padding: 16px;
+}
+
+body.monday-league.week .week-summary-title {
+  font-size: 12px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--week-sub);
+}
+
+body.monday-league.week .week-summary-main {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--week-text);
+}
+
+body.monday-league.week .week-summary-sub {
+  font-size: 13px;
+  color: var(--week-sub);
+}
+
+/* =========================================================
+   WEEK RESULT TABLE
+   ========================================================= */
+
+body.monday-league.week .lg-mobile-meta {
+  display: none;
+  font-size: 12px;
+  opacity: .85;
+}
+
+body.monday-league.week .lg-vote {
+  font-weight: 700;
+  color: #2563eb;
+}
+
+body.monday-league.week .lg-point {
+  font-family: 'Orbitron',system-ui,sans-serif;
+  font-weight: 900;
+  color: #b45309;
+}
+
+@media (max-width: 768px) {
+  body.monday-league.week .lg-col-md {
+    display: none;
+  }
+
+  body.monday-league.week .lg-mobile-meta {
+    display: block;
+  }
+}
+
+/* =========================================================
+   DARK MODE FIX
+   ========================================================= */
+
+body.monday-league.week.dark .winner-panel,
+body.monday-league.week.dark .week-summary-card {
+  background: rgba(15,23,42,.95);
+  border-color: rgba(251,191,36,.45);
+}
+
+body.monday-league.week.dark .winner-caption,
+body.monday-league.week.dark .week-summary-sub {
+  color: rgba(254,240,138,.85);
+}
+/* =========================================
+   WEEK STANDINGS – COMPACT MODE
+   ========================================= */
+
+.monday-league .liga-table tbody tr {
+  border-radius: 14px;
+}
+
+.monday-league .liga-table tbody td {
+  padding: 10px 10px;
+  font-size: 13px;
+}
+
+.monday-league .lg-member-avatar {
+  width: 36px;
+  height: 36px;
+}
+
+.monday-league .lg-name {
+  font-size: 14px;
+}
+
+.monday-league .lg-sub {
+  font-size: 11px;
+}
+
+.monday-league .lg-points {
+  font-size: 15px;
+}
+
+/* ===============================
+   WEEK STANDINGS – EMPHASIS
+=============================== */
+
+.week-standings-wrap .lg-vote {
+  font-weight: 700;
+  color: #2563eb;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.week-standings-wrap .lg-points {
+  font-family: 'Orbitron', system-ui, sans-serif;
+  font-weight: 900;
+  font-size: 16px;
+  color: #f59e0b;
+  white-space: nowrap;
+}
+
+/* Juara 1 lebih glow */
+.week-standings-wrap .lg-row-champion .lg-points {
+  color: #fbbf24;
+  text-shadow: 0 0 12px rgba(251,191,36,.45);
+}
+
+/* ===============================
+   WEEK STANDINGS — WINNER BADGE
+=============================== */
+
+.lg-week-winner-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 2px 8px;
+  font-size: 10px;
+  font-weight: 800;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #facc15, #f59e0b);
+  color: #111827;
+  vertical-align: middle;
+}
+
+/* Supaya Compact */
+.week-standings-wrap .liga-table tbody td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+@media (max-width: 768px) {
+  .week-standings-wrap .lg-vote,
+  .week-standings-wrap .lg-points {
+    font-size: 13px;
+  }
+}
+
+/* ===============================
+   FIX MOBILE — WEEK STANDINGS
+================================ */
+
+@media (max-width: 640px) {
+
+  .week-standings-row {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    grid-template-rows: auto auto;
+    gap: 6px 10px;
+    padding: 12px 14px;
+  }
+
+  .ws-rank {
+    grid-row: 1 / span 2;
+    align-self: center;
+    font-size: 22px;
+  }
+
+  .ws-member {
+    grid-column: 2 / -1;
+  }
+
+  .ws-stats {
+    grid-column: 2 / -1;
+    display: flex;
+    gap: 16px;
+    margin-top: 4px;
+  }
+
+  .ws-votes,
+  .ws-points {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #fff6e6;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 14px;
+  }
+
+  .ws-votes strong,
+  .ws-points strong {
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .ws-votes span,
+  .ws-points span {
+    font-size: 11px;
+    opacity: 0.7;
+  }
+}
+
+/* ================================
+   WEEK STANDINGS – ULTRA COMPACT
+   ================================ */
+
+.week-standings-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* lebih rapat */
+}
+
+/* ROW */
+.week-standings-row {
+  display: grid;
+  grid-template-columns: 26px 1fr auto;
+  align-items: center;
+  gap: 10px;
+
+  background: #fff;
+  border-radius: 12px;
+  padding: 8px 12px;
+  box-shadow: 0 3px 10px rgba(0,0,0,.035);
+}
+
+/* WINNER */
+.week-standings-row.is-winner {
+  background: linear-gradient(180deg, #fff5dc, #fff);
+  border: 1px solid #ffd999;
+}
+
+/* RANK */
+.ws-rank {
+  font-weight: 800;
+  font-size: 18px;
+  color: #ff7a1a;
+  text-align: center;
+}
+
+/* MEMBER */
+.ws-member {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ws-avatar {
+  width: 39px;
+  height: 39px;
+  border-radius: 70%;
+  object-fit: cover;
+}
+
+.ws-name {
+  font-weight: 700;
+  font-size: 16px;
+  color: #1f2937;
+  line-height: 1.2;
+}
+
+.ws-gen {
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+/* METRICS (CHIP STYLE) */
+.ws-metrics {
+  display: flex;
+  gap: 6px;
+}
+
+.ws-votes,
+.ws-points {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+
+  padding: 6px 8px;
+  border-radius: 999px;
+  background: #fff7e6;
+  min-width: auto;
+}
+
+.ws-votes {
+  background: #eef4ff;
+}
+
+.ws-num {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.ws-votes .ws-num {
+  color: #2563eb;
+}
+
+.ws-points .ws-num {
+  color: #f59e0b;
+}
+
+.ws-label {
+  font-size: 15px;
+  color: #6b7280;
+}
+
+/* ================================
+   MOBILE — SUPER COMPACT
+   ================================ */
+@media (max-width: 520px) {
+  .week-standings-row {
+    grid-template-columns: 22px 1fr auto;
+    padding: 8px 10px;
+  }
+
+  .ws-avatar {
+    width: 34px;
+    height: 34px;
+  }
+
+  .ws-metrics {
+    gap: 4px;
+  }
+
+  .ws-votes,
+  .ws-points {
+    padding: 5px 7px;
+  }
+
+  .ws-num {
+    font-size: 16px;
+  }
+}
+
+
+/* ===============================
+   KAMIS PODIUM – MONDAY STYLE
+   =============================== */
+
+.mpl-podium {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  margin-top: 12px;
+}
+
+/* ===== PODIUM CARD ===== */
+.mpl-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 120px;
+  padding: 0 28px 0 160px;
+  border-radius: 24px;
+  overflow: visible;
+}
+
+/* FOTO PODIUM (PNG / TRANSPARAN) */
+.mpl-avatar {
+  position: absolute;
+  left: -28px;
+  bottom: 0;
+  width: 130px;
+  height: auto;
+  object-fit: contain;
+  z-index: 5;
+  background: transparent;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,.35));
+}
+
+/* TEXT */
+.mpl-content {
+  flex: 1;
+  z-index: 2;
+}
+
+.mpl-sub {
+  font-size: 13px;
+  opacity: .85;
+}
+
+.mpl-name {
+  font-family: 'Orbitron', system-ui, sans-serif;
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: .04em;
+  line-height: 1;
+}
+
+/* SCORE */
+.mpl-score {
+  text-align: right;
+  z-index: 2;
+}
+
+.mpl-score strong {
+  display: block;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.mpl-score span {
+  font-size: 14px;
+  opacity: .9;
+}
+
+/* RANK NUMBER */
+.mpl-rank {
+  position: absolute;
+  left: 130px;
+  font-size: 84px;
+  font-weight: 900;
+  opacity: .18;
+  z-index: 1;
+  line-height: 1;
+  font-family: 'Orbitron', system-ui, sans-serif;
+}
+
+/* WARNA PODIUM */
+.mpl-bar.rank-1 {
+  background: #f3ea8b;
+  color: #1f2937;
+}
+
+.mpl-bar.rank-2 {
+  background: #2f5fd0;
+  color: #ffffff;
+}
+
+.mpl-bar.rank-3 {
+  background: #f2b36d;
+  color: #1f2937;
+}
+
+/* ===============================
+   MOBILE VERSION
+   =============================== */
+@media (max-width: 768px) {
+
+  .mpl-bar {
+    height: 92px;
+    padding: 0 16px 0 110px;
+    border-radius: 18px;
+  }
+
+  .mpl-avatar {
+    width: 90px;
+    left: -12px;
+  }
+
+  .mpl-name {
+    font-size: 28px;
+  }
+
+  .mpl-rank {
+    font-size: 64px;
+    left: 86px;
+  }
+
+  .mpl-score strong {
+    font-size: 22px;
+  }
+
+  .mpl-score span {
+    font-size: 13px;
+  }
+}
+
+/* ===============================
+   DESKTOP F1 STYLE (1–2–3)
+   =============================== */
+@media (min-width: 769px) {
+
+  .mpl-podium {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr 1fr;
+    gap: 48px;
+    align-items: end;
+    padding: 56px 24px 32px;
+  }
+
+  .mpl-bar {
+    height: 220px;
+    padding: 96px 32px 32px;
+    border-radius: 36px;
+  }
+
+  .mpl-bar.rank-1 {
+    order: 2;
+    transform: translateY(-64px);
+  }
+
+  .mpl-bar.rank-2 { order: 1; }
+  .mpl-bar.rank-3 { order: 3; }
+
+  .mpl-avatar {
+    left: 50%;
+    top: -72px;
+    transform: translateX(-50%);
+    width: 180px;
+  }
+
+  .mpl-content {
+    padding-top: 28px;
+    text-align: center;
+  }
+
+  .mpl-sub {
+    text-transform: uppercase;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .mpl-name {
+    font-size: 46px;
+    letter-spacing: 0.1em;
+  }
+
+  .mpl-score {
+    position: absolute;
+    right: 28px;
+    bottom: 28px;
+  }
+
+  .mpl-rank {
+    top: 20px;
+    left: 24px;
+    font-size: 96px;
+  }
+}
+
+/* ===============================
+   MOBILE FIX – PODIUM ORDER
+   Urutan: 1 → 2 → 3 (mobile only)
+   =============================== */
+@media (max-width: 768px) {
+
+  .mpl-podium {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mpl-bar.rank-1 {
+    order: 1;
+  }
+
+  .mpl-bar.rank-2 {
+    order: 2;
+  }
+
+  .mpl-bar.rank-3 {
+    order: 3;
+  }
+}
+
+/* ===============================
+   PODIUM KAMIS – COLOR OVERRIDE
+   =============================== */
+
+.liga-kamis .mpl-bar.rank-1 {
+  background: linear-gradient(135deg, #a7f3d0, #34d399);
+  color: #064e3b;
+}
+
+.liga-kamis .mpl-bar.rank-2 {
+  background: linear-gradient(135deg, #dbeafe, #60a5fa);
+  color: #1e3a8a;
+}
+
+.liga-kamis .mpl-bar.rank-3 {
+  background: linear-gradient(135deg, #fde68a, #fb923c);
+  color: #7c2d12;
+}
+
+/* Dark mode */
+body.dark .liga-kamis .mpl-bar.rank-1 {
+  background: linear-gradient(135deg, #064e3b, #065f46);
+  color: #d1fae5;
+}
+
+body.dark .liga-kamis .mpl-bar.rank-2 {
+  background: linear-gradient(135deg, #1e3a8a, #1d4ed8);
+  color: #dbeafe;
+}
+
+body.dark .liga-kamis .mpl-bar.rank-3 {
+  background: linear-gradient(135deg, #7c2d12, #9a3412);
+  color: #fde68a;
+}

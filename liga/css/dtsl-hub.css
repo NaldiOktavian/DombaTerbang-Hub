@@ -1,0 +1,502 @@
+/* ============================
+   DTSL HUB – Layout dasar
+============================ */
+
+body.dtsl-hub {
+  min-height: 100vh;
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(251, 191, 36, 0.25) 0, transparent 55%),
+    radial-gradient(circle at bottom right, rgba(244, 114, 182, 0.22) 0, transparent 55%),
+    #f3f4ff;
+  color: #0f172a;
+}
+
+/* full dark mode bg */
+body.dtsl-hub.dark {
+  background:
+    radial-gradient(circle at top, rgba(129, 140, 248, 0.25) 0, transparent 55%),
+    radial-gradient(circle at bottom, rgba(236, 72, 153, 0.2) 0, transparent 55%),
+    #020617;
+  color: #e5e7eb;
+}
+
+.dtsl-shell {
+  max-width: 1120px;
+  margin: 72px auto 40px;
+  padding: 0 16px 32px;
+}
+
+/* ============================
+   HEADER + TOPBAR
+============================ */
+
+.dtsl-header {
+  margin-bottom: 18px;
+}
+
+.dtsl-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+  font-size: 13px;
+}
+
+.dtsl-back-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #111827;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 18px rgba(148, 163, 184, 0.45);
+}
+.dtsl-back-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 26px rgba(148, 163, 184, 0.55);
+}
+.dtsl-back-icon {
+  font-size: 15px;
+}
+
+.dtsl-top-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Season pill */
+
+.dtsl-season-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 6px 18px rgba(148, 163, 184, 0.4);
+  border: 1px solid rgba(209, 213, 219, 0.9);
+}
+
+.dtsl-season-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: #f9fafb;
+}
+
+.dtsl-season-value {
+  font-size: 12px;
+  font-weight: 600;
+  color: #111827;
+}
+
+/* Theme button */
+
+.dtsl-theme-btn {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  background: linear-gradient(90deg, #fbbf24, #fb7185);
+  color: #f9fafb;
+  box-shadow: 0 10px 28px rgba(248, 113, 166, 0.4);
+}
+body.dtsl-hub.dark .dtsl-theme-btn {
+  background: linear-gradient(90deg, #38bdf8, #6366f1);
+}
+
+/* ============================
+   HERO SECTION
+============================ */
+
+.dtsl-hero {
+  display: flex;
+  gap: 18px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+.dtsl-hero-main {
+  flex: 1.6;
+  min-width: 260px;
+}
+
+.dtsl-hero h1 {
+  font-size: 26px;
+  margin: 0 0 6px;
+  letter-spacing: 0.03em;
+}
+
+.dtsl-hero-sub {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: #4b5563;
+}
+body.dtsl-hub.dark .dtsl-hero-sub {
+  color: #cbd5f5;
+}
+
+/* hero chips */
+
+.dtsl-hero-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dtsl-chip {
+  padding: 6px 10px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 22px rgba(148, 163, 184, 0.5);
+  min-width: 150px;
+}
+body.dtsl-hub.dark .dtsl-chip {
+  background: rgba(15, 23, 42, 0.96);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+}
+
+.dtsl-chip-label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+}
+.dtsl-chip-value {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+}
+body.dtsl-hub.dark .dtsl-chip-value {
+  color: #e5e7eb;
+}
+
+/* HERO SIDE CARD */
+
+.dtsl-hero-side {
+  flex: 1.1;
+  min-width: 260px;
+}
+
+.dtsl-hero-card {
+  border-radius: 20px;
+  padding: 12px 12px 10px;
+  background: linear-gradient(135deg, #eef2ff, #fee2f2);
+  box-shadow: 0 16px 40px rgba(148, 163, 184, 0.75);
+}
+body.dtsl-hub.dark .dtsl-hero-card {
+  background:
+    radial-gradient(circle at top, rgba(129, 140, 248, 0.25) 0, transparent 55%),
+    #020617;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+}
+
+.dtsl-hero-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  font-size: 11px;
+}
+
+.dtsl-hero-badge {
+  padding: 3px 9px;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  background: rgba(15, 23, 42, 0.9);
+  color: #f9fafb;
+  font-size: 10px;
+}
+
+.dtsl-hero-date {
+  font-size: 11px;
+  color: #6b7280;
+}
+body.dtsl-hub.dark .dtsl-hero-date {
+  color: #e5e7eb;
+}
+
+/* Status list */
+
+.dtsl-status-list {
+  list-style: none;
+  padding: 4px 0 6px;
+  margin: 0 0 4px;
+}
+
+.dtsl-status-list li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  font-size: 12px;
+  padding: 4px 0;
+}
+
+.dtsl-status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
+  background: #9ca3af;
+  flex-shrink: 0;
+}
+
+.dtsl-status-label {
+  flex: 0 0 145px;
+}
+
+.dtsl-status-text {
+  flex: 1;
+  text-align: right;
+  opacity: 0.9;
+}
+
+/* warna dot status */
+.dtsl-status-dot.live {
+  background: #22c55e;
+}
+.dtsl-status-dot.upcoming {
+  background: #facc15;
+}
+.dtsl-status-dot.off {
+  background: #9ca3af;
+}
+
+.dtsl-note {
+  margin: 4px 0 0;
+  font-size: 10px;
+  color: #6b7280;
+}
+body.dtsl-hub.dark .dtsl-note {
+  color: #9ca3af;
+}
+
+/* ============================
+   GRID KARTU LIGA
+============================ */
+
+.dtsl-main {
+  margin-top: 16px;
+}
+
+.dtsl-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+/* card dasar */
+
+.dtsl-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 14px 12px;
+  border-radius: 20px;
+  text-decoration: none;
+  color: inherit;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 36px rgba(148, 163, 184, 0.75);
+  border: 1px solid rgba(229, 231, 235, 0.9);
+  transition: transform 0.16s ease, box-shadow 0.16s ease, border-color 0.16s ease;
+}
+
+.dtsl-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px rgba(148, 163, 184, 0.95);
+  border-color: rgba(248, 113, 166, 0.7);
+}
+
+/* custom warna tiap liga */
+
+.dtsl-card-monday {
+  background: linear-gradient(135deg, #fef9c3, #fee2e2);
+}
+
+.dtsl-card-thursday {
+  background: linear-gradient(135deg, #eef2ff, #e0f2fe);
+}
+
+.dtsl-card-champions {
+  background: radial-gradient(circle at top, #dbeafe 0, #e0e7ff 40%, #fef2ff 100%);
+}
+
+/* dark mode */
+
+body.dtsl-hub.dark .dtsl-card {
+  background: rgba(15, 23, 42, 0.98);
+  border-color: rgba(51, 65, 85, 0.95);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.9);
+}
+
+/* card top row */
+
+.dtsl-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+}
+
+.dtsl-card-pill {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, 0.08);
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+body.dtsl-hub.dark .dtsl-card-pill {
+  background: rgba(148, 163, 184, 0.16);
+  color: #e5e7eb;
+}
+
+.dtsl-card-status {
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+/* status color */
+
+.dtsl-card-status.live {
+  background: rgba(22, 163, 74, 0.12);
+  color: #15803d;
+  border: 1px solid rgba(34, 197, 94, 0.7);
+}
+
+.dtsl-card-status.upcoming {
+  background: rgba(251, 191, 36, 0.16);
+  color: #92400e;
+  border: 1px solid rgba(245, 158, 11, 0.8);
+}
+
+.dtsl-card-status.off {
+  background: rgba(148, 163, 184, 0.16);
+  color: #4b5563;
+  border: 1px solid rgba(148, 163, 184, 0.9);
+}
+
+/* judul & sub */
+
+.dtsl-card-title {
+  margin: 4px 0 2px;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+body.dtsl-hub.dark .dtsl-card-title {
+  color: #f9fafb;
+}
+
+.dtsl-card-sub {
+  margin: 0 0 4px;
+  font-size: 13px;
+  color: #4b5563;
+}
+body.dtsl-hub.dark .dtsl-card-sub {
+  color: #cbd5f5;
+}
+
+/* meta row */
+
+.dtsl-card-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.dtsl-meta {
+  padding: 6px 9px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.85);
+  font-size: 11px;
+}
+body.dtsl-hub.dark .dtsl-meta {
+  background: rgba(15, 23, 42, 0.96);
+}
+
+.dtsl-meta-label {
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+}
+.dtsl-meta-value {
+  font-weight: 600;
+  color: #111827;
+}
+body.dtsl-hub.dark .dtsl-meta-value {
+  color: #e5e7eb;
+}
+
+/* footer card */
+
+.dtsl-card-footer {
+  margin-top: 6px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(148, 163, 184, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 11px;
+  color: #6b7280;
+}
+body.dtsl-hub.dark .dtsl-card-footer {
+  border-top-color: rgba(55, 65, 81, 0.9);
+  color: #9ca3af;
+}
+
+.dtsl-card-footer-right {
+  font-weight: 600;
+}
+
+/* ============================
+   FOOTER
+============================ */
+
+.dtsl-footer {
+  margin-top: 20px;
+  font-size: 11px;
+  text-align: center;
+  color: #9ca3af;
+}
+body.dtsl-hub.dark .dtsl-footer {
+  color: #cbd5f5;
+}
+
+/* ============================
+   RESPONSIVE
+============================ */
+
+@media (max-width: 640px) {
+  .dtsl-shell {
+    margin-top: 64px;
+  }
+
+  .dtsl-hero {
+    flex-direction: column;
+  }
+
+  .dtsl-hero-card {
+    margin-top: 4px;
+  }
+}
